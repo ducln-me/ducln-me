@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duc Le Nguyen - Personal Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="#home">Duc Le Nguyen</a>
+            </div>
+            <div class="navbar-links">
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#publications">Publications</a>
+                <a href="#blog">Blog</a>
+            </div>
+            <div class="navbar-social">
+                <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ducln-me" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-avatar">
+                <img src="https://via.placeholder.com/150" alt="Duc Le Nguyen">
+            </div>
+            <h2>Duc Le Nguyen</h2>
+            <p class="sidebar-title">Software Engineer & Researcher</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <ul>
+                <li>
+                    <a href="#about" class="nav-link">
+                        <i class="fas fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    <ul class="sub-nav">
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#education">Education</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#projects" class="nav-link">
+                        <i class="fas fa-folder"></i>
+                        <span>Projects</span>
+                    </a>
+                    <ul class="sub-nav" id="projectsList">
+                        <!-- Dynamically populated -->
+                    </ul>
+                </li>
+                <li>
+                    <a href="#publications" class="nav-link">
+                        <i class="fas fa-file-alt"></i>
+                        <span>Publications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#blog" class="nav-link">
+                        <i class="fas fa-blog"></i>
+                        <span>Blog</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-contact">
+            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/ducln-me" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="hero">
+                <div class="hero-avatar">
+                    <img src="https://via.placeholder.com/200" alt="Duc Le Nguyen">
+                </div>
+                <div class="hero-content">
+                    <h1>Hi, I'm Duc Le Nguyen</h1>
+                    <p class="tagline">Software Engineer | Researcher | Developer</p>
+                    <p class="hero-description">
+                        Passionate about building innovative solutions and conducting meaningful research.
+                        Experienced in full-stack development, machine learning, and system architecture.
+                    </p>
+                </div>
+            </div>
+
+            <div id="experience" class="subsection">
+                <h2>Experience</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Senior Software Engineer</h3>
+                            <p class="company">Tech Company Inc.</p>
+                            <p class="duration">2022 - Present</p>
+                            <p class="description">
+                                Leading development of cloud-based applications. Working with React, Node.js, and AWS.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-marker"></div>
+                        <div class="timeline-content">
+                            <h3>Software Engineer</h3>
+                            <p class="company">Startup Solutions</p>
+                            <p class="duration">2020 - 2022</p>
+                            <p class="description">
+                                Developed scalable web applications and contributed to system architecture decisions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="education" class="subsection">
+                <h2>Education</h2>
+                <div class="education-grid">
+                    <div class="education-card">
+                        <h3>Master of Computer Science</h3>
+                        <p class="institution">University Name</p>
+                        <p class="duration">2018 - 2020</p>
+                        <p class="description">Focus on Machine Learning and Distributed Systems</p>
+                    </div>
+                    <div class="education-card">
+                        <h3>Bachelor of Software Engineering</h3>
+                        <p class="institution">University Name</p>
+                        <p class="duration">2014 - 2018</p>
+                        <p class="description">Graduated with Honors</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="contact" class="subsection">
+                <h2>Contact</h2>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <a href="mailto:your.email@example.com">your.email@example.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-linkedin"></i>
+                        <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn Profile</a>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fab fa-github"></i>
+                        <a href="https://github.com/ducln-me" target="_blank">GitHub Profile</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card" data-project="ecommerce-platform">
+                    <div class="project-header">
+                        <h3>E-Commerce Platform</h3>
+                        <span class="project-duration">2023</span>
+                    </div>
+                    <p class="project-description">
+                        A full-stack e-commerce solution with real-time inventory management and payment processing.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">React</span>
+                        <span class="tech-tag">Node.js</span>
+                        <span class="tech-tag">MongoDB</span>
+                        <span class="tech-tag">Stripe</span>
+                    </div>
+                    <div class="project-results">
+                        <p><strong>Results:</strong> Processed 10k+ transactions, 99.9% uptime</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#blog-ecommerce" class="blog-link">Read Case Study</a>
+                        <a href="#" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="ml-recommendation">
+                    <div class="project-header">
+                        <h3>ML Recommendation Engine</h3>
+                        <span class="project-duration">2022-2023</span>
+                    </div>
+                    <p class="project-description">
+                        Machine learning-based recommendation system using collaborative filtering and neural networks.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">TensorFlow</span>
+                        <span class="tech-tag">FastAPI</span>
+                        <span class="tech-tag">Docker</span>
+                    </div>
+                    <div class="project-results">
+                        <p><strong>Results:</strong> 35% improvement in user engagement</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#blog-ml" class="blog-link">Read Case Study</a>
+                        <a href="#" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+
+                <div class="project-card" data-project="devops-automation">
+                    <div class="project-header">
+                        <h3>DevOps Automation Suite</h3>
+                        <span class="project-duration">2022</span>
+                    </div>
+                    <p class="project-description">
+                        CI/CD pipeline automation and infrastructure as code solution for cloud deployments.
+                    </p>
+                    <div class="project-tech">
+                        <span class="tech-tag">Kubernetes</span>
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">GitHub Actions</span>
+                        <span class="tech-tag">AWS</span>
+                    </div>
+                    <div class="project-results">
+                        <p><strong>Results:</strong> Reduced deployment time by 70%</p>
+                    </div>
+                    <div class="project-links">
+                        <a href="#blog-devops" class="blog-link">Read Case Study</a>
+                        <a href="#" class="github-link"><i class="fab fa-github"></i> View Code</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="section">
+            <h2>Publications</h2>
+            <div class="publications-list">
+                <div class="publication-card">
+                    <h3>Scalable Machine Learning Systems for Real-Time Predictions</h3>
+                    <div class="publication-meta">
+                        <span class="venue">International Conference on ML (ICML)</span>
+                        <span class="year">2023</span>
+                    </div>
+                    <p class="publication-summary">
+                        This paper presents a novel approach to building scalable ML systems that can handle
+                        real-time prediction requests with minimal latency.
+                    </p>
+                    <a href="#" class="publication-link">Read Paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="publication-card">
+                    <h3>Optimizing Microservices Architecture for High-Traffic Applications</h3>
+                    <div class="publication-meta">
+                        <span class="venue">Journal of Software Engineering</span>
+                        <span class="year">2022</span>
+                    </div>
+                    <p class="publication-summary">
+                        An in-depth analysis of microservices patterns and their performance characteristics
+                        in high-traffic production environments.
+                    </p>
+                    <a href="#" class="publication-link">Read Paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+
+                <div class="publication-card">
+                    <h3>Deep Learning Approaches for Natural Language Understanding</h3>
+                    <div class="publication-meta">
+                        <span class="venue">ACL Conference</span>
+                        <span class="year">2021</span>
+                    </div>
+                    <p class="publication-summary">
+                        Exploring transformer-based models and their applications in various NLP tasks
+                        including sentiment analysis and text classification.
+                    </p>
+                    <a href="#" class="publication-link">Read Paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section">
+            <h2>Blog & Articles</h2>
+            <div class="blog-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="project">Projects</button>
+                <button class="filter-btn" data-filter="tutorial">Tutorials</button>
+                <button class="filter-btn" data-filter="research">Research</button>
+            </div>
+            <div class="blog-grid">
+                <article class="blog-card" data-category="project" data-project="ecommerce-platform" id="blog-ecommerce">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Blog post">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tags">
+                            <span class="tag">Project</span>
+                            <span class="tag">Full-Stack</span>
+                        </div>
+                        <h3>Building a Scalable E-Commerce Platform</h3>
+                        <p class="blog-excerpt">
+                            A deep dive into the architecture and implementation details of our e-commerce
+                            platform, handling thousands of concurrent users.
+                        </p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="project" data-project="ml-recommendation" id="blog-ml">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Blog post">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tags">
+                            <span class="tag">Project</span>
+                            <span class="tag">Machine Learning</span>
+                        </div>
+                        <h3>Implementing a Recommendation Engine with Neural Networks</h3>
+                        <p class="blog-excerpt">
+                            Learn how we built a recommendation system using collaborative filtering
+                            and deep learning techniques.
+                        </p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="tutorial">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Blog post">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tags">
+                            <span class="tag">Tutorial</span>
+                            <span class="tag">DevOps</span>
+                        </div>
+                        <h3>Complete Guide to CI/CD with GitHub Actions</h3>
+                        <p class="blog-excerpt">
+                            A comprehensive tutorial on setting up automated deployment pipelines
+                            using GitHub Actions and cloud platforms.
+                        </p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="project" data-project="devops-automation" id="blog-devops">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Blog post">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tags">
+                            <span class="tag">Project</span>
+                            <span class="tag">DevOps</span>
+                        </div>
+                        <h3>Automating Infrastructure with Terraform and Kubernetes</h3>
+                        <p class="blog-excerpt">
+                            How we reduced deployment time by 70% using infrastructure as code
+                            and container orchestration.
+                        </p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="research">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Blog post">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tags">
+                            <span class="tag">Research</span>
+                            <span class="tag">Machine Learning</span>
+                        </div>
+                        <h3>Latest Trends in Deep Learning for NLP</h3>
+                        <p class="blog-excerpt">
+                            Exploring recent advances in transformer models and their applications
+                            in natural language processing tasks.
+                        </p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+
+                <article class="blog-card" data-category="tutorial">
+                    <div class="blog-image">
+                        <img src="https://via.placeholder.com/400x250" alt="Blog post">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-tags">
+                            <span class="tag">Tutorial</span>
+                            <span class="tag">Web Development</span>
+                        </div>
+                        <h3>Mastering React Hooks: A Practical Guide</h3>
+                        <p class="blog-excerpt">
+                            From useState to custom hooks - a comprehensive guide to modern React development
+                            with practical examples.
+                        </p>
+                        <a href="#" class="read-more">Read Full Article <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
