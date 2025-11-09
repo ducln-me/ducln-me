@@ -601,35 +601,28 @@ a {
 }
 
 .challenges-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: flex;
+    flex-direction: column;
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
 .challenge-card {
-    background-color: var(--bg-secondary);
-    border-left: 4px solid var(--primary-color);
-    padding: 1.5rem;
-    border-radius: 8px;
-    transition: var(--transition);
-}
-
-.challenge-card:hover {
-    transform: translateX(4px);
-    box-shadow: 0 4px 12px var(--shadow-lg);
+    padding: 0;
 }
 
 .challenge-card h4 {
-    color: var(--primary-color);
-    margin-bottom: 0.75rem;
-    font-size: 1.1rem;
+    color: var(--text-color);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .challenge-card p {
     color: var(--text-secondary);
     line-height: 1.6;
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
 }
 
 .challenge-link {
@@ -1117,6 +1110,10 @@ a {
 }
 
 .project-image {
+    display: none;
+}
+
+.project-category {
     display: none;
 }
 
@@ -1789,75 +1786,40 @@ a {
 }
 
 .results-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.2rem;
-    margin: 1.5rem 0 2rem 0;
-}
-
-@media (max-width: 768px) {
-    .results-grid {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
+    display: block;
+    margin: 1rem 0;
 }
 
 .result-card {
-    text-align: left;
-    padding: 1.25rem 1.5rem;
-    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-accent) 100%);
-    border-radius: 10px;
-    border-left: 4px solid var(--primary-color);
-    transition: var(--transition);
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0.5rem;
 }
 
-.result-card:nth-child(2) {
-    border-left-color: #22c55e;
-}
-
-.result-card:nth-child(3) {
-    border-left-color: #f59e0b;
-}
-
-.result-card:nth-child(4) {
-    border-left-color: #8b5cf6;
-}
-
-.result-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px var(--shadow);
+.result-card::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-weight: bold;
 }
 
 .result-card h3 {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    display: inline;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-color);
     margin: 0;
-    line-height: 1.2;
-}
-
-.result-card:nth-child(2) h3 {
-    color: #22c55e;
-}
-
-.result-card:nth-child(3) h3 {
-    color: #f59e0b;
-}
-
-.result-card:nth-child(4) h3 {
-    color: #8b5cf6;
 }
 
 .result-card p {
+    display: inline;
     color: var(--text-secondary);
-    font-size: 0.85rem;
-    font-weight: 500;
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    font-size: 1rem;
+    font-weight: normal;
+    margin: 0 0 0 0.5rem;
 }
 
 .improvements-list {
