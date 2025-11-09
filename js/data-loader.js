@@ -217,27 +217,26 @@ const Templates = {
                     </div>
 
                     <div class="project-details">
-                        <!-- Two Column Layout: Tech Stack & Features (Left) | Results (Right) -->
-                        <div class="two-column-layout">
-                            <div class="left-column">
-                                <div class="detail-section">
-                                    <h3><i class="fas fa-layer-group"></i> Tech Stack</h3>
-                                    <div class="tech-stack-grid">
-                                        ${Object.entries(project.techStack).map(([key, value]) => `
-                                            <div class="tech-stack-item">
-                                                <strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong>
-                                                <span>${value}</span>
-                                            </div>
-                                        `).join('')}
+                        <!-- Tech Stack -->
+                        <div class="detail-section">
+                            <h3><i class="fas fa-layer-group"></i> Tech Stack</h3>
+                            <div class="tech-stack-grid">
+                                ${Object.entries(project.techStack).map(([key, value]) => `
+                                    <div class="tech-stack-item">
+                                        <strong>${key.charAt(0).toUpperCase() + key.slice(1)}:</strong>
+                                        <span>${value}</span>
                                     </div>
-                                </div>
+                                `).join('')}
+                            </div>
+                        </div>
 
-                                <div class="detail-section">
-                                    <h3><i class="fas fa-star"></i> Key Features</h3>
-                                    <ul class="feature-list">
-                                        ${project.features.map(feature => `<li>${feature}</li>`).join('')}
-                                    </ul>
-                                </div>
+                        <!-- Two Column Layout: Key Features (Left) | Results (Right) -->
+                        <div class="two-column-layout">
+                            <div class="detail-section">
+                                <h3><i class="fas fa-star"></i> Key Features</h3>
+                                <ul class="feature-list">
+                                    ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                                </ul>
                             </div>
 
                             <div class="detail-section">
