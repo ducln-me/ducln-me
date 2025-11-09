@@ -1105,8 +1105,15 @@ a {
 /* ===== PROJECTS PAGE ===== */
 
 .project-section {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
     scroll-margin-top: calc(var(--navbar-height) + 2rem);
+}
+
+.project-separator {
+    border: none;
+    border-top: 3px solid var(--border-color);
+    margin: 4rem 0;
+    opacity: 0.6;
 }
 
 .project-image {
@@ -1115,6 +1122,12 @@ a {
 
 .project-category {
     display: none;
+}
+
+.left-column {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .project-detail {
