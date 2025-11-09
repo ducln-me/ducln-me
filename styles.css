@@ -577,6 +577,79 @@ a {
     background-color: var(--primary-dark);
 }
 
+/* Two Column Layout for Projects */
+.two-column-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .two-column-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* Challenges Section */
+.challenges-section {
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 2px solid var(--border-color);
+}
+
+.challenges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.challenge-card {
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 8px;
+    transition: var(--transition);
+}
+
+.challenge-card:hover {
+    transform: translateX(4px);
+    box-shadow: 0 4px 12px var(--shadow-lg);
+}
+
+.challenge-card h4 {
+    color: var(--primary-color);
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.challenge-card p {
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.challenge-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--primary-color);
+    font-weight: 500;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.challenge-link:hover {
+    color: var(--primary-dark);
+    gap: 0.75rem;
+}
+
+.challenge-link i:last-child {
+    font-size: 0.85rem;
+}
+
 .github-link {
     background-color: var(--bg-color);
     color: var(--text-color);
@@ -1908,5 +1981,192 @@ a {
     .btn-secondary {
         justify-content: center;
         width: 100%;
+    }
+}
+
+/* ===== BLOG DETAIL PAGE STYLES ===== */
+
+.blog-detail-header {
+    margin-bottom: 3rem;
+}
+
+.blog-detail-header h1 {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    margin: 1rem 0;
+    line-height: 1.3;
+}
+
+.blog-detail-meta {
+    display: flex;
+    gap: 2rem;
+    margin: 1.5rem 0;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.blog-detail-meta i {
+    margin-right: 0.5rem;
+}
+
+.blog-detail-image {
+    width: 100%;
+    margin: 2rem 0;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.blog-detail-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.blog-detail-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.content-section {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-section:last-child {
+    border-bottom: none;
+}
+
+.content-section h2 {
+    font-size: 2rem;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 3px solid var(--primary-color);
+}
+
+.content-section h3 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin: 2rem 0 1rem 0;
+}
+
+.content-section p {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+}
+
+.content-section ul.feature-list {
+    list-style: none;
+    margin: 1rem 0;
+}
+
+.content-section ul.feature-list li {
+    padding: 0.75rem 0 0.75rem 2rem;
+    position: relative;
+    color: var(--text-color);
+}
+
+.content-section ul.feature-list li:before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    line-height: 1;
+}
+
+.challenge-item {
+    background-color: var(--bg-secondary);
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+}
+
+.challenge-item h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.challenge-item .problem {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(255, 68, 68, 0.1);
+    border-left: 3px solid #ff4444;
+    border-radius: 4px;
+}
+
+.challenge-item .solution {
+    margin: 1rem 0;
+    padding: 1rem;
+    background-color: rgba(34, 197, 94, 0.1);
+    border-left: 3px solid #22c55e;
+    border-radius: 4px;
+}
+
+.content-item {
+    background-color: var(--bg-secondary);
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary-light);
+}
+
+.content-item h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+.table-of-contents {
+    margin-top: 1rem;
+}
+
+.table-of-contents ul {
+    list-style: none;
+    padding: 0;
+}
+
+.table-of-contents li {
+    margin-bottom: 0.5rem;
+}
+
+.table-of-contents a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: var(--transition);
+    display: block;
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+
+.table-of-contents a:hover {
+    color: var(--primary-color);
+    background-color: var(--bg-accent);
+    padding-left: 1rem;
+}
+
+/* Responsive blog detail */
+@media (max-width: 768px) {
+    .blog-detail-header h1 {
+        font-size: 1.75rem;
+    }
+
+    .blog-detail-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .content-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .content-section h3 {
+        font-size: 1.25rem;
+    }
+
+    .blog-detail-content {
+        font-size: 1rem;
     }
 }

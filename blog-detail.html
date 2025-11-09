@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post - Duc Le Nguyen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">Duc Le Nguyen</a>
+            </div>
+            <div class="navbar-links">
+                <a href="index.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="publications.html">Publications</a>
+                <a href="blog.html" class="active">Blog</a>
+            </div>
+            <div class="navbar-social">
+                <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ducln-me" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar with Table of Contents -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-avatar">
+                <img src="https://via.placeholder.com/150" alt="Duc Le Nguyen">
+            </div>
+            <h2>Duc Le Nguyen</h2>
+            <p class="sidebar-title">Software Engineer & Researcher</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <h3 class="sidebar-section-title">Table of Contents</h3>
+            <div class="table-of-contents">
+                <ul>
+                    <!-- Table of contents will be generated dynamically -->
+                </ul>
+            </div>
+
+            <div style="margin-top: 2rem;">
+                <a href="blog.html" class="btn-secondary" style="display: block; text-align: center;">
+                    <i class="fas fa-arrow-left"></i> Back to Blog
+                </a>
+            </div>
+        </nav>
+
+        <div class="sidebar-contact">
+            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/ducln-me" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Blog Detail Header -->
+        <div class="blog-detail-header">
+            <!-- Content will be generated dynamically -->
+        </div>
+
+        <!-- Blog Detail Content -->
+        <article class="blog-detail-content">
+            <!-- Content sections will be generated dynamically -->
+        </article>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/data-loader.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

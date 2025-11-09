@@ -36,6 +36,32 @@
           "Achieved 95+ Lighthouse score"
         ]
       },
+      "challenges": [
+        {
+          "title": "Race Conditions in Inventory Management",
+          "description": "Multiple users purchasing the same item simultaneously led to overselling and negative stock counts.",
+          "blogPost": {
+            "title": "Solving Inventory Race Conditions with Optimistic Locking",
+            "url": "blog-detail.html?post=ecommerce-platform#challenges"
+          }
+        },
+        {
+          "title": "Payment Processing Bottleneck",
+          "description": "Synchronous payment processing caused timeouts during high traffic periods.",
+          "blogPost": {
+            "title": "Async Payment Processing with Message Queues",
+            "url": "blog-detail.html?post=ecommerce-platform#challenges"
+          }
+        },
+        {
+          "title": "Search Performance Issues",
+          "description": "MongoDB full-text search was slow with large product catalogs.",
+          "blogPost": {
+            "title": "Elasticsearch Integration for Fast Product Search",
+            "url": "blog-detail.html?post=ecommerce-platform#challenges"
+          }
+        }
+      ],
       "links": {
         "github": "https://github.com/ducln-me/ecommerce-platform",
         "demo": "https://demo.example.com",

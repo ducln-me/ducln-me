@@ -217,6 +217,7 @@ const Templates = {
                     </div>
 
                     <div class="project-details">
+                        <!-- Tech Stack -->
                         <div class="detail-section">
                             <h3><i class="fas fa-layer-group"></i> Tech Stack</h3>
                             <div class="tech-stack-grid">
@@ -229,32 +230,56 @@ const Templates = {
                             </div>
                         </div>
 
-                        <div class="detail-section">
-                            <h3><i class="fas fa-star"></i> Key Features</h3>
-                            <ul class="feature-list">
-                                ${project.features.map(feature => `<li>${feature}</li>`).join('')}
-                            </ul>
-                        </div>
-
-                        <div class="detail-section">
-                            <h3><i class="fas fa-chart-line"></i> Results & Impact</h3>
-                            <div class="results-grid">
-                                ${project.results.metrics.map(metric => `
-                                    <div class="result-card">
-                                        <h3>${metric.value}</h3>
-                                        <p>${metric.label}</p>
-                                    </div>
-                                `).join('')}
+                        <!-- Two Column Layout: Features & Results -->
+                        <div class="two-column-layout">
+                            <div class="detail-section">
+                                <h3><i class="fas fa-star"></i> Key Features</h3>
+                                <ul class="feature-list">
+                                    ${project.features.map(feature => `<li>${feature}</li>`).join('')}
+                                </ul>
                             </div>
-                            <ul class="improvements-list">
-                                ${project.results.improvements.map(improvement => `<li>${improvement}</li>`).join('')}
-                            </ul>
+
+                            <div class="detail-section">
+                                <h3><i class="fas fa-chart-line"></i> Results & Impact</h3>
+                                <div class="results-grid">
+                                    ${project.results.metrics.map(metric => `
+                                        <div class="result-card">
+                                            <h3>${metric.value}</h3>
+                                            <p>${metric.label}</p>
+                                        </div>
+                                    `).join('')}
+                                </div>
+                                <ul class="improvements-list">
+                                    ${project.results.improvements.map(improvement => `<li>${improvement}</li>`).join('')}
+                                </ul>
+                            </div>
                         </div>
 
+                        <!-- Challenges Section -->
+                        ${project.challenges && project.challenges.length > 0 ? `
+                            <div class="detail-section challenges-section">
+                                <h3><i class="fas fa-exclamation-triangle"></i> Technical Challenges & Solutions</h3>
+                                <div class="challenges-grid">
+                                    ${project.challenges.map(challenge => `
+                                        <div class="challenge-card">
+                                            <h4>${challenge.title}</h4>
+                                            <p>${challenge.description}</p>
+                                            ${challenge.blogPost ? `
+                                                <a href="${challenge.blogPost.url}" class="challenge-link">
+                                                    <i class="fas fa-book-open"></i> ${challenge.blogPost.title}
+                                                    <i class="fas fa-arrow-right"></i>
+                                                </a>
+                                            ` : ''}
+                                        </div>
+                                    `).join('')}
+                                </div>
+                            </div>
+                        ` : ''}
+
+                        <!-- Project Links -->
                         <div class="project-links">
                             ${project.links.github ? `<a href="${project.links.github}" class="btn-primary" target="_blank"><i class="fab fa-github"></i> View Code</a>` : ''}
                             ${project.links.demo ? `<a href="${project.links.demo}" class="btn-primary" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>` : ''}
-                            ${project.links.caseStudy ? `<a href="${project.links.caseStudy}" class="btn-secondary"><i class="fas fa-book"></i> Case Study</a>` : ''}
                         </div>
                     </div>
                 </section>
@@ -324,7 +349,7 @@ const Templates = {
 
     // Render blog posts (Blog page)
     renderBlogPosts(data) {
-        const container = document.querySelector('.blog-grid');
+        const container = document.querySelector('.blog-grid, .blog-articles-grid');
         if (!container || !data || !data.posts) return;
 
         container.innerHTML = data.posts.map(post => `
@@ -343,12 +368,128 @@ const Templates = {
                     <div class="article-tags">
                         ${post.tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}
                     </div>
-                    <a href="${post.url}" class="read-more-link">
+                    <a href="blog-detail.html?post=${post.id}" class="read-more-link">
                         Read More <i class="fas fa-arrow-right"></i>
                     </a>
                 </div>
             </article>
         `).join('');
+    },
+
+    // Render blog detail page
+    renderBlogDetail(post) {
+        if (!post) return;
+
+        // Update page title
+        document.title = `${post.title} - Duc Le Nguyen`;
+
+        // Update header
+        const headerSection = document.querySelector('.blog-detail-header');
+        if (headerSection) {
+            headerSection.innerHTML = `
+                <div class="category-badge ${post.category}">${post.categoryLabel}</div>
+                <h1>${post.title}</h1>
+                <div class="blog-detail-meta">
+                    <span class="post-date"><i class="fas fa-calendar"></i> ${new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    <span class="read-time"><i class="fas fa-clock"></i> ${post.readTime}</span>
+                </div>
+                ${post.image ? `
+                    <div class="blog-detail-image">
+                        <img src="${post.image}" alt="${post.title}">
+                    </div>
+                ` : ''}
+                <div class="article-tags">
+                    ${post.tags.map(tag => `<span class="article-tag">${tag}</span>`).join('')}
+                </div>
+            `;
+        }
+
+        // Render content sections
+        const contentContainer = document.querySelector('.blog-detail-content');
+        if (contentContainer && post.sections) {
+            contentContainer.innerHTML = post.sections.map(section => {
+                let sectionHTML = `<section id="${section.id}" class="content-section">`;
+                sectionHTML += `<h2>${section.title}</h2>`;
+
+                if (section.content) {
+                    sectionHTML += `<p>${section.content.replace(/\n/g, '</p><p>')}</p>`;
+                }
+
+                // Render subsections (for architecture, approach sections)
+                if (section.subsections) {
+                    section.subsections.forEach(subsection => {
+                        sectionHTML += `<h3>${subsection.title}</h3>`;
+                        sectionHTML += `<ul class="feature-list">`;
+                        subsection.items.forEach(item => {
+                            sectionHTML += `<li>${item}</li>`;
+                        });
+                        sectionHTML += `</ul>`;
+                    });
+                }
+
+                // Render items (for challenges, best practices sections)
+                if (section.items) {
+                    section.items.forEach(item => {
+                        if (item.title && item.problem && item.solution) {
+                            // Challenge format
+                            sectionHTML += `
+                                <div class="challenge-item">
+                                    <h3>${item.title}</h3>
+                                    <div class="problem">
+                                        <strong>Problem:</strong> ${item.problem}
+                                    </div>
+                                    <div class="solution">
+                                        <strong>Solution:</strong> ${item.solution}
+                                    </div>
+                                </div>
+                            `;
+                        } else if (item.title && item.description) {
+                            // Generic item format
+                            sectionHTML += `
+                                <div class="content-item">
+                                    <h3>${item.title}</h3>
+                                    <p>${item.description}</p>
+                                </div>
+                            `;
+                        }
+                    });
+                }
+
+                // Render metrics (for results sections)
+                if (section.metrics) {
+                    sectionHTML += `<div class="results-grid">`;
+                    section.metrics.forEach(metric => {
+                        sectionHTML += `
+                            <div class="result-card">
+                                <h3>${metric.value}</h3>
+                                <p>${metric.label}</p>
+                            </div>
+                        `;
+                    });
+                    sectionHTML += `</div>`;
+                }
+
+                // Render improvements list
+                if (section.improvements) {
+                    sectionHTML += `<ul class="improvements-list">`;
+                    section.improvements.forEach(improvement => {
+                        sectionHTML += `<li>${improvement}</li>`;
+                    });
+                    sectionHTML += `</ul>`;
+                }
+
+                sectionHTML += `</section>`;
+                return sectionHTML;
+            }).join('');
+        }
+
+        // Generate table of contents
+        const tocContainer = document.querySelector('.table-of-contents ul');
+        if (tocContainer && post.sections) {
+            tocContainer.innerHTML = post.sections.map(section => `
+                <li><a href="#${section.id}">${section.title}</a></li>
+            `).join('');
+        }
     }
 };
 
@@ -398,6 +539,33 @@ const PageInit = {
 
         if (profile) Templates.renderProfile(profile);
         if (blog) Templates.renderBlogPosts(blog);
+    },
+
+    // Initialize Blog Detail page
+    async initBlogDetailPage() {
+        // Get post ID from URL parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('post');
+
+        const [profile, blog] = await Promise.all([
+            DataLoader.loadProfile(),
+            DataLoader.loadBlog()
+        ]);
+
+        if (profile) Templates.renderProfile(profile);
+
+        if (blog && postId) {
+            const post = blog.posts.find(p => p.id === postId);
+            if (post) {
+                Templates.renderBlogDetail(post);
+            } else {
+                // Post not found
+                const contentContainer = document.querySelector('.blog-detail-content');
+                if (contentContainer) {
+                    contentContainer.innerHTML = '<p>Blog post not found.</p>';
+                }
+            }
+        }
     }
 };
 
@@ -416,8 +584,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             await PageInit.initPublicationsPage();
         } else if (page === 'blog.html') {
             await PageInit.initBlogPage();
+        } else if (page === 'blog-detail.html') {
+            await PageInit.initBlogDetailPage();
         } else {
-            // For blog post pages, just load profile
+            // For other pages, just load profile
             const profile = await DataLoader.loadProfile();
             if (profile) Templates.renderProfile(profile);
         }

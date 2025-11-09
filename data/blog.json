@@ -10,14 +10,76 @@
       "readTime": "12 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "A comprehensive deep dive into the architecture, design decisions, and implementation details of building a production-ready e-commerce platform.",
       "image": "https://via.placeholder.com/1200x600",
       "tags": ["React", "Node.js", "MongoDB", "Stripe", "AWS", "Redis"],
       "featured": true,
-      "url": "blog/ecommerce-platform.html"
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Project Overview",
+          "content": "This project details the complete journey of building a production-ready e-commerce platform capable of handling thousands of concurrent users. The platform was built from scratch using modern web technologies and cloud infrastructure.\n\nKey features include real-time inventory management, secure payment processing with Stripe, advanced search with Elasticsearch, comprehensive admin dashboard, and multi-vendor support."
+        },
+        {
+          "id": "architecture",
+          "title": "System Architecture",
+          "content": "The architecture follows a microservices approach with clear separation of concerns.",
+          "subsections": [
+            {
+              "title": "Frontend Layer",
+              "items": ["React SPA with React Router", "Redux for state management", "Material-UI component library", "Socket.io for real-time updates"]
+            },
+            {
+              "title": "Backend Services",
+              "items": ["API Gateway (Node.js/Express)", "Product Service - catalog and inventory", "Order Service - processing and fulfillment", "Payment Service - Stripe integration", "User Service - authentication and profiles"]
+            },
+            {
+              "title": "Data Layer",
+              "items": ["MongoDB - primary database", "Redis - caching and sessions", "Elasticsearch - product search", "AWS S3 - image storage"]
+            }
+          ]
+        },
+        {
+          "id": "challenges",
+          "title": "Technical Challenges",
+          "items": [
+            {
+              "title": "Race Conditions in Inventory",
+              "problem": "Multiple users purchasing the same item simultaneously led to overselling.",
+              "solution": "Implemented optimistic locking with version numbers and atomic operations in MongoDB."
+            },
+            {
+              "title": "Payment Processing Bottleneck",
+              "problem": "Synchronous payment processing caused timeouts during high traffic.",
+              "solution": "Implemented queue-based system using AWS SQS for async payment processing."
+            },
+            {
+              "title": "Search Performance",
+              "problem": "MongoDB full-text search was slow with large catalogs.",
+              "solution": "Integrated Elasticsearch for fast, relevant search results."
+            }
+          ]
+        },
+        {
+          "id": "results",
+          "title": "Results & Impact",
+          "metrics": [
+            {"value": "10,000+", "label": "Transactions Processed"},
+            {"value": "99.9%", "label": "Uptime"},
+            {"value": "2s", "label": "Avg Page Load"},
+            {"value": "1,000+", "label": "Concurrent Users"}
+          ],
+          "improvements": [
+            "Reduced database query time by 70%",
+            "Improved checkout completion rate by 25%",
+            "Decreased API response time to under 100ms",
+            "Achieved 95+ Lighthouse score"
+          ]
+        }
+      ]
     },
     {
       "id": "ml-recommendation",
@@ -29,14 +91,76 @@
       "readTime": "10 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "Learn how to build a recommendation system using collaborative filtering and deep learning techniques to provide personalized product suggestions.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["Python", "TensorFlow", "Machine Learning", "Neural Networks", "Recommendation Systems"],
       "featured": true,
-      "url": "blog/ml-recommendation.html"
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Project Overview",
+          "content": "This project demonstrates the development of a sophisticated recommendation engine using neural collaborative filtering. The system analyzes user behavior patterns and item characteristics to generate personalized product recommendations in real-time.\n\nThe recommendation engine successfully increased user engagement by 40% and boosted conversion rates by 28% in production environments."
+        },
+        {
+          "id": "approach",
+          "title": "Technical Approach",
+          "content": "We implemented a hybrid recommendation system combining collaborative filtering with content-based filtering.",
+          "subsections": [
+            {
+              "title": "Collaborative Filtering",
+              "items": ["Neural Collaborative Filtering (NCF) architecture", "User-item interaction matrix factorization", "Deep learning layers for non-linear patterns", "Embedding layers for user and item representations"]
+            },
+            {
+              "title": "Content-Based Filtering",
+              "items": ["Item feature extraction (categories, attributes, descriptions)", "TF-IDF vectorization for text features", "Cosine similarity for item matching", "Hybrid score combination strategy"]
+            },
+            {
+              "title": "Model Architecture",
+              "items": ["TensorFlow 2.x implementation", "Multi-layer perceptron (MLP) layers", "Batch normalization and dropout", "Adam optimizer with learning rate scheduling"]
+            }
+          ]
+        },
+        {
+          "id": "challenges",
+          "title": "Technical Challenges",
+          "items": [
+            {
+              "title": "Cold Start Problem",
+              "problem": "New users and items had no interaction history for recommendations.",
+              "solution": "Implemented content-based fallback and popularity-based recommendations for cold start scenarios."
+            },
+            {
+              "title": "Scalability",
+              "problem": "Matrix factorization became computationally expensive with millions of users and items.",
+              "solution": "Used approximate nearest neighbor search with FAISS library for efficient similarity computation."
+            },
+            {
+              "title": "Real-time Inference",
+              "problem": "Model inference latency exceeded 500ms for online recommendations.",
+              "solution": "Deployed TensorFlow Serving with model optimization and implemented Redis caching for frequent queries."
+            }
+          ]
+        },
+        {
+          "id": "results",
+          "title": "Results & Impact",
+          "metrics": [
+            {"value": "40%", "label": "Engagement Increase"},
+            {"value": "28%", "label": "Conversion Boost"},
+            {"value": "0.85", "label": "AUC Score"},
+            {"value": "<100ms", "label": "Inference Time"}
+          ],
+          "improvements": [
+            "Reduced recommendation latency by 80%",
+            "Improved click-through rate by 35%",
+            "Achieved 85% AUC on test set",
+            "Successfully handled 10M+ daily recommendations"
+          ]
+        }
+      ]
     },
     {
       "id": "github-actions-guide",
@@ -48,14 +172,77 @@
       "readTime": "15 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "A comprehensive guide to setting up continuous integration and deployment pipelines using GitHub Actions. Learn workflow syntax, secrets management, and best practices.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Docker"],
       "featured": false,
-      "url": "blog/github-actions-guide.html"
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "Introduction to GitHub Actions",
+          "content": "GitHub Actions is a powerful CI/CD platform that enables you to automate your build, test, and deployment pipeline directly from your GitHub repository. This guide covers everything from basic workflows to advanced deployment strategies.\n\nBy the end of this tutorial, you'll have a complete understanding of how to implement robust CI/CD pipelines for your projects."
+        },
+        {
+          "id": "getting-started",
+          "title": "Getting Started",
+          "content": "GitHub Actions workflows are defined using YAML files stored in the `.github/workflows` directory of your repository.",
+          "subsections": [
+            {
+              "title": "Basic Workflow Structure",
+              "items": ["Workflow triggers (push, pull_request, schedule)", "Jobs and steps organization", "Runners (ubuntu-latest, windows-latest, macos-latest)", "Environment variables and contexts"]
+            },
+            {
+              "title": "Common Triggers",
+              "items": ["on: push - trigger on commits", "on: pull_request - trigger on PRs", "on: schedule - cron-based triggers", "on: workflow_dispatch - manual triggers"]
+            }
+          ]
+        },
+        {
+          "id": "advanced-features",
+          "title": "Advanced Features",
+          "content": "Leverage advanced GitHub Actions features for complex workflows.",
+          "subsections": [
+            {
+              "title": "Secrets Management",
+              "items": ["Using repository secrets", "Environment-specific secrets", "Encrypted secrets in workflows", "Secret rotation best practices"]
+            },
+            {
+              "title": "Matrix Builds",
+              "items": ["Testing across multiple versions", "Cross-platform builds", "Parallel job execution", "Dynamic matrix generation"]
+            },
+            {
+              "title": "Caching & Artifacts",
+              "items": ["Cache dependencies for faster builds", "Upload and download artifacts", "Share data between jobs", "Retention policies"]
+            }
+          ]
+        },
+        {
+          "id": "best-practices",
+          "title": "Best Practices",
+          "items": [
+            {
+              "title": "Workflow Optimization",
+              "description": "Keep workflows fast and efficient by caching dependencies, using matrix builds wisely, and minimizing job dependencies."
+            },
+            {
+              "title": "Security Considerations",
+              "description": "Never commit secrets, use GITHUB_TOKEN appropriately, restrict workflow permissions, and review third-party actions carefully."
+            },
+            {
+              "title": "Reusable Workflows",
+              "description": "Create reusable workflows and composite actions to reduce duplication and improve maintainability across projects."
+            }
+          ]
+        },
+        {
+          "id": "examples",
+          "title": "Real-World Examples",
+          "content": "Practical examples of CI/CD pipelines for different project types including Node.js applications, Docker containers, and multi-environment deployments with staging and production workflows."
+        }
+      ]
     },
     {
       "id": "devops-automation",
@@ -67,14 +254,76 @@
       "readTime": "14 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "How we automated our entire infrastructure deployment process using Terraform and Kubernetes, reducing deployment time by 80% and eliminating manual errors.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["Terraform", "Kubernetes", "DevOps", "IaC", "AWS", "Automation"],
       "featured": true,
-      "url": "blog/devops-automation.html"
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Project Overview",
+          "content": "This project details our journey to fully automate infrastructure provisioning and application deployment using Infrastructure as Code (IaC) principles. By combining Terraform for infrastructure management and Kubernetes for container orchestration, we achieved a fully automated, repeatable deployment process.\n\nThe automation reduced deployment time from 4 hours to under 30 minutes and eliminated 95% of manual deployment errors."
+        },
+        {
+          "id": "architecture",
+          "title": "Infrastructure Architecture",
+          "content": "Our infrastructure follows a multi-tier architecture deployed across AWS.",
+          "subsections": [
+            {
+              "title": "Terraform Modules",
+              "items": ["VPC and networking configuration", "EKS cluster provisioning", "RDS database instances", "S3 buckets and IAM roles", "CloudFront CDN setup"]
+            },
+            {
+              "title": "Kubernetes Setup",
+              "items": ["Multi-namespace organization (dev, staging, prod)", "Helm charts for application deployment", "Ingress controller with cert-manager", "Horizontal Pod Autoscaling (HPA)", "Persistent volume claims for stateful apps"]
+            },
+            {
+              "title": "CI/CD Pipeline",
+              "items": ["GitHub Actions for automation", "Terraform Cloud for state management", "ArgoCD for GitOps deployment", "Automated testing and validation"]
+            }
+          ]
+        },
+        {
+          "id": "challenges",
+          "title": "Technical Challenges",
+          "items": [
+            {
+              "title": "State Management",
+              "problem": "Terraform state conflicts when multiple team members deployed simultaneously.",
+              "solution": "Implemented remote state with DynamoDB locking in S3 and Terraform Cloud workspaces."
+            },
+            {
+              "title": "Secret Management",
+              "problem": "Securely managing hundreds of secrets across multiple environments.",
+              "solution": "Integrated AWS Secrets Manager with External Secrets Operator in Kubernetes."
+            },
+            {
+              "title": "Zero-Downtime Deployments",
+              "problem": "Application updates caused brief downtime during rolling updates.",
+              "solution": "Implemented blue-green deployment strategy with readiness probes and pod disruption budgets."
+            }
+          ]
+        },
+        {
+          "id": "results",
+          "title": "Results & Impact",
+          "metrics": [
+            {"value": "80%", "label": "Time Reduction"},
+            {"value": "95%", "label": "Error Elimination"},
+            {"value": "100%", "label": "Infrastructure as Code"},
+            {"value": "99.99%", "label": "Uptime"}
+          ],
+          "improvements": [
+            "Deployment time reduced from 4 hours to 30 minutes",
+            "Eliminated manual configuration errors",
+            "Achieved consistent environments across dev/staging/prod",
+            "Enabled self-service deployments for developers"
+          ]
+        }
+      ]
     },
     {
       "id": "deep-learning-nlp",
@@ -86,14 +335,79 @@
       "readTime": "18 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "An exploration of the latest advances in natural language processing, including transformer architectures, large language models, and efficient training techniques.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["NLP", "Deep Learning", "Transformers", "BERT", "GPT", "Research"],
       "featured": false,
-      "url": "blog/deep-learning-nlp.html"
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "Introduction",
+          "content": "Natural Language Processing has undergone revolutionary changes in recent years, primarily driven by transformer architectures and large-scale pre-training. This article explores the latest trends and breakthrough techniques that are shaping the future of NLP.\n\nFrom BERT to GPT-4, we examine how these models work and their real-world applications."
+        },
+        {
+          "id": "transformer-evolution",
+          "title": "Evolution of Transformer Architectures",
+          "content": "The transformer architecture introduced in 'Attention Is All You Need' has evolved significantly.",
+          "subsections": [
+            {
+              "title": "Key Innovations",
+              "items": ["Self-attention mechanisms", "Multi-head attention", "Positional encodings", "Layer normalization and residual connections"]
+            },
+            {
+              "title": "Modern Variants",
+              "items": ["BERT - bidirectional encoding", "GPT series - autoregressive generation", "T5 - text-to-text framework", "ELECTRA - efficient pre-training", "RoBERTa - robust optimization"]
+            }
+          ]
+        },
+        {
+          "id": "large-language-models",
+          "title": "Large Language Models",
+          "content": "The scale of language models has grown exponentially, with models containing billions of parameters.",
+          "subsections": [
+            {
+              "title": "Scaling Laws",
+              "items": ["Relationship between model size and performance", "Compute-optimal training", "Emergent abilities at scale", "Few-shot learning capabilities"]
+            },
+            {
+              "title": "Training Techniques",
+              "items": ["Mixed precision training", "Gradient accumulation", "Model parallelism and pipeline parallelism", "Efficient attention mechanisms (Flash Attention)"]
+            }
+          ]
+        },
+        {
+          "id": "efficient-training",
+          "title": "Efficient Training & Fine-tuning",
+          "content": "As models grow larger, efficient training becomes crucial.",
+          "items": [
+            {
+              "title": "Parameter-Efficient Fine-Tuning",
+              "description": "Techniques like LoRA, Adapter modules, and Prefix Tuning enable fine-tuning large models with minimal additional parameters."
+            },
+            {
+              "title": "Quantization & Distillation",
+              "description": "Model compression techniques including quantization-aware training and knowledge distillation reduce model size while maintaining performance."
+            },
+            {
+              "title": "Prompt Engineering",
+              "description": "Chain-of-thought prompting, few-shot prompting, and instruction tuning unlock model capabilities without additional training."
+            }
+          ]
+        },
+        {
+          "id": "applications",
+          "title": "Real-World Applications",
+          "content": "Modern NLP powers diverse applications including conversational AI, content generation, semantic search, code generation, translation systems, and sentiment analysis at scale."
+        },
+        {
+          "id": "future-directions",
+          "title": "Future Directions",
+          "content": "The field is moving towards multimodal models, improved reasoning capabilities, better factual grounding, more efficient architectures, and addressing alignment and safety concerns."
+        }
+      ]
     },
     {
       "id": "react-hooks-guide",
@@ -105,14 +419,83 @@
       "readTime": "11 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "Deep dive into React Hooks with practical examples. Learn useState, useEffect, useContext, and custom hooks to write cleaner, more maintainable React code.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["React", "JavaScript", "Hooks", "Frontend", "Web Development"],
       "featured": false,
-      "url": "blog/react-hooks-guide.html"
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "Introduction to React Hooks",
+          "content": "React Hooks revolutionized how we write React components by allowing functional components to use state and other React features. This guide provides practical examples and best practices for mastering hooks.\n\nHooks enable cleaner, more reusable code compared to class components and higher-order components."
+        },
+        {
+          "id": "basic-hooks",
+          "title": "Essential Hooks",
+          "content": "Understanding the fundamental hooks is crucial for effective React development.",
+          "subsections": [
+            {
+              "title": "useState",
+              "items": ["Managing component state", "Multiple state variables", "Functional updates for complex state", "Lazy initialization"]
+            },
+            {
+              "title": "useEffect",
+              "items": ["Side effects and lifecycle", "Dependency arrays", "Cleanup functions", "Conditional effects"]
+            },
+            {
+              "title": "useContext",
+              "items": ["Consuming context values", "Avoiding prop drilling", "Multiple context usage", "Context with TypeScript"]
+            }
+          ]
+        },
+        {
+          "id": "advanced-hooks",
+          "title": "Advanced Hooks",
+          "content": "Optimize performance and handle complex scenarios with advanced hooks.",
+          "subsections": [
+            {
+              "title": "Performance Hooks",
+              "items": ["useMemo - expensive computations", "useCallback - function memoization", "React.memo for component memoization", "When to optimize"]
+            },
+            {
+              "title": "Ref Hooks",
+              "items": ["useRef - accessing DOM elements", "Storing mutable values", "useImperativeHandle", "forwardRef pattern"]
+            },
+            {
+              "title": "Reducer Hook",
+              "items": ["useReducer for complex state logic", "Action-based state updates", "Combining with context", "When to use over useState"]
+            }
+          ]
+        },
+        {
+          "id": "custom-hooks",
+          "title": "Custom Hooks",
+          "content": "Create reusable logic by building custom hooks.",
+          "items": [
+            {
+              "title": "Building Custom Hooks",
+              "description": "Extract component logic into reusable functions. Follow naming convention (use prefix), compose multiple hooks, and return values or functions."
+            },
+            {
+              "title": "Common Patterns",
+              "description": "Popular custom hooks include useLocalStorage, useFetch for data fetching, useDebounce for input handling, and useMediaQuery for responsive design."
+            }
+          ]
+        },
+        {
+          "id": "best-practices",
+          "title": "Best Practices & Patterns",
+          "content": "Follow React hooks rules: only call hooks at the top level, only call from React functions. Use ESLint plugin, organize hooks logically, avoid unnecessary effects, and properly specify dependencies."
+        },
+        {
+          "id": "examples",
+          "title": "Real-World Examples",
+          "content": "Practical examples include form handling with validation, data fetching with loading states, authentication flow, and infinite scroll implementation using various hooks in combination."
+        }
+      ]
     },
     {
       "id": "web-dev-trends-2024",
@@ -124,14 +507,90 @@
       "readTime": "8 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "My thoughts on the emerging trends in web development including WebAssembly, edge computing, AI integration, and the evolution of JavaScript frameworks.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["Web Development", "Trends", "JavaScript", "WebAssembly", "AI", "Opinion"],
       "featured": false,
-      "url": "blog/web-dev-trends-2024.html"
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "Introduction",
+          "content": "Web development is evolving rapidly with new technologies and paradigms emerging constantly. This article explores the trends I believe will shape web development in 2024 and beyond, based on current trajectories and developer community momentum.\n\nThese trends represent significant shifts in how we build, deploy, and think about web applications."
+        },
+        {
+          "id": "webassembly",
+          "title": "WebAssembly (Wasm) Goes Mainstream",
+          "content": "WebAssembly is moving beyond performance-critical use cases to become a general-purpose web technology.",
+          "items": [
+            {
+              "title": "Broader Adoption",
+              "description": "More languages compiling to Wasm (Rust, Go, C++). Frameworks leveraging Wasm for performance. Browser API access improvements."
+            },
+            {
+              "title": "Use Cases Expanding",
+              "description": "Video/audio processing, gaming, data visualization, scientific computing in the browser, and legacy application modernization."
+            }
+          ]
+        },
+        {
+          "id": "edge-computing",
+          "title": "Edge Computing & Serverless Evolution",
+          "content": "Computing is moving closer to users with edge functions and distributed architectures.",
+          "items": [
+            {
+              "title": "Edge Functions",
+              "description": "Cloudflare Workers, Vercel Edge Functions, and Deno Deploy enable running code globally at the edge with sub-50ms latency."
+            },
+            {
+              "title": "Benefits",
+              "description": "Reduced latency, improved performance, personalization at scale, and better geo-distributed applications."
+            }
+          ]
+        },
+        {
+          "id": "ai-integration",
+          "title": "AI-Powered Development Tools",
+          "content": "AI is transforming how developers write code and build applications.",
+          "items": [
+            {
+              "title": "Code Generation",
+              "description": "GitHub Copilot, ChatGPT, and similar tools are becoming standard in developer workflows, accelerating development."
+            },
+            {
+              "title": "AI Features in Apps",
+              "description": "Integrating AI capabilities like natural language search, content generation, smart recommendations, and conversational interfaces into web applications."
+            }
+          ]
+        },
+        {
+          "id": "framework-evolution",
+          "title": "JavaScript Framework Evolution",
+          "content": "Frameworks are converging on similar patterns while innovating in different areas.",
+          "items": [
+            {
+              "title": "Server Components",
+              "description": "React Server Components, SvelteKit, and similar approaches blur the line between server and client rendering."
+            },
+            {
+              "title": "Meta Frameworks",
+              "description": "Next.js, Remix, SvelteKit, and Nuxt provide full-stack solutions with routing, data fetching, and deployment built-in."
+            }
+          ]
+        },
+        {
+          "id": "developer-experience",
+          "title": "Developer Experience Improvements",
+          "content": "Tooling continues to improve with faster build tools (Vite, Turbopack), better TypeScript integration, improved debugging, and comprehensive testing frameworks."
+        },
+        {
+          "id": "conclusion",
+          "title": "Conclusion",
+          "content": "The web platform is becoming more capable while developer tools make building complex applications more accessible. The key is to evaluate trends critically and adopt what genuinely solves problems rather than following hype."
+        }
+      ]
     },
     {
       "id": "docker-best-practices",
@@ -143,14 +602,92 @@
       "readTime": "13 min read",
       "author": {
         "name": "Duc Le Nguyen",
-        "avatar": "https://via.placeholder.com/60",
+        "avatar": "data/images/image_avatar.jpg",
         "title": "Software Engineer & Researcher"
       },
       "excerpt": "Essential Docker best practices for production environments: multi-stage builds, security hardening, optimization techniques, and monitoring strategies.",
       "image": "https://via.placeholder.com/800x400",
       "tags": ["Docker", "Containers", "DevOps", "Security", "Best Practices"],
       "featured": false,
-      "url": "blog/docker-best-practices.html"
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "Introduction",
+          "content": "Docker has become the de facto standard for containerization, but deploying containers to production requires careful consideration of security, performance, and reliability. This guide covers essential best practices learned from managing production Docker deployments.\n\nProper Docker practices can mean the difference between a stable, secure production environment and costly downtime or security breaches."
+        },
+        {
+          "id": "image-optimization",
+          "title": "Image Optimization",
+          "content": "Building efficient, secure Docker images is fundamental to production success.",
+          "subsections": [
+            {
+              "title": "Multi-Stage Builds",
+              "items": ["Separate build and runtime stages", "Reduce final image size by 70-90%", "Keep only necessary artifacts", "Use alpine or distroless base images"]
+            },
+            {
+              "title": "Layer Optimization",
+              "items": ["Order commands from least to most frequently changing", "Combine RUN commands to reduce layers", "Leverage build cache effectively", "Use .dockerignore to exclude unnecessary files"]
+            },
+            {
+              "title": "Base Image Selection",
+              "items": ["Prefer official images", "Use specific version tags (never :latest)", "Alpine for minimal size", "Distroless for security"]
+            }
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Security Best Practices",
+          "content": "Security should be a top priority in production deployments.",
+          "subsections": [
+            {
+              "title": "User Management",
+              "items": ["Never run as root user", "Create non-privileged user in Dockerfile", "Use USER directive", "Minimize container capabilities"]
+            },
+            {
+              "title": "Secret Management",
+              "items": ["Never bake secrets into images", "Use Docker secrets or external secret managers", "Implement secret rotation", "Scan images for leaked credentials"]
+            },
+            {
+              "title": "Image Scanning",
+              "items": ["Scan for vulnerabilities regularly", "Use tools like Trivy or Snyk", "Automate scanning in CI/CD", "Update base images frequently"]
+            }
+          ]
+        },
+        {
+          "id": "resource-management",
+          "title": "Resource Management",
+          "content": "Properly managing container resources prevents issues in production.",
+          "items": [
+            {
+              "title": "Resource Limits",
+              "description": "Set memory and CPU limits to prevent resource exhaustion. Use resource reservations for critical services."
+            },
+            {
+              "title": "Health Checks",
+              "description": "Implement HEALTHCHECK in Dockerfile. Configure appropriate timeout and interval values. Enable container orchestrator health monitoring."
+            },
+            {
+              "title": "Logging",
+              "description": "Log to stdout/stderr. Use structured logging (JSON). Implement log aggregation and centralized logging solutions."
+            }
+          ]
+        },
+        {
+          "id": "networking",
+          "title": "Networking & Storage",
+          "content": "Configure networking and storage for reliability and performance including custom bridge networks, service discovery, volume management, and backup strategies."
+        },
+        {
+          "id": "monitoring",
+          "title": "Monitoring & Observability",
+          "content": "Implement comprehensive monitoring with container metrics, application metrics, distributed tracing, and alerting for production containers."
+        },
+        {
+          "id": "deployment",
+          "title": "Deployment Strategies",
+          "content": "Use rolling updates, implement blue-green deployments, configure proper restart policies, and automate deployment with CI/CD pipelines for safe production releases."
+        }
+      ]
     }
   ],
   "categories": [
