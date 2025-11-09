@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects - Duc Le Nguyen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">Duc Le Nguyen</a>
+            </div>
+            <div class="navbar-links">
+                <a href="index.html">About</a>
+                <a href="projects.html" class="active">Projects</a>
+                <a href="publications.html">Publications</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="navbar-social">
+                <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ducln-me" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-avatar">
+                <img src="https://via.placeholder.com/150" alt="Duc Le Nguyen">
+            </div>
+            <h2>Duc Le Nguyen</h2>
+            <p class="sidebar-title">Software Engineer & Researcher</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <h3 class="sidebar-section-title">Projects</h3>
+            <ul id="projectsList">
+                <li><a href="#ecommerce-platform" class="nav-link"><i class="fas fa-shopping-cart"></i> E-Commerce Platform</a></li>
+                <li><a href="#ml-recommendation" class="nav-link"><i class="fas fa-brain"></i> ML Recommendation Engine</a></li>
+                <li><a href="#devops-automation" class="nav-link"><i class="fas fa-robot"></i> DevOps Automation Suite</a></li>
+                <li><a href="#realtime-chat" class="nav-link"><i class="fas fa-comments"></i> Real-time Chat App</a></li>
+                <li><a href="#data-visualization" class="nav-link"><i class="fas fa-chart-bar"></i> Data Visualization Dashboard</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-contact">
+            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/ducln-me" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section">
+            <h1 class="page-title">My Projects</h1>
+            <p class="page-description">
+                A collection of personal and professional projects showcasing my skills in full-stack development,
+                machine learning, and DevOps automation.
+            </p>
+        </section>
+
+        <!-- Projects Grid -->
+        <section id="ecommerce-platform" class="section project-section">
+            <div class="project-detail">
+                <div class="project-header-detail">
+                    <h2>E-Commerce Platform</h2>
+                    <span class="project-status">Completed</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar"></i> 2023</span>
+                    <span><i class="fas fa-user"></i> Solo Project</span>
+                    <span><i class="fas fa-clock"></i> 6 months</span>
+                </div>
+                <p class="project-description-full">
+                    A comprehensive full-stack e-commerce solution with real-time inventory management,
+                    secure payment processing, and admin dashboard. Built to handle high traffic and
+                    thousands of concurrent users with optimized performance.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Stripe</span>
+                    <span class="tech-tag">Redis</span>
+                    <span class="tech-tag">AWS</span>
+                </div>
+                <div class="project-highlights">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Real-time inventory tracking and notifications</li>
+                        <li>Secure payment integration with Stripe</li>
+                        <li>Advanced search with filters and sorting</li>
+                        <li>Admin dashboard with analytics</li>
+                        <li>Shopping cart with session persistence</li>
+                        <li>Email notifications for orders</li>
+                    </ul>
+                </div>
+                <div class="project-results">
+                    <h3>Results & Impact</h3>
+                    <ul>
+                        <li><strong>10,000+</strong> transactions processed</li>
+                        <li><strong>99.9%</strong> uptime achieved</li>
+                        <li><strong>2s</strong> average page load time</li>
+                        <li><strong>1,000+</strong> concurrent users supported</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="blog.html#blog-ecommerce" class="btn-primary">Read Case Study</a>
+                    <a href="#" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="ml-recommendation" class="section project-section">
+            <div class="project-detail">
+                <div class="project-header-detail">
+                    <h2>ML Recommendation Engine</h2>
+                    <span class="project-status">Completed</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar"></i> 2022-2023</span>
+                    <span><i class="fas fa-user"></i> Team of 3</span>
+                    <span><i class="fas fa-clock"></i> 4 months</span>
+                </div>
+                <p class="project-description-full">
+                    Machine learning-based recommendation system using collaborative filtering and neural networks.
+                    Designed to provide personalized recommendations for e-commerce and content platforms.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">TensorFlow</span>
+                    <span class="tech-tag">Keras</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Kubernetes</span>
+                </div>
+                <div class="project-highlights">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Collaborative filtering algorithm</li>
+                        <li>Deep learning neural network model</li>
+                        <li>Real-time recommendation API</li>
+                        <li>A/B testing framework</li>
+                        <li>Performance monitoring dashboard</li>
+                        <li>Scalable microservices architecture</li>
+                    </ul>
+                </div>
+                <div class="project-results">
+                    <h3>Results & Impact</h3>
+                    <ul>
+                        <li><strong>35%</strong> improvement in user engagement</li>
+                        <li><strong>22%</strong> increase in click-through rate</li>
+                        <li><strong>50ms</strong> average recommendation latency</li>
+                        <li><strong>95%</strong> model accuracy</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="blog.html#blog-ml" class="btn-primary">Read Case Study</a>
+                    <a href="#" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="devops-automation" class="section project-section">
+            <div class="project-detail">
+                <div class="project-header-detail">
+                    <h2>DevOps Automation Suite</h2>
+                    <span class="project-status">Active</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar"></i> 2022</span>
+                    <span><i class="fas fa-user"></i> Solo Project</span>
+                    <span><i class="fas fa-clock"></i> 3 months</span>
+                </div>
+                <p class="project-description-full">
+                    CI/CD pipeline automation and infrastructure as code solution for cloud deployments.
+                    Streamlines the development workflow and enables rapid, reliable deployments.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">Kubernetes</span>
+                    <span class="tech-tag">Terraform</span>
+                    <span class="tech-tag">GitHub Actions</span>
+                    <span class="tech-tag">AWS</span>
+                    <span class="tech-tag">Docker</span>
+                    <span class="tech-tag">Ansible</span>
+                </div>
+                <div class="project-highlights">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Automated CI/CD pipelines</li>
+                        <li>Infrastructure as Code with Terraform</li>
+                        <li>Container orchestration with Kubernetes</li>
+                        <li>Automated testing and deployment</li>
+                        <li>Monitoring and alerting setup</li>
+                        <li>Blue-green deployment strategy</li>
+                    </ul>
+                </div>
+                <div class="project-results">
+                    <h3>Results & Impact</h3>
+                    <ul>
+                        <li><strong>70%</strong> reduction in deployment time</li>
+                        <li><strong>90%</strong> decrease in deployment errors</li>
+                        <li><strong>Zero</strong> downtime deployments</li>
+                        <li><strong>5 teams</strong> using the automation suite</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="blog.html#blog-devops" class="btn-primary">Read Case Study</a>
+                    <a href="#" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="realtime-chat" class="section project-section">
+            <div class="project-detail">
+                <div class="project-header-detail">
+                    <h2>Real-time Chat Application</h2>
+                    <span class="project-status">Completed</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar"></i> 2021</span>
+                    <span><i class="fas fa-user"></i> Solo Project</span>
+                    <span><i class="fas fa-clock"></i> 2 months</span>
+                </div>
+                <p class="project-description-full">
+                    A real-time messaging application with WebSocket support, group chats, file sharing,
+                    and end-to-end encryption for secure communications.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">Socket.io</span>
+                    <span class="tech-tag">Node.js</span>
+                    <span class="tech-tag">MongoDB</span>
+                    <span class="tech-tag">Redis</span>
+                </div>
+                <div class="project-highlights">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Real-time messaging with WebSocket</li>
+                        <li>Group chat and private messaging</li>
+                        <li>File and image sharing</li>
+                        <li>Typing indicators and read receipts</li>
+                        <li>User presence detection</li>
+                        <li>Message search and history</li>
+                    </ul>
+                </div>
+                <div class="project-results">
+                    <h3>Results & Impact</h3>
+                    <ul>
+                        <li><strong>5,000+</strong> active users</li>
+                        <li><strong>100ms</strong> message delivery latency</li>
+                        <li><strong>99.5%</strong> uptime</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="data-visualization" class="section project-section">
+            <div class="project-detail">
+                <div class="project-header-detail">
+                    <h2>Data Visualization Dashboard</h2>
+                    <span class="project-status">In Progress</span>
+                </div>
+                <div class="project-meta">
+                    <span><i class="fas fa-calendar"></i> 2024</span>
+                    <span><i class="fas fa-user"></i> Solo Project</span>
+                    <span><i class="fas fa-clock"></i> Ongoing</span>
+                </div>
+                <p class="project-description-full">
+                    Interactive data visualization dashboard for business analytics with real-time data processing
+                    and customizable charts and reports.
+                </p>
+                <div class="project-tech">
+                    <span class="tech-tag">React</span>
+                    <span class="tech-tag">D3.js</span>
+                    <span class="tech-tag">Chart.js</span>
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">FastAPI</span>
+                    <span class="tech-tag">PostgreSQL</span>
+                </div>
+                <div class="project-highlights">
+                    <h3>Key Features</h3>
+                    <ul>
+                        <li>Interactive charts with D3.js</li>
+                        <li>Real-time data updates</li>
+                        <li>Customizable dashboard layouts</li>
+                        <li>Data export functionality</li>
+                        <li>Scheduled reports generation</li>
+                        <li>Multi-tenant architecture</li>
+                    </ul>
+                </div>
+                <div class="project-links">
+                    <a href="#" class="btn-secondary"><i class="fab fa-github"></i> View Code</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

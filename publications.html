@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publications - Duc Le Nguyen</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <a href="index.html">Duc Le Nguyen</a>
+            </div>
+            <div class="navbar-links">
+                <a href="index.html">About</a>
+                <a href="projects.html">Projects</a>
+                <a href="publications.html" class="active">Publications</a>
+                <a href="blog.html">Blog</a>
+            </div>
+            <div class="navbar-social">
+                <a href="mailto:your.email@example.com" title="Email"><i class="fas fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://github.com/ducln-me" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+            </div>
+            <button class="navbar-toggle" id="navbarToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-avatar">
+                <img src="https://via.placeholder.com/150" alt="Duc Le Nguyen">
+            </div>
+            <h2>Duc Le Nguyen</h2>
+            <p class="sidebar-title">Software Engineer & Researcher</p>
+        </div>
+
+        <nav class="sidebar-nav">
+            <h3 class="sidebar-section-title">Publications</h3>
+            <ul>
+                <li><a href="#filter-all" class="nav-link active" data-year="all"><i class="fas fa-list"></i> All Publications</a></li>
+                <li><a href="#filter-2023" class="nav-link" data-year="2023"><i class="fas fa-calendar"></i> 2023</a></li>
+                <li><a href="#filter-2022" class="nav-link" data-year="2022"><i class="fas fa-calendar"></i> 2022</a></li>
+                <li><a href="#filter-2021" class="nav-link" data-year="2021"><i class="fas fa-calendar"></i> 2021</a></li>
+            </ul>
+            <h3 class="sidebar-section-title">Topics</h3>
+            <ul>
+                <li><a href="#filter-ml" class="nav-link" data-topic="ml"><i class="fas fa-brain"></i> Machine Learning</a></li>
+                <li><a href="#filter-systems" class="nav-link" data-topic="systems"><i class="fas fa-server"></i> Systems</a></li>
+                <li><a href="#filter-nlp" class="nav-link" data-topic="nlp"><i class="fas fa-language"></i> NLP</a></li>
+            </ul>
+        </nav>
+
+        <div class="sidebar-contact">
+            <a href="mailto:your.email@example.com"><i class="fas fa-envelope"></i></a>
+            <a href="https://github.com/ducln-me" target="_blank"><i class="fab fa-github"></i></a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <section class="section">
+            <h1 class="page-title">Publications & Research</h1>
+            <p class="page-description">
+                Academic papers, conference presentations, and research contributions in machine learning,
+                distributed systems, and natural language processing.
+            </p>
+            <div class="publication-stats">
+                <div class="stat-card">
+                    <i class="fas fa-file-alt"></i>
+                    <h3>12</h3>
+                    <p>Papers Published</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-quote-right"></i>
+                    <h3>156</h3>
+                    <p>Citations</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <h3>3</h3>
+                    <p>Best Paper Awards</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications List -->
+        <div class="publications-container">
+            <article class="publication-detail" data-year="2023" data-topic="ml">
+                <div class="publication-year-badge">2023</div>
+                <h2>Scalable Machine Learning Systems for Real-Time Predictions</h2>
+                <div class="publication-authors">
+                    <strong>Duc Le Nguyen</strong>, John Smith, Maria Garcia
+                </div>
+                <div class="publication-venue">
+                    <i class="fas fa-university"></i>
+                    <span class="venue-name">International Conference on Machine Learning (ICML)</span>
+                    <span class="venue-location">Honolulu, Hawaii</span>
+                </div>
+                <div class="publication-tags">
+                    <span class="pub-tag">Machine Learning</span>
+                    <span class="pub-tag">Scalability</span>
+                    <span class="pub-tag">Real-time Systems</span>
+                </div>
+                <div class="publication-abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        This paper presents a novel approach to building scalable ML systems that can handle
+                        real-time prediction requests with minimal latency. We introduce a distributed architecture
+                        that leverages microservices and containerization to achieve horizontal scalability while
+                        maintaining prediction accuracy. Our system demonstrates a 10x improvement in throughput
+                        compared to traditional monolithic ML serving architectures.
+                    </p>
+                </div>
+                <div class="publication-metrics">
+                    <span><i class="fas fa-quote-right"></i> 45 citations</span>
+                    <span><i class="fas fa-download"></i> 320 downloads</span>
+                    <span><i class="fas fa-award"></i> Best Paper Award</span>
+                </div>
+                <div class="publication-links">
+                    <a href="#" class="btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-code"></i> Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-presentation"></i> Slides</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-quote-left"></i> Cite</a>
+                </div>
+            </article>
+
+            <article class="publication-detail" data-year="2023" data-topic="systems">
+                <div class="publication-year-badge">2023</div>
+                <h2>Efficient Resource Management in Cloud-Native Applications</h2>
+                <div class="publication-authors">
+                    <strong>Duc Le Nguyen</strong>, Sarah Johnson
+                </div>
+                <div class="publication-venue">
+                    <i class="fas fa-university"></i>
+                    <span class="venue-name">ACM Symposium on Cloud Computing (SoCC)</span>
+                    <span class="venue-location">Santa Cruz, California</span>
+                </div>
+                <div class="publication-tags">
+                    <span class="pub-tag">Cloud Computing</span>
+                    <span class="pub-tag">Resource Management</span>
+                    <span class="pub-tag">Kubernetes</span>
+                </div>
+                <div class="publication-abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        We present a novel resource management framework for cloud-native applications that optimizes
+                        resource allocation based on real-time workload patterns. Our approach uses predictive analytics
+                        to anticipate resource needs and automatically scale applications, resulting in 30% cost reduction
+                        while maintaining performance SLAs.
+                    </p>
+                </div>
+                <div class="publication-metrics">
+                    <span><i class="fas fa-quote-right"></i> 28 citations</span>
+                    <span><i class="fas fa-download"></i> 215 downloads</span>
+                </div>
+                <div class="publication-links">
+                    <a href="#" class="btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-code"></i> Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-quote-left"></i> Cite</a>
+                </div>
+            </article>
+
+            <article class="publication-detail" data-year="2022" data-topic="systems">
+                <div class="publication-year-badge">2022</div>
+                <h2>Optimizing Microservices Architecture for High-Traffic Applications</h2>
+                <div class="publication-authors">
+                    <strong>Duc Le Nguyen</strong>, Michael Chen, Lisa Anderson
+                </div>
+                <div class="publication-venue">
+                    <i class="fas fa-university"></i>
+                    <span class="venue-name">Journal of Software Engineering and Applications</span>
+                    <span class="venue-location">Volume 15, Issue 3</span>
+                </div>
+                <div class="publication-tags">
+                    <span class="pub-tag">Microservices</span>
+                    <span class="pub-tag">Performance</span>
+                    <span class="pub-tag">Architecture</span>
+                </div>
+                <div class="publication-abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        An in-depth analysis of microservices patterns and their performance characteristics
+                        in high-traffic production environments. We identify common bottlenecks and propose
+                        optimization strategies that improve system throughput by up to 50% while reducing
+                        resource consumption.
+                    </p>
+                </div>
+                <div class="publication-metrics">
+                    <span><i class="fas fa-quote-right"></i> 52 citations</span>
+                    <span><i class="fas fa-download"></i> 480 downloads</span>
+                    <span><i class="fas fa-award"></i> Best Paper Award</span>
+                </div>
+                <div class="publication-links">
+                    <a href="#" class="btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-quote-left"></i> Cite</a>
+                </div>
+            </article>
+
+            <article class="publication-detail" data-year="2022" data-topic="ml">
+                <div class="publication-year-badge">2022</div>
+                <h2>Transfer Learning for Low-Resource Domains</h2>
+                <div class="publication-authors">
+                    Maria Garcia, <strong>Duc Le Nguyen</strong>, Robert Taylor
+                </div>
+                <div class="publication-venue">
+                    <i class="fas fa-university"></i>
+                    <span class="venue-name">Neural Information Processing Systems (NeurIPS)</span>
+                    <span class="venue-location">New Orleans, Louisiana</span>
+                </div>
+                <div class="publication-tags">
+                    <span class="pub-tag">Transfer Learning</span>
+                    <span class="pub-tag">Deep Learning</span>
+                    <span class="pub-tag">Few-shot Learning</span>
+                </div>
+                <div class="publication-abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        We explore transfer learning techniques for domains with limited training data. Our method
+                        combines meta-learning and domain adaptation to achieve state-of-the-art performance on
+                        several benchmark datasets with only 10% of the typical training data requirements.
+                    </p>
+                </div>
+                <div class="publication-metrics">
+                    <span><i class="fas fa-quote-right"></i> 31 citations</span>
+                    <span><i class="fas fa-download"></i> 290 downloads</span>
+                </div>
+                <div class="publication-links">
+                    <a href="#" class="btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-code"></i> Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-presentation"></i> Slides</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-quote-left"></i> Cite</a>
+                </div>
+            </article>
+
+            <article class="publication-detail" data-year="2021" data-topic="nlp">
+                <div class="publication-year-badge">2021</div>
+                <h2>Deep Learning Approaches for Natural Language Understanding</h2>
+                <div class="publication-authors">
+                    <strong>Duc Le Nguyen</strong>, Emily Zhang
+                </div>
+                <div class="publication-venue">
+                    <i class="fas fa-university"></i>
+                    <span class="venue-name">Annual Meeting of the Association for Computational Linguistics (ACL)</span>
+                    <span class="venue-location">Bangkok, Thailand</span>
+                </div>
+                <div class="publication-tags">
+                    <span class="pub-tag">NLP</span>
+                    <span class="pub-tag">Transformers</span>
+                    <span class="pub-tag">BERT</span>
+                </div>
+                <div class="publication-abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        Exploring transformer-based models and their applications in various NLP tasks
+                        including sentiment analysis, named entity recognition, and text classification.
+                        We propose novel fine-tuning strategies that improve performance on domain-specific tasks.
+                    </p>
+                </div>
+                <div class="publication-metrics">
+                    <span><i class="fas fa-quote-right"></i> 67 citations</span>
+                    <span><i class="fas fa-download"></i> 550 downloads</span>
+                    <span><i class="fas fa-award"></i> Outstanding Paper Award</span>
+                </div>
+                <div class="publication-links">
+                    <a href="#" class="btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-code"></i> Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-presentation"></i> Slides</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-quote-left"></i> Cite</a>
+                </div>
+            </article>
+
+            <article class="publication-detail" data-year="2021" data-topic="nlp">
+                <div class="publication-year-badge">2021</div>
+                <h2>Context-Aware Sentiment Analysis in Social Media</h2>
+                <div class="publication-authors">
+                    <strong>Duc Le Nguyen</strong>, Alex Kumar, Jennifer Lee
+                </div>
+                <div class="publication-venue">
+                    <i class="fas fa-university"></i>
+                    <span class="venue-name">International Conference on Web and Social Media (ICWSM)</span>
+                    <span class="venue-location">Virtual Conference</span>
+                </div>
+                <div class="publication-tags">
+                    <span class="pub-tag">Sentiment Analysis</span>
+                    <span class="pub-tag">Social Media</span>
+                    <span class="pub-tag">Context Understanding</span>
+                </div>
+                <div class="publication-abstract">
+                    <h3>Abstract</h3>
+                    <p>
+                        A novel approach to sentiment analysis that incorporates contextual information from
+                        user profiles, conversation threads, and temporal patterns. Our model achieves 15%
+                        improvement over baseline methods on popular social media datasets.
+                    </p>
+                </div>
+                <div class="publication-metrics">
+                    <span><i class="fas fa-quote-right"></i> 23 citations</span>
+                    <span><i class="fas fa-download"></i> 180 downloads</span>
+                </div>
+                <div class="publication-links">
+                    <a href="#" class="btn-primary"><i class="fas fa-file-pdf"></i> Read Paper</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-code"></i> Code</a>
+                    <a href="#" class="btn-secondary"><i class="fas fa-quote-left"></i> Cite</a>
+                </div>
+            </article>
+        </div>
+    </main>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>

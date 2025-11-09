@@ -2,54 +2,58 @@
 const navbarToggle = document.getElementById('navbarToggle');
 const sidebar = document.getElementById('sidebar');
 
-navbarToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('active');
-});
-
-// Close sidebar when clicking outside on mobile
-document.addEventListener('click', (e) => {
-    if (window.innerWidth <= 1024) {
-        if (!sidebar.contains(e.target) && !navbarToggle.contains(e.target)) {
-            sidebar.classList.remove('active');
-        }
-    }
-});
-
-// ===== SCROLL SPY FOR NAVIGATION =====
-const sections = document.querySelectorAll('.section');
-const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
-
-function activateNavLink() {
-    let current = '';
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (window.pageYOffset >= sectionTop - 100) {
-            current = section.getAttribute('id');
-        }
+if (navbarToggle && sidebar) {
+    navbarToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
     });
 
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        const href = link.getAttribute('href').substring(1);
-
-        if (href === current) {
-            link.classList.add('active');
-
-            // Also activate navbar links
-            const navbarLink = document.querySelector(`.navbar-links a[href="#${current}"]`);
-            if (navbarLink) {
-                document.querySelectorAll('.navbar-links a').forEach(l => l.classList.remove('active'));
-                navbarLink.classList.add('active');
+    // Close sidebar when clicking outside on mobile
+    document.addEventListener('click', (e) => {
+        if (window.innerWidth <= 1024) {
+            if (!sidebar.contains(e.target) && !navbarToggle.contains(e.target)) {
+                sidebar.classList.remove('active');
             }
         }
     });
 }
 
-window.addEventListener('scroll', activateNavLink);
-window.addEventListener('load', activateNavLink);
+// ===== SCROLL SPY FOR NAVIGATION (for single page sections) =====
+const sections = document.querySelectorAll('.section, .subsection, .project-section');
+const navLinks = document.querySelectorAll('.sidebar-nav .nav-link');
+
+function activateNavLink() {
+    if (navLinks.length === 0) return;
+
+    let current = '';
+    const scrollPosition = window.pageYOffset + 150;
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        const sectionId = section.getAttribute('id');
+
+        if (sectionId && scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = sectionId;
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+
+        if (href && href.startsWith('#')) {
+            const targetId = href.substring(1);
+            if (targetId === current) {
+                link.classList.add('active');
+            }
+        }
+    });
+}
+
+if (navLinks.length > 0) {
+    window.addEventListener('scroll', activateNavLink);
+    window.addEventListener('load', activateNavLink);
+}
 
 // ===== SMOOTH SCROLL =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -83,100 +87,147 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== POPULATE PROJECTS IN SIDEBAR =====
-function populateProjectsSidebar() {
-    const projectsList = document.getElementById('projectsList');
-    const projectCards = document.querySelectorAll('.project-card');
+// ===== BLOG FILTERS (for blog page) =====
+const filterLinks = document.querySelectorAll('.filter-link');
+const blogArticles = document.querySelectorAll('.blog-article-card');
 
-    projectsList.innerHTML = '';
-
-    projectCards.forEach(card => {
-        const projectName = card.querySelector('h3').textContent;
-        const projectId = card.getAttribute('data-project');
-
-        const li = document.createElement('li');
-        const a = document.createElement('a');
-        a.href = `#${projectId}`;
-        a.textContent = projectName;
-        a.addEventListener('click', (e) => {
+if (filterLinks.length > 0 && blogArticles.length > 0) {
+    filterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
             e.preventDefault();
-            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            card.style.animation = 'highlight 1s ease';
-            setTimeout(() => {
-                card.style.animation = '';
-            }, 1000);
-        });
 
-        li.appendChild(a);
-        projectsList.appendChild(li);
+            // Update active state
+            filterLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            const filterValue = link.getAttribute('data-filter');
+
+            // Filter articles
+            blogArticles.forEach(article => {
+                const category = article.getAttribute('data-category');
+
+                if (filterValue === 'all' || category === filterValue) {
+                    article.classList.remove('hidden');
+                    article.style.opacity = '1';
+                    article.style.transform = 'translateY(0)';
+                } else {
+                    article.style.opacity = '0';
+                    article.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        article.classList.add('hidden');
+                    }, 300);
+                }
+            });
+        });
     });
 }
 
-// Add highlight animation to CSS dynamically
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes highlight {
-        0%, 100% { transform: scale(1); }
-        50% { transform: scale(1.02); box-shadow: 0 15px 35px var(--shadow-lg); }
-    }
-`;
-document.head.appendChild(style);
+// ===== PUBLICATIONS FILTERS (for publications page) =====
+const pubFilterLinks = document.querySelectorAll('.sidebar-nav .nav-link[data-year], .sidebar-nav .nav-link[data-topic]');
+const publications = document.querySelectorAll('.publication-detail');
 
-populateProjectsSidebar();
+if (pubFilterLinks.length > 0 && publications.length > 0) {
+    pubFilterLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
 
-// ===== BLOG FILTERS =====
+            // Update active state
+            pubFilterLinks.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
+
+            const filterYear = link.getAttribute('data-year');
+            const filterTopic = link.getAttribute('data-topic');
+
+            // Filter publications
+            publications.forEach(pub => {
+                const pubYear = pub.getAttribute('data-year');
+                const pubTopic = pub.getAttribute('data-topic');
+
+                let shouldShow = false;
+
+                if (filterYear === 'all') {
+                    shouldShow = true;
+                } else if (filterYear && pubYear === filterYear) {
+                    shouldShow = true;
+                } else if (filterTopic && pubTopic === filterTopic) {
+                    shouldShow = true;
+                }
+
+                if (shouldShow) {
+                    pub.style.display = 'block';
+                    setTimeout(() => {
+                        pub.style.opacity = '1';
+                        pub.style.transform = 'translateX(0)';
+                    }, 10);
+                } else {
+                    pub.style.opacity = '0';
+                    pub.style.transform = 'translateX(-20px)';
+                    setTimeout(() => {
+                        pub.style.display = 'none';
+                    }, 300);
+                }
+            });
+        });
+    });
+}
+
+// Legacy blog filters (if they exist on the page)
 const filterButtons = document.querySelectorAll('.filter-btn');
 const blogCards = document.querySelectorAll('.blog-card');
 
-filterButtons.forEach(button => {
-    button.addEventListener('click', () => {
-        // Remove active class from all buttons
-        filterButtons.forEach(btn => btn.classList.remove('active'));
+if (filterButtons.length > 0 && blogCards.length > 0) {
+    filterButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons
+            filterButtons.forEach(btn => btn.classList.remove('active'));
 
-        // Add active class to clicked button
-        button.classList.add('active');
+            // Add active class to clicked button
+            button.classList.add('active');
 
-        const filterValue = button.getAttribute('data-filter');
+            const filterValue = button.getAttribute('data-filter');
 
-        // Filter blog cards
-        blogCards.forEach(card => {
-            const category = card.getAttribute('data-category');
+            // Filter blog cards
+            blogCards.forEach(card => {
+                const category = card.getAttribute('data-category');
 
-            if (filterValue === 'all' || category === filterValue) {
-                card.classList.remove('hidden');
-                // Animate in
-                setTimeout(() => {
-                    card.style.opacity = '1';
-                    card.style.transform = 'translateY(0)';
-                }, 10);
-            } else {
-                card.style.opacity = '0';
-                card.style.transform = 'translateY(20px)';
-                setTimeout(() => {
-                    card.classList.add('hidden');
-                }, 300);
-            }
+                if (filterValue === 'all' || category === filterValue) {
+                    card.classList.remove('hidden');
+                    // Animate in
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, 10);
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.classList.add('hidden');
+                    }, 300);
+                }
+            });
         });
     });
-});
+}
 
 // ===== SCROLL TO TOP BUTTON =====
 const scrollTopBtn = document.getElementById('scrollTop');
 
-window.addEventListener('scroll', () => {
-    if (window.pageYOffset > 300) {
-        scrollTopBtn.classList.add('visible');
-    } else {
-        scrollTopBtn.classList.remove('visible');
-    }
-});
-
-scrollTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
+if (scrollTopBtn) {
+    window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+            scrollTopBtn.classList.add('visible');
+        } else {
+            scrollTopBtn.classList.remove('visible');
+        }
     });
-});
+
+    scrollTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+}
 
 // ===== INTERSECTION OBSERVER FOR ANIMATIONS =====
 const observerOptions = {
@@ -206,43 +257,15 @@ animatedElements.forEach(el => {
 // Update copyright year if you add a footer
 const currentYear = new Date().getFullYear();
 
-// ===== PROJECT CARD LINKS TO BLOG =====
-document.querySelectorAll('.project-card .blog-link').forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const blogId = link.getAttribute('href');
-        const blogCard = document.querySelector(blogId);
-
-        if (blogCard) {
-            // Switch to "all" filter to make sure the blog is visible
-            const allFilterBtn = document.querySelector('.filter-btn[data-filter="all"]');
-            if (allFilterBtn) {
-                allFilterBtn.click();
-            }
-
-            // Scroll to blog section first
-            const blogSection = document.getElementById('blog');
-            if (blogSection) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = blogSection.offsetTop - navbarHeight - 20;
-
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-
-                // Then highlight the specific blog card
-                setTimeout(() => {
-                    blogCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                    blogCard.style.animation = 'highlight 1.5s ease';
-                    setTimeout(() => {
-                        blogCard.style.animation = '';
-                    }, 1500);
-                }, 800);
-            }
-        }
-    });
-});
+// ===== HIGHLIGHT ANIMATION =====
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes highlight {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); box-shadow: 0 15px 35px var(--shadow-lg); }
+    }
+`;
+document.head.appendChild(style);
 
 // ===== RESPONSIVE ADJUSTMENTS =====
 let resizeTimer;
@@ -250,7 +273,7 @@ window.addEventListener('resize', () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
         // Remove sidebar active class when resizing to desktop
-        if (window.innerWidth > 1024) {
+        if (sidebar && window.innerWidth > 1024) {
             sidebar.classList.remove('active');
         }
     }, 250);
@@ -259,7 +282,7 @@ window.addEventListener('resize', () => {
 // ===== KEYBOARD NAVIGATION =====
 document.addEventListener('keydown', (e) => {
     // ESC key to close sidebar on mobile
-    if (e.key === 'Escape' && window.innerWidth <= 1024) {
+    if (sidebar && e.key === 'Escape' && window.innerWidth <= 1024) {
         sidebar.classList.remove('active');
     }
 });
@@ -284,31 +307,7 @@ if ('IntersectionObserver' in window) {
     });
 }
 
-// ===== ACTIVE SECTION HIGHLIGHT =====
-function updateActiveSection() {
-    let currentSection = '';
-    const scrollPosition = window.scrollY + 150;
-
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-
-        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-            currentSection = section.id;
-        }
-    });
-
-    // Update sidebar navigation
-    document.querySelectorAll('.sidebar-nav a').forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${currentSection}`) {
-            link.classList.add('active');
-        }
-    });
-}
-
-window.addEventListener('scroll', updateActiveSection);
-window.addEventListener('load', updateActiveSection);
+// This function is now handled by activateNavLink above
 
 // ===== INITIALIZE =====
 document.addEventListener('DOMContentLoaded', () => {
