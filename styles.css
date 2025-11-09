@@ -7,16 +7,18 @@
 
 :root {
     /* Colors */
-    --primary-color: #2563eb;
-    --primary-dark: #1e40af;
+    --primary-color: #25579D;
+    --primary-dark: #1a3d6e;
+    --primary-light: #A5D8F1;
     --secondary-color: #64748b;
     --bg-color: #ffffff;
     --bg-secondary: #f8fafc;
+    --bg-accent: #e8f4f9;
     --text-color: #1e293b;
     --text-secondary: #64748b;
     --border-color: #e2e8f0;
-    --shadow: rgba(0, 0, 0, 0.1);
-    --shadow-lg: rgba(0, 0, 0, 0.15);
+    --shadow: rgba(37, 87, 157, 0.1);
+    --shadow-lg: rgba(37, 87, 157, 0.15);
 
     /* Spacing */
     --navbar-height: 70px;
@@ -208,9 +210,13 @@ a {
     width: 20px;
 }
 
-.sidebar-nav .nav-link:hover,
+.sidebar-nav .nav-link:hover {
+    background-color: var(--bg-accent);
+    color: var(--primary-color);
+}
+
 .sidebar-nav .nav-link.active {
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-accent);
     color: var(--primary-color);
     border-right: 3px solid var(--primary-color);
 }
@@ -528,7 +534,7 @@ a {
 
 .tech-tag {
     padding: 0.35rem 0.75rem;
-    background-color: var(--bg-color);
+    background-color: var(--bg-accent);
     color: var(--primary-color);
     border-radius: 6px;
     font-size: 0.85rem;
@@ -1160,9 +1166,11 @@ a {
     font-weight: 500;
     transition: var(--transition);
     border: none;
-    cursor: pointer;
+    cursor: pointer !important;
     text-decoration: none;
-    pointer-events: auto;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 10;
 }
 
 .btn-primary {
@@ -1323,10 +1331,11 @@ a {
 
 .pub-tag {
     padding: 0.35rem 0.75rem;
-    background-color: var(--bg-secondary);
-    color: var(--text-secondary);
+    background-color: var(--bg-accent);
+    color: var(--primary-color);
     border-radius: 6px;
     font-size: 0.85rem;
+    font-weight: 500;
 }
 
 .publication-abstract {
@@ -1454,8 +1463,8 @@ a {
 }
 
 .category-badge.project {
-    background-color: #dbeafe;
-    color: #1e40af;
+    background-color: var(--primary-light);
+    color: var(--primary-dark);
 }
 
 .category-badge.tutorial {
@@ -1503,10 +1512,11 @@ a {
 
 .article-tag {
     padding: 0.25rem 0.6rem;
-    background-color: var(--bg-secondary);
-    color: var(--text-secondary);
+    background-color: var(--bg-accent);
+    color: var(--primary-color);
     border-radius: 4px;
     font-size: 0.8rem;
+    font-weight: 500;
 }
 
 .blog-article-footer {
@@ -1719,9 +1729,15 @@ a {
 .result-card {
     text-align: center;
     padding: 2rem;
-    background-color: var(--bg-secondary);
+    background-color: var(--bg-accent);
     border-radius: 12px;
     border-top: 3px solid var(--primary-color);
+    transition: var(--transition);
+}
+
+.result-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px var(--shadow-lg);
 }
 
 .result-card h3 {

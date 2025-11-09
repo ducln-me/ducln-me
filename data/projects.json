@@ -39,7 +39,7 @@
       "links": {
         "github": "https://github.com/ducln-me/ecommerce-platform",
         "demo": "https://demo.example.com",
-        "caseStudy": "blog/ecommerce-platform.html"
+        "caseStudy": "projects/ecommerce-platform.html"
       },
       "date": "2023-09"
     },
@@ -82,7 +82,7 @@
       "links": {
         "github": "https://github.com/ducln-me/ml-recommendation",
         "paper": "https://arxiv.org/example",
-        "caseStudy": "blog/ml-recommendation.html"
+        "caseStudy": "projects/ml-recommendation.html"
       },
       "date": "2023-06"
     },
@@ -125,7 +125,7 @@
       "links": {
         "github": "https://github.com/ducln-me/devops-automation",
         "docs": "https://docs.example.com",
-        "caseStudy": "blog/devops-automation.html"
+        "caseStudy": "projects/devops-automation.html"
       },
       "date": "2023-03"
     },
