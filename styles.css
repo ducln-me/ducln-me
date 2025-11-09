@@ -597,7 +597,7 @@ a {
 .challenges-section {
     margin-top: 3rem;
     padding-top: 2rem;
-    border-top: 2px solid var(--border-color);
+    border-top: 1px dashed var(--border-color);
 }
 
 .challenges-grid {
@@ -1128,6 +1128,16 @@ a {
     display: flex;
     flex-direction: column;
     gap: 2rem;
+}
+
+.project-header h2 {
+    display: inline;
+    margin-right: 1rem;
+}
+
+.project-intro {
+    display: inline;
+    color: var(--text-secondary);
 }
 
 .project-detail {
