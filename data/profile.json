@@ -1,0 +1,82 @@
+{
+  "name": "Duc Le Nguyen",
+  "title": "Software Engineer & Researcher",
+  "avatar": "https://via.placeholder.com/150",
+  "intro": {
+    "greeting": "Hi, I'm Duc Le Nguyen",
+    "subtitle": "Software Engineer & Researcher",
+    "description": "I'm a passionate software engineer with expertise in full-stack development and machine learning. I love building scalable applications and conducting research in artificial intelligence."
+  },
+  "contact": {
+    "email": "your.email@example.com",
+    "linkedin": "https://linkedin.com/in/yourprofile",
+    "github": "https://github.com/ducln-me",
+    "location": "Ho Chi Minh City, Vietnam"
+  },
+  "experience": [
+    {
+      "id": "exp1",
+      "company": "Tech Company A",
+      "position": "Senior Software Engineer",
+      "period": "2021 - Present",
+      "location": "Ho Chi Minh City",
+      "description": "Leading the development of scalable web applications using React and Node.js. Implemented microservices architecture and improved system performance by 40%.",
+      "technologies": ["React", "Node.js", "Docker", "AWS"],
+      "current": true
+    },
+    {
+      "id": "exp2",
+      "company": "Startup B",
+      "position": "Full Stack Developer",
+      "period": "2019 - 2021",
+      "location": "Remote",
+      "description": "Built and maintained multiple client projects. Developed RESTful APIs and responsive frontend applications.",
+      "technologies": ["Vue.js", "Python", "PostgreSQL", "Redis"],
+      "current": false
+    },
+    {
+      "id": "exp3",
+      "company": "Research Lab C",
+      "position": "Research Assistant",
+      "period": "2018 - 2019",
+      "location": "University",
+      "description": "Conducted research in natural language processing and machine learning. Published papers in top-tier conferences.",
+      "technologies": ["Python", "TensorFlow", "PyTorch", "NLP"],
+      "current": false
+    }
+  ],
+  "education": [
+    {
+      "id": "edu1",
+      "degree": "Master of Science in Computer Science",
+      "school": "University of Technology",
+      "year": "2018 - 2020",
+      "gpa": "3.8/4.0",
+      "thesis": "Deep Learning Approaches for Natural Language Understanding",
+      "achievements": [
+        "Best Thesis Award",
+        "Published 3 conference papers"
+      ]
+    },
+    {
+      "id": "edu2",
+      "degree": "Bachelor of Science in Software Engineering",
+      "school": "University of Science",
+      "year": "2014 - 2018",
+      "gpa": "3.7/4.0",
+      "thesis": "Building a Recommendation System for E-Commerce",
+      "achievements": [
+        "Dean's List all semesters",
+        "First Prize in Hackathon 2017"
+      ]
+    }
+  ],
+  "skills": {
+    "programming": ["JavaScript", "Python", "Java", "Go", "TypeScript"],
+    "frontend": ["React", "Vue.js", "Angular", "HTML/CSS", "Tailwind CSS"],
+    "backend": ["Node.js", "Express", "Django", "FastAPI", "Spring Boot"],
+    "database": ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Elasticsearch"],
+    "devops": ["Docker", "Kubernetes", "AWS", "CI/CD", "Terraform"],
+    "ml": ["TensorFlow", "PyTorch", "scikit-learn", "NLP", "Computer Vision"]
+  }
+}

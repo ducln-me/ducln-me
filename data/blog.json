@@ -1,0 +1,183 @@
+{
+  "posts": [
+    {
+      "id": "ecommerce-platform",
+      "title": "Building a Scalable E-Commerce Platform from Scratch",
+      "slug": "ecommerce-platform",
+      "category": "project",
+      "categoryLabel": "Project",
+      "date": "2023-09-15",
+      "readTime": "12 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "A comprehensive deep dive into the architecture, design decisions, and implementation details of building a production-ready e-commerce platform.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["React", "Node.js", "MongoDB", "Stripe", "AWS", "Redis"],
+      "featured": true,
+      "url": "blog/ecommerce-platform.html"
+    },
+    {
+      "id": "ml-recommendation",
+      "title": "Building a Neural Network-based Recommendation Engine",
+      "slug": "ml-recommendation",
+      "category": "project",
+      "categoryLabel": "Project",
+      "date": "2023-08-20",
+      "readTime": "10 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "Learn how to build a recommendation system using collaborative filtering and deep learning techniques to provide personalized product suggestions.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["Python", "TensorFlow", "Machine Learning", "Neural Networks", "Recommendation Systems"],
+      "featured": true,
+      "url": "blog/ml-recommendation.html"
+    },
+    {
+      "id": "github-actions-guide",
+      "title": "Complete Guide to CI/CD with GitHub Actions",
+      "slug": "github-actions-guide",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2023-08-05",
+      "readTime": "15 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "A comprehensive guide to setting up continuous integration and deployment pipelines using GitHub Actions. Learn workflow syntax, secrets management, and best practices.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["GitHub Actions", "CI/CD", "DevOps", "Automation", "Docker"],
+      "featured": false,
+      "url": "blog/github-actions-guide.html"
+    },
+    {
+      "id": "devops-automation",
+      "title": "Infrastructure Automation with Terraform and Kubernetes",
+      "slug": "devops-automation",
+      "category": "project",
+      "categoryLabel": "Project",
+      "date": "2023-07-18",
+      "readTime": "14 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "How we automated our entire infrastructure deployment process using Terraform and Kubernetes, reducing deployment time by 80% and eliminating manual errors.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["Terraform", "Kubernetes", "DevOps", "IaC", "AWS", "Automation"],
+      "featured": true,
+      "url": "blog/devops-automation.html"
+    },
+    {
+      "id": "deep-learning-nlp",
+      "title": "Latest Trends in Deep Learning for NLP",
+      "slug": "deep-learning-nlp",
+      "category": "research",
+      "categoryLabel": "Research",
+      "date": "2023-07-01",
+      "readTime": "18 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "An exploration of the latest advances in natural language processing, including transformer architectures, large language models, and efficient training techniques.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["NLP", "Deep Learning", "Transformers", "BERT", "GPT", "Research"],
+      "featured": false,
+      "url": "blog/deep-learning-nlp.html"
+    },
+    {
+      "id": "react-hooks-guide",
+      "title": "Mastering React Hooks: A Practical Guide",
+      "slug": "react-hooks-guide",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2023-06-12",
+      "readTime": "11 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "Deep dive into React Hooks with practical examples. Learn useState, useEffect, useContext, and custom hooks to write cleaner, more maintainable React code.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["React", "JavaScript", "Hooks", "Frontend", "Web Development"],
+      "featured": false,
+      "url": "blog/react-hooks-guide.html"
+    },
+    {
+      "id": "web-dev-trends-2024",
+      "title": "The Future of Web Development: Trends to Watch in 2024",
+      "slug": "web-dev-trends-2024",
+      "category": "opinion",
+      "categoryLabel": "Opinion",
+      "date": "2023-05-28",
+      "readTime": "8 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "My thoughts on the emerging trends in web development including WebAssembly, edge computing, AI integration, and the evolution of JavaScript frameworks.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["Web Development", "Trends", "JavaScript", "WebAssembly", "AI", "Opinion"],
+      "featured": false,
+      "url": "blog/web-dev-trends-2024.html"
+    },
+    {
+      "id": "docker-best-practices",
+      "title": "Docker Best Practices for Production Deployments",
+      "slug": "docker-best-practices",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2023-05-10",
+      "readTime": "13 min read",
+      "author": {
+        "name": "Duc Le Nguyen",
+        "avatar": "https://via.placeholder.com/60",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "Essential Docker best practices for production environments: multi-stage builds, security hardening, optimization techniques, and monitoring strategies.",
+      "image": "https://via.placeholder.com/800x400",
+      "tags": ["Docker", "Containers", "DevOps", "Security", "Best Practices"],
+      "featured": false,
+      "url": "blog/docker-best-practices.html"
+    }
+  ],
+  "categories": [
+    {
+      "id": "all",
+      "label": "All Posts",
+      "description": "All blog articles"
+    },
+    {
+      "id": "project",
+      "label": "Projects",
+      "description": "Case studies and detailed write-ups about specific projects"
+    },
+    {
+      "id": "tutorial",
+      "label": "Tutorials",
+      "description": "Step-by-step guides and how-to articles"
+    },
+    {
+      "id": "research",
+      "label": "Research",
+      "description": "Research findings and academic topics"
+    },
+    {
+      "id": "opinion",
+      "label": "Opinion",
+      "description": "Personal thoughts and perspectives on technology"
+    }
+  ]
+}
