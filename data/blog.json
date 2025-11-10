@@ -1,6 +1,216 @@
 {
   "posts": [
     {
+      "id": "api-request-data-transmission",
+      "title": "API Request Data Transmission Guide",
+      "slug": "api-request-data-transmission",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2025-11-10",
+      "readTime": "6 min read",
+      "author": {
+        "name": "Duc Le",
+        "avatar": "data/images/image_avatar.jpg",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "A comprehensive guide to understanding parameters in GET requests and body payloads in POST requests, with practical examples and best practices for API development.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["API", "HTTP", "REST", "GET", "POST", "Web Development"],
+      "featured": true,
+      "sections": [
+        {
+          "id": "parameters-get",
+          "title": "1. Parameters for GET Requests",
+          "content": "Parameters are pieces of information sent along with the URL to filter, sort, paginate, or identify resources in a GET request. They do not modify server data."
+        },
+        {
+          "id": "parameter-types",
+          "title": "Types of Parameters",
+          "content": "There are three main types of parameters used in GET requests."
+        },
+        {
+          "id": "path-parameters",
+          "title": "Path Parameters",
+          "content": "Appear in the URL path.\n\nUsed to identify specific resources.\n\nExample:\n```\nGET /users/123\n```\n\nHere `123` identifies a specific user."
+        },
+        {
+          "id": "query-parameters",
+          "title": "Query Parameters",
+          "content": "Appear after `?` in the URL.\n\nUsed for filtering, sorting, and pagination.\n\nExample:\n```\nGET /users?role=admin&page=2&limit=10\n```"
+        },
+        {
+          "id": "header-parameters",
+          "title": "Header Parameters (Optional)",
+          "content": "Sent in the HTTP headers.\n\nOften used for authentication or specifying response format.\n\nExample:\n```\nAuthorization: Bearer <token>\nAccept-Language: en-US\n```"
+        },
+        {
+          "id": "get-guidelines",
+          "title": "Guidelines for GET Parameters",
+          "content": "Use parameters for retrieving or filtering data only.\n\nKeep query parameters short; avoid sending sensitive information.\n\nDo not include large payloads in GET requests; use POST instead."
+        },
+        {
+          "id": "body-post",
+          "title": "2. Body for POST Requests",
+          "content": "The body of a POST request contains the main data payload sent to the server, often used to create new resources. It may include structured data such as JSON, XML, or form data."
+        },
+        {
+          "id": "body-formats",
+          "title": "Body Formats",
+          "content": "**application/json** - JSON object\nExample: `{ \"name\": \"John\", \"email\": \"john@example.com\" }`\n\n**application/x-www-form-urlencoded** - Key-value pairs\nExample: `name=John&email=john@example.com`\n\n**multipart/form-data** - Mixed data, often including files\nExample: Form submission with file upload"
+        },
+        {
+          "id": "post-example",
+          "title": "POST Request Example",
+          "content": "```\nPOST /users\nHost: example.com\nContent-Type: application/json\n\n{\n  \"name\": \"Le Ngoc Duc\",\n  \"email\": \"duc@example.com\",\n  \"password\": \"secure123\"\n}\n```"
+        },
+        {
+          "id": "post-guidelines",
+          "title": "Guidelines for POST Body",
+          "content": "Use POST body for creating resources or submitting forms.\n\nInclude complex or sensitive data in the body, not in query parameters.\n\nAlways set the appropriate Content-Type header.\n\nKeep the payload structured and validate it server-side."
+        },
+        {
+          "id": "summary",
+          "title": "3. Summary",
+          "content": "**GET Request** - Data Location: Parameters (Path / Query / Header) - Purpose: Retrieve or filter resources\n\n**POST Request** - Data Location: Body / Payload - Purpose: Create new resources or submit data\n\n💡 Note: In API terminology, payload usually refers to the data inside the body — the actual content sent to the server."
+        }
+      ]
+    },
+    {
+      "id": "normal-distribution-ai",
+      "title": "Use of Normal Distribution in AI: Causes and Effects",
+      "slug": "normal-distribution-ai",
+      "category": "research",
+      "categoryLabel": "Research",
+      "date": "2025-11-10",
+      "readTime": "10 min read",
+      "author": {
+        "name": "Duc Le",
+        "avatar": "data/images/image_avatar.jpg",
+        "title": "Software Engineer & Researcher"
+      },
+      "excerpt": "A comprehensive technical analysis of why normal distribution is used in AI systems, distinguishing between mathematical causes and practical benefits in modeling, optimization, and generative processes.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["AI", "Machine Learning", "Statistics", "Probability", "Deep Learning", "Research"],
+      "featured": true,
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "1. Introduction",
+          "content": "The normal distribution, also known as Gaussian distribution, is one of the most widely used probability distributions in AI. Its prevalence is due to both mathematical properties and practical benefits in modeling, optimization, and generative processes.\n\nThis document explicitly separates causes (why we assume/use normal distribution) from effects (what advantages or outcomes result from this assumption)."
+        },
+        {
+          "id": "causes",
+          "title": "2. Causes (Why Normal Distribution is Used)",
+          "content": "Understanding why normal distribution is fundamental to AI requires examining several mathematical and practical foundations."
+        },
+        {
+          "id": "cause-clt",
+          "title": "Central Limit Theorem (CLT)",
+          "content": "When many independent random variables are summed, their normalized sum tends toward a Gaussian distribution. Many features, errors, or aggregated signals in AI naturally approximate this."
+        },
+        {
+          "id": "cause-natural",
+          "title": "Natural Occurrence in Data",
+          "content": "Real-world phenomena, measurement noise, and environmental variations often follow Gaussian-like patterns."
+        },
+        {
+          "id": "cause-mathematical",
+          "title": "Mathematical Convenience",
+          "content": "Gaussian distributions have closed-form expressions for probability density, conditional probability, and convolution, which simplifies probabilistic modeling and derivation."
+        },
+        {
+          "id": "cause-smoothness",
+          "title": "Smoothness of the Distribution",
+          "content": "Normal distribution is continuous, differentiable, and fully characterized by mean and variance, which facilitates optimization and learning in neural networks."
+        },
+        {
+          "id": "cause-prior",
+          "title": "Prior Knowledge in Probabilistic Models",
+          "content": "In Bayesian models, assuming Gaussian priors or likelihoods simplifies posterior computation (e.g., conjugate priors)."
+        },
+        {
+          "id": "cause-generative",
+          "title": "Generative Process Assumptions",
+          "content": "In models like diffusion models or VAEs, Gaussian noise is assumed in the latent or input space to enable sampling and reconstruction."
+        },
+        {
+          "id": "cause-initialization",
+          "title": "Weight Initialization in Neural Networks",
+          "content": "Randomly initializing weights with Gaussian distributions stabilizes forward activations and backward gradients."
+        },
+        {
+          "id": "effects",
+          "title": "3. Effects / Benefits (What Using Normal Distribution Gives)",
+          "content": "The use of normal distribution in AI systems produces several concrete benefits and practical advantages."
+        },
+        {
+          "id": "effect-computation",
+          "title": "Efficient Probabilistic Computation",
+          "content": "Linked Cause: Mathematical convenience\n\nAllows closed-form calculations for marginal and conditional probabilities. Useful in Gaussian Naive Bayes, Kalman filters, and Gaussian Processes."
+        },
+        {
+          "id": "effect-training",
+          "title": "Stable Training of Neural Networks",
+          "content": "Linked Cause: Weight initialization & smoothness\n\nGaussian initialization prevents gradient vanishing/explosion, enabling better convergence."
+        },
+        {
+          "id": "effect-noise",
+          "title": "Controlled Noise Injection",
+          "content": "Linked Cause: Generative process assumptions\n\nAdding Gaussian noise during training or diffusion improves robustness and sample diversity."
+        },
+        {
+          "id": "effect-latent",
+          "title": "Latent Variable Modeling",
+          "content": "Linked Cause: Prior knowledge in probabilistic models\n\nEnables efficient sampling, reparameterization trick, and approximate inference in VAEs."
+        },
+        {
+          "id": "effect-approximation",
+          "title": "Better Approximation of Aggregate Effects",
+          "content": "Linked Cause: CLT\n\nJustifies modeling errors or combined feature effects as Gaussian, which simplifies model assumptions and optimization."
+        },
+        {
+          "id": "effect-properties",
+          "title": "Predictable Statistical Properties",
+          "content": "Linked Cause: Mathematical convenience\n\nMean, variance, and higher moments are well-defined and interpretable, aiding analysis and debugging."
+        },
+        {
+          "id": "examples",
+          "title": "4. Examples in AI Models",
+          "content": "Let's examine how normal distribution is used in specific AI models and techniques."
+        },
+        {
+          "id": "example-kalman",
+          "title": "Kalman Filter",
+          "content": "Use: Process and measurement noise assumed Gaussian\n\nCause: CLT, measurement errors\n\nEffect: Closed-form recursive estimation"
+        },
+        {
+          "id": "example-vae",
+          "title": "Variational Autoencoder (VAE)",
+          "content": "Use: Latent variables follow Gaussian prior\n\nCause: Probabilistic prior assumption\n\nEffect: Easy sampling and backpropagation via reparameterization trick"
+        },
+        {
+          "id": "example-diffusion",
+          "title": "Diffusion Models",
+          "content": "Use: Gaussian noise added in forward process\n\nCause: Generative process assumption\n\nEffect: Enables controlled denoising and reconstruction"
+        },
+        {
+          "id": "example-initialization",
+          "title": "Neural Network Weight Initialization",
+          "content": "Use: Random Gaussian initialization\n\nCause: Smooth, differentiable distribution\n\nEffect: Stable training and faster convergence"
+        },
+        {
+          "id": "example-naive-bayes",
+          "title": "Gaussian Naive Bayes",
+          "content": "Use: Features modeled with Gaussian likelihood\n\nCause: Data approximation\n\nEffect: Tractable classification probabilities"
+        },
+        {
+          "id": "summary",
+          "title": "5. Summary",
+          "content": "Causes are rooted in natural data properties, mathematical convenience, and assumptions made to simplify modeling.\n\nEffects are practical benefits in computation, model stability, generative performance, and probabilistic reasoning.\n\nKey Insight: Understanding this distinction helps AI practitioners choose appropriate models, justify assumptions, and anticipate model behavior."
+        }
+      ]
+    },
+    {
       "id": "sse-read-timeout-error",
       "title": "Fixing SSE ReadTimeout Error in MCP Client",
       "slug": "sse-read-timeout-error",
