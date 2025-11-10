@@ -2127,6 +2127,108 @@ a {
     line-height: 1;
 }
 
+/* Table styles */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+.content-table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--border-color);
+    background-color: var(--bg-color);
+}
+
+.content-table thead {
+    background-color: var(--bg-secondary);
+}
+
+.content-table th {
+    padding: 0.75rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--border-color);
+}
+
+.content-table td {
+    padding: 0.75rem 1rem;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.content-table tr:last-child td {
+    border-bottom: none;
+}
+
+.content-table tbody tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Nested list styles */
+.nested-list {
+    list-style: none;
+    margin: 1rem 0;
+    padding-left: 0;
+}
+
+.nested-list.level-0 {
+    padding-left: 0;
+}
+
+.nested-list.level-1 {
+    padding-left: 2rem;
+}
+
+.nested-list.level-2 {
+    padding-left: 2rem;
+}
+
+.nested-list.level-3 {
+    padding-left: 2rem;
+}
+
+.nested-list li {
+    padding: 0.5rem 0 0.5rem 1.5rem;
+    position: relative;
+    color: var(--text-color);
+}
+
+.nested-list.level-0 > li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.nested-list.level-1 > li:before {
+    content: "◦";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.nested-list.level-2 > li:before {
+    content: "▪";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 0.9rem;
+}
+
+.nested-list.level-3 > li:before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    color: var(--primary-color);
+    font-size: 0.8rem;
+}
+
 .challenge-item {
     background-color: var(--bg-secondary);
     border-left: 4px solid var(--primary-color);

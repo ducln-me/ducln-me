@@ -101,107 +101,82 @@
         {
           "id": "causes",
           "title": "2. Causes (Why Normal Distribution is Used)",
-          "content": "Understanding why normal distribution is fundamental to AI requires examining several mathematical and practical foundations."
-        },
-        {
-          "id": "cause-clt",
-          "title": "Central Limit Theorem (CLT)",
-          "content": "When many independent random variables are summed, their normalized sum tends toward a Gaussian distribution. Many features, errors, or aggregated signals in AI naturally approximate this."
-        },
-        {
-          "id": "cause-natural",
-          "title": "Natural Occurrence in Data",
-          "content": "Real-world phenomena, measurement noise, and environmental variations often follow Gaussian-like patterns."
-        },
-        {
-          "id": "cause-mathematical",
-          "title": "Mathematical Convenience",
-          "content": "Gaussian distributions have closed-form expressions for probability density, conditional probability, and convolution, which simplifies probabilistic modeling and derivation."
-        },
-        {
-          "id": "cause-smoothness",
-          "title": "Smoothness of the Distribution",
-          "content": "Normal distribution is continuous, differentiable, and fully characterized by mean and variance, which facilitates optimization and learning in neural networks."
-        },
-        {
-          "id": "cause-prior",
-          "title": "Prior Knowledge in Probabilistic Models",
-          "content": "In Bayesian models, assuming Gaussian priors or likelihoods simplifies posterior computation (e.g., conjugate priors)."
-        },
-        {
-          "id": "cause-generative",
-          "title": "Generative Process Assumptions",
-          "content": "In models like diffusion models or VAEs, Gaussian noise is assumed in the latent or input space to enable sampling and reconstruction."
-        },
-        {
-          "id": "cause-initialization",
-          "title": "Weight Initialization in Neural Networks",
-          "content": "Randomly initializing weights with Gaussian distributions stabilizes forward activations and backward gradients."
+          "content": "Understanding why normal distribution is fundamental to AI requires examining several mathematical and practical foundations.",
+          "table": {
+            "headers": ["Cause", "Explanation"],
+            "rows": [
+              ["Central Limit Theorem (CLT)", "When many independent random variables are summed, their normalized sum tends toward a Gaussian distribution. Many features, errors, or aggregated signals in AI naturally approximate this."],
+              ["Natural Occurrence in Data", "Real-world phenomena, measurement noise, and environmental variations often follow Gaussian-like patterns."],
+              ["Mathematical Convenience", "Gaussian distributions have closed-form expressions for probability density, conditional probability, and convolution, which simplifies probabilistic modeling and derivation."],
+              ["Smoothness of the Distribution", "Normal distribution is continuous, differentiable, and fully characterized by mean and variance, which facilitates optimization and learning in neural networks."],
+              ["Prior Knowledge in Probabilistic Models", "In Bayesian models, assuming Gaussian priors or likelihoods simplifies posterior computation (e.g., conjugate priors)."],
+              ["Generative Process Assumptions", "In models like diffusion models or VAEs, Gaussian noise is assumed in the latent or input space to enable sampling and reconstruction."],
+              ["Weight Initialization in Neural Networks", "Randomly initializing weights with Gaussian distributions stabilizes forward activations and backward gradients."]
+            ]
+          }
         },
         {
           "id": "effects",
           "title": "3. Effects / Benefits (What Using Normal Distribution Gives)",
-          "content": "The use of normal distribution in AI systems produces several concrete benefits and practical advantages."
-        },
-        {
-          "id": "effect-computation",
-          "title": "Efficient Probabilistic Computation",
-          "content": "Linked Cause: Mathematical convenience\n\nAllows closed-form calculations for marginal and conditional probabilities. Useful in Gaussian Naive Bayes, Kalman filters, and Gaussian Processes."
-        },
-        {
-          "id": "effect-training",
-          "title": "Stable Training of Neural Networks",
-          "content": "Linked Cause: Weight initialization & smoothness\n\nGaussian initialization prevents gradient vanishing/explosion, enabling better convergence."
-        },
-        {
-          "id": "effect-noise",
-          "title": "Controlled Noise Injection",
-          "content": "Linked Cause: Generative process assumptions\n\nAdding Gaussian noise during training or diffusion improves robustness and sample diversity."
-        },
-        {
-          "id": "effect-latent",
-          "title": "Latent Variable Modeling",
-          "content": "Linked Cause: Prior knowledge in probabilistic models\n\nEnables efficient sampling, reparameterization trick, and approximate inference in VAEs."
-        },
-        {
-          "id": "effect-approximation",
-          "title": "Better Approximation of Aggregate Effects",
-          "content": "Linked Cause: CLT\n\nJustifies modeling errors or combined feature effects as Gaussian, which simplifies model assumptions and optimization."
-        },
-        {
-          "id": "effect-properties",
-          "title": "Predictable Statistical Properties",
-          "content": "Linked Cause: Mathematical convenience\n\nMean, variance, and higher moments are well-defined and interpretable, aiding analysis and debugging."
+          "content": "The use of normal distribution in AI systems produces several concrete benefits and practical advantages.",
+          "table": {
+            "headers": ["Effect", "Linked Cause", "Explanation"],
+            "rows": [
+              ["Efficient Probabilistic Computation", "Mathematical convenience", "Allows closed-form calculations for marginal and conditional probabilities. Useful in Gaussian Naive Bayes, Kalman filters, and Gaussian Processes."],
+              ["Stable Training of Neural Networks", "Weight initialization & smoothness", "Gaussian initialization prevents gradient vanishing/explosion, enabling better convergence."],
+              ["Controlled Noise Injection", "Generative process assumptions", "Adding Gaussian noise during training or diffusion improves robustness and sample diversity."],
+              ["Latent Variable Modeling", "Prior knowledge in probabilistic models", "Enables efficient sampling, reparameterization trick, and approximate inference in VAEs."],
+              ["Better Approximation of Aggregate Effects", "CLT", "Justifies modeling errors or combined feature effects as Gaussian, which simplifies model assumptions and optimization."],
+              ["Predictable Statistical Properties", "Mathematical convenience", "Mean, variance, and higher moments are well-defined and interpretable, aiding analysis and debugging."]
+            ]
+          }
         },
         {
           "id": "examples",
           "title": "4. Examples in AI Models",
-          "content": "Let's examine how normal distribution is used in specific AI models and techniques."
-        },
-        {
-          "id": "example-kalman",
-          "title": "Kalman Filter",
-          "content": "Use: Process and measurement noise assumed Gaussian\n\nCause: CLT, measurement errors\n\nEffect: Closed-form recursive estimation"
-        },
-        {
-          "id": "example-vae",
-          "title": "Variational Autoencoder (VAE)",
-          "content": "Use: Latent variables follow Gaussian prior\n\nCause: Probabilistic prior assumption\n\nEffect: Easy sampling and backpropagation via reparameterization trick"
-        },
-        {
-          "id": "example-diffusion",
-          "title": "Diffusion Models",
-          "content": "Use: Gaussian noise added in forward process\n\nCause: Generative process assumption\n\nEffect: Enables controlled denoising and reconstruction"
-        },
-        {
-          "id": "example-initialization",
-          "title": "Neural Network Weight Initialization",
-          "content": "Use: Random Gaussian initialization\n\nCause: Smooth, differentiable distribution\n\nEffect: Stable training and faster convergence"
-        },
-        {
-          "id": "example-naive-bayes",
-          "title": "Gaussian Naive Bayes",
-          "content": "Use: Features modeled with Gaussian likelihood\n\nCause: Data approximation\n\nEffect: Tractable classification probabilities"
+          "content": "Let's examine how normal distribution is used in specific AI models and techniques.",
+          "nestedList": [
+            {
+              "text": "Kalman Filter",
+              "children": [
+                "Use: Process and measurement noise assumed Gaussian",
+                "Cause: CLT, measurement errors",
+                "Effect: Closed-form recursive estimation"
+              ]
+            },
+            {
+              "text": "Variational Autoencoder (VAE)",
+              "children": [
+                "Use: Latent variables follow Gaussian prior",
+                "Cause: Probabilistic prior assumption",
+                "Effect: Easy sampling and backpropagation via reparameterization trick"
+              ]
+            },
+            {
+              "text": "Diffusion Models",
+              "children": [
+                "Use: Gaussian noise added in forward process",
+                "Cause: Generative process assumption",
+                "Effect: Enables controlled denoising and reconstruction"
+              ]
+            },
+            {
+              "text": "Neural Network Weight Initialization",
+              "children": [
+                "Use: Random Gaussian initialization",
+                "Cause: Smooth, differentiable distribution",
+                "Effect: Stable training and faster convergence"
+              ]
+            },
+            {
+              "text": "Gaussian Naive Bayes",
+              "children": [
+                "Use: Features modeled with Gaussian likelihood",
+                "Cause: Data approximation",
+                "Effect: Tractable classification probabilities"
+              ]
+            }
+          ]
         },
         {
           "id": "summary",

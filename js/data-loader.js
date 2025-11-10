@@ -494,6 +494,57 @@ const Templates = {
                     sectionHTML += `<p>${section.content.replace(/\n/g, '</p><p>')}</p>`;
                 }
 
+                // Render table
+                if (section.table) {
+                    sectionHTML += `<div class="table-container"><table class="content-table">`;
+
+                    // Table header
+                    if (section.table.headers) {
+                        sectionHTML += `<thead><tr>`;
+                        section.table.headers.forEach(header => {
+                            sectionHTML += `<th>${header}</th>`;
+                        });
+                        sectionHTML += `</tr></thead>`;
+                    }
+
+                    // Table body
+                    if (section.table.rows) {
+                        sectionHTML += `<tbody>`;
+                        section.table.rows.forEach(row => {
+                            sectionHTML += `<tr>`;
+                            row.forEach(cell => {
+                                sectionHTML += `<td>${cell}</td>`;
+                            });
+                            sectionHTML += `</tr>`;
+                        });
+                        sectionHTML += `</tbody>`;
+                    }
+
+                    sectionHTML += `</table></div>`;
+                }
+
+                // Render nested list (phân cấp đầu mục)
+                if (section.nestedList) {
+                    const renderNestedList = (items, level = 0) => {
+                        let html = `<ul class="nested-list level-${level}">`;
+                        items.forEach(item => {
+                            if (typeof item === 'string') {
+                                html += `<li>${item}</li>`;
+                            } else if (item.text) {
+                                html += `<li>${item.text}`;
+                                if (item.children && item.children.length > 0) {
+                                    html += renderNestedList(item.children, level + 1);
+                                }
+                                html += `</li>`;
+                            }
+                        });
+                        html += `</ul>`;
+                        return html;
+                    };
+
+                    sectionHTML += renderNestedList(section.nestedList);
+                }
+
                 // Render subsections (for architecture, approach sections)
                 if (section.subsections) {
                     section.subsections.forEach(subsection => {
