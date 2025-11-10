@@ -460,7 +460,7 @@ const Templates = {
         if (!post) return;
 
         // Update page title
-        document.title = `${post.title} - Duc Le Nguyen`;
+        document.title = `${post.title} - Duc Le`;
 
         // Update header
         const headerSection = document.querySelector('.blog-detail-header');

@@ -1,9 +1,9 @@
 {
-  "name": "Duc Le Nguyen",
+  "name": "Duc Le",
   "title": "Software Engineer & Researcher",
   "avatar": "data/images/image_avatar.jpg",
   "intro": {
-    "greeting": "Hi, I'm Duc Le Nguyen",
+    "greeting": "Hi, I'm Duc Le",
     "subtitle": "Software Engineer & Researcher",
     "description": "I'm a passionate software engineer with expertise in full-stack development and machine learning. I love building scalable applications and conducting research in artificial intelligence."
   },

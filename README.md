@@ -1,4 +1,4 @@
-# Personal Portfolio - Duc Le Nguyen
+# Personal Portfolio - Duc Le
 
 A modern, responsive personal portfolio website featuring a sticky navbar, sidebar navigation, and dynamic content sections.
 
@@ -95,7 +95,7 @@ All data files are located in the `data/` folder:
 Contains personal information, experience, education, and skills:
 ```json
 {
-  "name": "Duc Le Nguyen",
+  "name": "Duc Le",
   "title": "Software Engineer & Researcher",
   "contact": { "email": "...", "linkedin": "...", "github": "..." },
   "experience": [...],
@@ -247,4 +247,4 @@ MIT License - feel free to use this template for your personal portfolio.
 
 ---
 
-Built with care by Duc Le Nguyen
+Built with care by Duc Le

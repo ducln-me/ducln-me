@@ -3,7 +3,7 @@
     {
       "id": "pub1",
       "title": "Efficient Deep Learning Models for Natural Language Understanding",
-      "authors": ["Duc Le Nguyen", "Jane Smith", "John Doe"],
+      "authors": ["Duc Le", "Jane Smith", "John Doe"],
       "venue": "Conference on Neural Information Processing Systems (NeurIPS)",
       "year": "2023",
       "type": "Conference",
@@ -23,7 +23,7 @@
     {
       "id": "pub2",
       "title": "Scalable Microservices Architecture: Patterns and Best Practices",
-      "authors": ["Duc Le Nguyen", "Alice Johnson"],
+      "authors": ["Duc Le", "Alice Johnson"],
       "venue": "IEEE International Conference on Software Engineering (ICSE)",
       "year": "2023",
       "type": "Conference",
@@ -41,7 +41,7 @@
     {
       "id": "pub3",
       "title": "Transfer Learning for Low-Resource Languages in Machine Translation",
-      "authors": ["Duc Le Nguyen", "Maria Garcia", "Chen Wei"],
+      "authors": ["Duc Le", "Maria Garcia", "Chen Wei"],
       "venue": "Association for Computational Linguistics (ACL)",
       "year": "2022",
       "type": "Conference",
@@ -60,7 +60,7 @@
     {
       "id": "pub4",
       "title": "Real-time Stream Processing with Apache Kafka and Flink",
-      "authors": ["Duc Le Nguyen", "Robert Brown"],
+      "authors": ["Duc Le", "Robert Brown"],
       "venue": "Journal of Big Data",
       "year": "2022",
       "type": "Journal",
@@ -77,7 +77,7 @@
     {
       "id": "pub5",
       "title": "Attention Mechanisms in Computer Vision: A Comprehensive Survey",
-      "authors": ["Duc Le Nguyen", "Sarah Lee", "Michael Zhang"],
+      "authors": ["Duc Le", "Sarah Lee", "Michael Zhang"],
       "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)",
       "year": "2022",
       "type": "Journal",
@@ -94,7 +94,7 @@
     {
       "id": "pub6",
       "title": "Federated Learning for Privacy-Preserving Healthcare Applications",
-      "authors": ["Duc Le Nguyen", "Emily Davis", "James Wilson"],
+      "authors": ["Duc Le", "Emily Davis", "James Wilson"],
       "venue": "International Conference on Medical Image Computing (MICCAI)",
       "year": "2021",
       "type": "Conference",
@@ -113,7 +113,7 @@
     {
       "id": "pub7",
       "title": "Graph Neural Networks for Recommendation Systems",
-      "authors": ["Duc Le Nguyen", "Lisa Anderson"],
+      "authors": ["Duc Le", "Lisa Anderson"],
       "venue": "ACM Conference on Recommender Systems (RecSys)",
       "year": "2021",
       "type": "Conference",
@@ -131,7 +131,7 @@
     {
       "id": "pub8",
       "title": "Containerization and Orchestration in Modern Cloud Infrastructure",
-      "authors": ["Duc Le Nguyen", "Tom Harris"],
+      "authors": ["Duc Le", "Tom Harris"],
       "venue": "ACM Symposium on Cloud Computing (SoCC)",
       "year": "2021",
       "type": "Conference",
