@@ -291,7 +291,7 @@ const Templates = {
 
     // Render publications (Publications page)
     renderPublications(data) {
-        const container = document.querySelector('#publications-container');
+        const container = document.querySelector('.publications-container');
         if (!container || !data || !data.publications) return;
 
         container.innerHTML = data.publications.map(pub => `
@@ -349,6 +349,70 @@ const Templates = {
         });
     },
 
+    // Render publications sidebar (years and topics)
+    renderPublicationsSidebar(data) {
+        if (!data || !data.publications) return;
+
+        // Render years
+        const yearsContainer = document.querySelector('#publicationYears');
+        if (yearsContainer) {
+            const years = [...new Set(data.publications.map(pub => pub.year))].sort((a, b) => b - a);
+            yearsContainer.innerHTML = `
+                <li><a href="#filter-all" class="nav-link active" data-year="all"><i class="fas fa-list"></i> All Publications</a></li>
+                ${years.map(year => `
+                    <li><a href="#filter-${year}" class="nav-link" data-year="${year}"><i class="fas fa-calendar"></i> ${year}</a></li>
+                `).join('')}
+            `;
+        }
+
+        // Render topics
+        const topicsContainer = document.querySelector('#publicationTopics');
+        if (topicsContainer) {
+            const topicsMap = {
+                'ml': 'Machine Learning',
+                'systems': 'Systems',
+                'nlp': 'NLP'
+            };
+            const topicsIcons = {
+                'ml': 'fa-brain',
+                'systems': 'fa-server',
+                'nlp': 'fa-language'
+            };
+            const topics = [...new Set(data.publications.map(pub => pub.topic))];
+            topicsContainer.innerHTML = topics.map(topic => `
+                <li><a href="#filter-${topic}" class="nav-link" data-topic="${topic}"><i class="fas ${topicsIcons[topic] || 'fa-tag'}"></i> ${topicsMap[topic] || topic}</a></li>
+            `).join('');
+        }
+    },
+
+    // Render publications stats
+    renderPublicationsStats(data) {
+        const statsContainer = document.querySelector('.publication-stats');
+        if (!statsContainer || !data || !data.publications) return;
+
+        const totalPapers = data.publications.length;
+        const totalCitations = data.publications.reduce((sum, pub) => sum + (pub.citations || 0), 0);
+        const totalAwards = data.publications.reduce((sum, pub) => sum + (pub.awards ? pub.awards.length : 0), 0);
+
+        statsContainer.innerHTML = `
+            <div class="stat-card">
+                <i class="fas fa-file-alt"></i>
+                <h3>${totalPapers}</h3>
+                <p>Papers Published</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-quote-right"></i>
+                <h3>${totalCitations}</h3>
+                <p>Citations</p>
+            </div>
+            <div class="stat-card">
+                <i class="fas fa-award"></i>
+                <h3>${totalAwards}</h3>
+                <p>Best Paper Awards</p>
+            </div>
+        `;
+    },
+
     // Render blog posts (Blog page)
     renderBlogPosts(data) {
         const container = document.querySelector('.blog-grid, .blog-articles-grid');
@@ -375,6 +439,19 @@ const Templates = {
                     </a>
                 </div>
             </article>
+        `).join('');
+    },
+
+    // Render blog popular posts sidebar
+    renderBlogPopularPosts(data) {
+        const popularPostsList = document.querySelector('.popular-posts');
+        if (!popularPostsList || !data || !data.posts) return;
+
+        // Get featured posts or top 3 posts
+        const popularPosts = data.posts.filter(post => post.featured).slice(0, 3);
+
+        popularPostsList.innerHTML = popularPosts.map(post => `
+            <li><a href="blog-detail.html?post=${post.id}"><i class="fas fa-fire"></i> ${post.title}</a></li>
         `).join('');
     },
 
@@ -529,7 +606,11 @@ const PageInit = {
         ]);
 
         if (profile) Templates.renderProfile(profile);
-        if (publications) Templates.renderPublications(publications);
+        if (publications) {
+            Templates.renderPublications(publications);
+            Templates.renderPublicationsSidebar(publications);
+            Templates.renderPublicationsStats(publications);
+        }
     },
 
     // Initialize Blog page
@@ -540,7 +621,10 @@ const PageInit = {
         ]);
 
         if (profile) Templates.renderProfile(profile);
-        if (blog) Templates.renderBlogPosts(blog);
+        if (blog) {
+            Templates.renderBlogPosts(blog);
+            Templates.renderBlogPopularPosts(blog);
+        }
     },
 
     // Initialize Blog Detail page
