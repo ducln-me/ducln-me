@@ -601,48 +601,49 @@ a {
     border-top: 1px dashed var(--border-color);
 }
 
-.challenges-grid {
+.challenges-list {
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
     margin-top: 1.5rem;
 }
 
-.challenge-card {
-    padding: 0;
+.challenge-item {
+    background-color: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 1.5rem;
+    border-left: 3px solid var(--primary-color);
 }
 
-.challenge-card h4 {
-    color: var(--text-color);
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.challenge-card p {
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 0.75rem;
-    font-size: 0.95rem;
-}
-
-.challenge-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    color: var(--primary-color);
-    font-weight: 500;
-    text-decoration: none;
-    transition: var(--transition);
-}
-
-.challenge-link:hover {
-    color: var(--primary-dark);
+.challenge-problem,
+.challenge-solution {
+    display: flex;
+    align-items: flex-start;
     gap: 0.75rem;
+    margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
-.challenge-link i:last-child {
-    font-size: 0.85rem;
+.challenge-solution {
+    margin-bottom: 0;
+}
+
+.challenge-problem i {
+    color: #e74c3c;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.challenge-solution i {
+    color: #27ae60;
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.challenge-problem strong,
+.challenge-solution strong {
+    color: var(--text-color);
+    margin-right: 0.5rem;
 }
 
 .github-link {

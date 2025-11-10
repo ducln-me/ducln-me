@@ -260,17 +260,17 @@ const Templates = {
                         ${project.challenges && project.challenges.length > 0 ? `
                             <div class="detail-section challenges-section">
                                 <h3><i class="fas fa-exclamation-triangle"></i> Technical Challenges & Solutions</h3>
-                                <div class="challenges-grid">
+                                <div class="challenges-list">
                                     ${project.challenges.map(challenge => `
-                                        <div class="challenge-card">
-                                            <h4>${challenge.title}</h4>
-                                            <p>${challenge.description}</p>
-                                            ${challenge.blogPost ? `
-                                                <a href="${challenge.blogPost.url}" class="challenge-link">
-                                                    <i class="fas fa-book-open"></i> ${challenge.blogPost.title}
-                                                    <i class="fas fa-arrow-right"></i>
-                                                </a>
-                                            ` : ''}
+                                        <div class="challenge-item">
+                                            <div class="challenge-problem">
+                                                <i class="fas fa-times-circle"></i>
+                                                <strong>Problem:</strong> ${challenge.problem}
+                                            </div>
+                                            <div class="challenge-solution">
+                                                <i class="fas fa-check-circle"></i>
+                                                <strong>Solution:</strong> ${challenge.solution}
+                                            </div>
                                         </div>
                                     `).join('')}
                                 </div>
