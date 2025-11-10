@@ -455,6 +455,45 @@ const Templates = {
         `).join('');
     },
 
+    // Initialize blog filters
+    initBlogFilters() {
+        const filterLinks = document.querySelectorAll('.filter-link');
+        const blogArticles = document.querySelectorAll('.blog-article-card');
+
+        if (filterLinks.length === 0 || blogArticles.length === 0) return;
+
+        filterLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                // Update active state
+                filterLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+
+                const filterValue = link.getAttribute('data-filter');
+
+                // Filter articles with animation
+                blogArticles.forEach(article => {
+                    const category = article.getAttribute('data-category');
+
+                    if (filterValue === 'all' || category === filterValue) {
+                        article.style.display = 'block';
+                        setTimeout(() => {
+                            article.style.opacity = '1';
+                            article.style.transform = 'translateY(0)';
+                        }, 10);
+                    } else {
+                        article.style.opacity = '0';
+                        article.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            article.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+    },
+
     // Render blog detail page
     renderBlogDetail(post) {
         if (!post) return;
@@ -675,6 +714,8 @@ const PageInit = {
         if (blog) {
             Templates.renderBlogPosts(blog);
             Templates.renderBlogPopularPosts(blog);
+            // Initialize filters after rendering
+            setTimeout(() => Templates.initBlogFilters(), 100);
         }
     },
 

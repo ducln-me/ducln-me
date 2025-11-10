@@ -1478,7 +1478,9 @@ a {
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 2px 8px var(--shadow);
-    transition: var(--transition);
+    transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .blog-article-card.hidden {
