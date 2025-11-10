@@ -501,6 +501,7 @@ a {
 
 .project-header {
     display: flex;
+    flex-direction: column; /* xếp dọc thay vì ngang */
     justify-content: space-between;
     align-items: start;
     margin-bottom: 1rem;
@@ -1133,6 +1134,7 @@ a {
 .project-header h2 {
     display: block;
     margin: 0.5rem 0;
+    word-break: keep-all; /* tránh tách giữa từ */
 }
 
 .project-intro {
