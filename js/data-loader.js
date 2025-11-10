@@ -271,6 +271,11 @@ const Templates = {
                                                 <i class="fas fa-check-circle"></i>
                                                 <strong>Solution:</strong> ${challenge.solution}
                                             </div>
+                                            ${challenge.blogLink ? `
+                                                <a href="${challenge.blogLink}" class="challenge-blog-link">
+                                                    <i class="fas fa-arrow-right"></i> Read detailed blog post
+                                                </a>
+                                            ` : ''}
                                         </div>
                                     `).join('')}
                                 </div>

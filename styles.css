@@ -646,6 +646,31 @@ a {
     margin-right: 0.5rem;
 }
 
+.challenge-blog-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.challenge-blog-link:hover {
+    background-color: var(--primary-dark);
+    gap: 0.75rem;
+    transform: translateX(2px);
+}
+
+.challenge-blog-link i {
+    font-size: 0.85rem;
+}
+
 .github-link {
     background-color: var(--bg-color);
     color: var(--text-color);

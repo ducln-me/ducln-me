@@ -39,15 +39,18 @@
       "challenges": [
         {
           "problem": "Race conditions in inventory management causing overselling",
-          "solution": "Implemented optimistic locking with MongoDB versioning"
+          "solution": "Implemented optimistic locking with MongoDB versioning",
+          "blogLink": "blog-detail.html?post=api-request-data-transmission"
         },
         {
           "problem": "Payment processing timeouts during high traffic",
-          "solution": "Migrated to async processing with Redis message queues"
+          "solution": "Migrated to async processing with Redis message queues",
+          "blogLink": "blog-detail.html?post=sse-read-timeout-error"
         },
         {
           "problem": "Slow product search with large catalogs",
-          "solution": "Integrated Elasticsearch for sub-second search results"
+          "solution": "Integrated Elasticsearch for sub-second search results",
+          "blogLink": "blog-detail.html?post=normal-distribution-ai"
         }
       ],
       "links": {
