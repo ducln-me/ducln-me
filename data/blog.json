@@ -73,6 +73,7 @@
             "rows": [
               ["OpenAI", "API Parameter Names", "The 'response_format' parameter and 'tools' parameter share similar schema definitions. Structured output uses 'json_schema' type which mirrors tool definitions."],
               ["Anthropic Claude", "Tool Use Architecture", "Claude's structured output is explicitly implemented through their tool use system. You can see this in their API documentation."],
+              ["Streaming Limitation", "No Streaming Support", "Structured output mode does NOT support streaming, just like tool calls must be generated completely before being returned. This is because the entire JSON structure must be validated against the schema."],
               ["Constraint Behavior", "Error Patterns", "Structured output fails in the same ways as tool calling: schema violations, missing required fields, type mismatches."],
               ["Token Limits", "Shared Constraints", "Both structured output and tool calling share the same token limitations for schemas and responses."]
             ]

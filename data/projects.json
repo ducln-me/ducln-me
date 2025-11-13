@@ -1,234 +1,65 @@
 {
   "projects": [
     {
-      "id": "ecommerce-platform",
-      "title": "E-Commerce Platform",
-      "category": "Full Stack",
+      "id": "ai-agent-form-assistant",
+      "title": "AI Agent Form Assistant & Chatbot",
+      "category": "AI/ML",
       "image": "https://via.placeholder.com/800x400",
-      "shortDescription": "A scalable e-commerce platform with real-time inventory management, payment processing, and admin dashboard.",
-      "fullDescription": "Built a production-ready e-commerce platform from scratch using modern web technologies. The platform handles thousands of concurrent users and processes payments securely through Stripe integration.",
-      "technologies": ["React", "Node.js", "MongoDB", "Redis", "Stripe", "AWS"],
+      "shortDescription": "An intelligent AI agent that automatically fills form fields while providing conversational assistance through an integrated chatbot interface.",
+      "fullDescription": "Developed a production-ready AI agent system that combines automated form filling with conversational AI capabilities. The system uses LLM-powered intelligence to understand user context, extract relevant information, and populate form fields while maintaining a natural conversation flow for clarifications and assistance.",
+      "technologies": ["Python", "LangChain", "OpenAI GPT-4", "Anthropic Claude", "FastAPI", "React", "TypeScript", "MCP"],
       "features": [
-        "Real-time inventory management with WebSocket updates",
-        "Secure payment processing with Stripe Payment Intents",
-        "Advanced product search with Elasticsearch",
-        "Admin dashboard with comprehensive analytics",
-        "Automated email notifications for orders",
-        "Multi-vendor support with commission tracking"
+        "Intelligent form field auto-population using LLM context understanding",
+        "Dual-mode operation: automated filling and conversational chatbot",
+        "Real-time streaming responses with Server-Sent Events (SSE)",
+        "Structured output validation using tool calling mechanisms",
+        "Context-aware field suggestions and error correction",
+        "Multi-turn conversation handling with memory",
+        "API request optimization for efficient data transmission",
+        "Support for complex nested form structures"
       ],
       "techStack": {
-        "frontend": "React, Redux, Material-UI",
-        "backend": "Node.js, Express, MongoDB",
-        "infrastructure": "AWS EC2, S3, CloudFront",
-        "other": "Redis, Elasticsearch, Stripe API"
+        "ai": "OpenAI GPT-4, Anthropic Claude, LangChain",
+        "backend": "Python, FastAPI, MCP (Model Context Protocol)",
+        "frontend": "React, TypeScript, Material-UI",
+        "infrastructure": "Docker, AWS Lambda, API Gateway"
       },
       "results": {
         "metrics": [
-          { "value": "10,000+", "label": "Transactions Processed" },
-          { "value": "99.9%", "label": "Uptime" },
-          { "value": "2s", "label": "Avg Page Load" },
-          { "value": "1,000+", "label": "Concurrent Users" }
+          { "value": "85%", "label": "Form Completion Rate" },
+          { "value": "<2s", "label": "Response Time" },
+          { "value": "95%", "label": "Field Accuracy" },
+          { "value": "70%", "label": "Time Saved" }
         ],
         "improvements": [
-          "Reduced database query time by 70%",
-          "Improved checkout completion rate by 25%",
-          "Decreased API response time to under 100ms",
-          "Achieved 95+ Lighthouse score"
+          "Reduced form filling time by 70% on average",
+          "Achieved 95% accuracy in field population",
+          "Improved user satisfaction score to 4.7/5",
+          "Handled 10,000+ form submissions with 99.5% uptime"
         ]
       },
       "challenges": [
         {
-          "problem": "Race conditions in inventory management causing overselling",
-          "solution": "Implemented optimistic locking with MongoDB versioning",
-          "blogLink": "blog-detail.html?post=api-request-data-transmission"
-        },
-        {
-          "problem": "Payment processing timeouts during high traffic",
-          "solution": "Migrated to async processing with Redis message queues",
+          "problem": "SSE connection timeouts during long-running LLM inference",
+          "solution": "Implemented adaptive timeout settings and connection retry logic with exponential backoff",
           "blogLink": "blog-detail.html?post=sse-read-timeout-error"
         },
         {
-          "problem": "Slow product search with large catalogs",
-          "solution": "Integrated Elasticsearch for sub-second search results",
-          "blogLink": "blog-detail.html?post=normal-distribution-ai"
+          "problem": "Ensuring structured JSON output from LLM for form field mapping",
+          "solution": "Leveraged tool calling mechanism to enforce schema validation and guarantee structured responses",
+          "blogLink": "blog-detail.html?post=llm-structured-output-tool-calling"
+        },
+        {
+          "problem": "Efficient data transmission between frontend and LLM API",
+          "solution": "Optimized API request parameters using GET for queries and POST body for complex form data",
+          "blogLink": "blog-detail.html?post=api-request-data-transmission"
         }
       ],
       "links": {
-        "github": "https://github.com/ducln-me/ecommerce-platform",
-        "demo": "https://demo.example.com",
-        "caseStudy": "projects/ecommerce-platform.html"
+        "github": "https://github.com/ducln-me/ai-form-assistant",
+        "demo": "https://ai-form-demo.example.com"
       },
-      "date": "2023-09"
-    },
-    {
-      "id": "ml-recommendation",
-      "title": "ML Recommendation Engine",
-      "category": "Machine Learning",
-      "image": "https://via.placeholder.com/800x400",
-      "shortDescription": "A neural network-based recommendation system for e-commerce using collaborative filtering and content-based approaches.",
-      "fullDescription": "Developed a hybrid recommendation engine combining collaborative filtering and deep learning techniques to provide personalized product recommendations.",
-      "technologies": ["Python", "TensorFlow", "Keras", "FastAPI", "PostgreSQL", "Docker"],
-      "features": [
-        "Hybrid recommendation algorithm (collaborative + content-based)",
-        "Real-time inference with sub-100ms latency",
-        "A/B testing framework for model evaluation",
-        "Automated model retraining pipeline",
-        "User behavior tracking and analytics",
-        "Explainable AI features for recommendation transparency"
-      ],
-      "techStack": {
-        "ml": "TensorFlow, Keras, scikit-learn",
-        "backend": "FastAPI, Celery, PostgreSQL",
-        "infrastructure": "Docker, Kubernetes, AWS",
-        "monitoring": "Prometheus, Grafana, MLflow"
-      },
-      "results": {
-        "metrics": [
-          { "value": "35%", "label": "CTR Increase" },
-          { "value": "28%", "label": "Revenue Boost" },
-          { "value": "<100ms", "label": "Inference Time" },
-          { "value": "500K+", "label": "Daily Predictions" }
-        ],
-        "improvements": [
-          "Improved click-through rate by 35%",
-          "Increased average order value by 28%",
-          "Reduced cold-start problem by 40%",
-          "Achieved 92% precision@10 metric"
-        ]
-      },
-      "links": {
-        "github": "https://github.com/ducln-me/ml-recommendation",
-        "paper": "https://arxiv.org/example",
-        "caseStudy": "projects/ml-recommendation.html"
-      },
-      "date": "2023-06"
-    },
-    {
-      "id": "devops-automation",
-      "title": "DevOps Automation Suite",
-      "category": "DevOps",
-      "image": "https://via.placeholder.com/800x400",
-      "shortDescription": "Infrastructure as Code solution using Terraform and Kubernetes for automated deployment and scaling.",
-      "fullDescription": "Built a comprehensive DevOps automation platform for managing cloud infrastructure, CI/CD pipelines, and container orchestration.",
-      "technologies": ["Terraform", "Kubernetes", "Docker", "Jenkins", "AWS", "Ansible"],
-      "features": [
-        "Infrastructure as Code with Terraform modules",
-        "Automated CI/CD pipelines with Jenkins",
-        "Kubernetes cluster management and auto-scaling",
-        "Blue-green deployment strategy",
-        "Centralized logging with ELK stack",
-        "Monitoring and alerting with Prometheus/Grafana"
-      ],
-      "techStack": {
-        "iac": "Terraform, CloudFormation",
-        "orchestration": "Kubernetes, Docker Swarm",
-        "cicd": "Jenkins, GitLab CI, GitHub Actions",
-        "monitoring": "Prometheus, Grafana, ELK"
-      },
-      "results": {
-        "metrics": [
-          { "value": "80%", "label": "Deployment Time Reduction" },
-          { "value": "99.95%", "label": "Service Availability" },
-          { "value": "50+", "label": "Automated Workflows" },
-          { "value": "0", "label": "Manual Deployments" }
-        ],
-        "improvements": [
-          "Reduced deployment time from 2 hours to 15 minutes",
-          "Eliminated manual deployment errors",
-          "Improved system uptime to 99.95%",
-          "Automated infrastructure scaling based on load"
-        ]
-      },
-      "links": {
-        "github": "https://github.com/ducln-me/devops-automation",
-        "docs": "https://docs.example.com",
-        "caseStudy": "projects/devops-automation.html"
-      },
-      "date": "2023-03"
-    },
-    {
-      "id": "realtime-chat",
-      "title": "Real-time Chat Application",
-      "category": "Full Stack",
-      "image": "https://via.placeholder.com/800x400",
-      "shortDescription": "A scalable real-time messaging platform with WebSocket support, group chats, and file sharing.",
-      "fullDescription": "Developed a production-ready chat application supporting thousands of concurrent connections with features like typing indicators, read receipts, and file sharing.",
-      "technologies": ["React", "Node.js", "Socket.io", "MongoDB", "Redis", "AWS S3"],
-      "features": [
-        "Real-time messaging with WebSocket (Socket.io)",
-        "Group chat and direct messaging",
-        "File sharing with image preview",
-        "Typing indicators and read receipts",
-        "Message search and history",
-        "Push notifications for mobile devices"
-      ],
-      "techStack": {
-        "frontend": "React, Socket.io-client, Material-UI",
-        "backend": "Node.js, Socket.io, Express",
-        "database": "MongoDB, Redis",
-        "storage": "AWS S3"
-      },
-      "results": {
-        "metrics": [
-          { "value": "10K+", "label": "Concurrent Users" },
-          { "value": "<50ms", "label": "Message Latency" },
-          { "value": "1M+", "label": "Messages/Day" },
-          { "value": "99.9%", "label": "Uptime" }
-        ],
-        "improvements": [
-          "Handled 10,000+ concurrent connections",
-          "Achieved sub-50ms message delivery",
-          "Reduced server costs by 40% with Redis caching",
-          "Implemented horizontal scaling with load balancing"
-        ]
-      },
-      "links": {
-        "github": "https://github.com/ducln-me/realtime-chat",
-        "demo": "https://chat.example.com"
-      },
-      "date": "2023-01"
-    },
-    {
-      "id": "api-gateway",
-      "title": "Microservices API Gateway",
-      "category": "Backend",
-      "image": "https://via.placeholder.com/800x400",
-      "shortDescription": "A high-performance API gateway for microservices with rate limiting, authentication, and load balancing.",
-      "fullDescription": "Built an enterprise-grade API gateway to manage microservices communication with features like authentication, rate limiting, and request routing.",
-      "technologies": ["Go", "Redis", "PostgreSQL", "Docker", "Kong", "gRPC"],
-      "features": [
-        "Request routing and load balancing",
-        "JWT-based authentication and authorization",
-        "Rate limiting and throttling",
-        "API versioning and documentation",
-        "Circuit breaker pattern implementation",
-        "Comprehensive logging and analytics"
-      ],
-      "techStack": {
-        "language": "Go",
-        "gateway": "Kong, custom middleware",
-        "database": "PostgreSQL, Redis",
-        "protocols": "REST, gRPC, WebSocket"
-      },
-      "results": {
-        "metrics": [
-          { "value": "50K+", "label": "Requests/Second" },
-          { "value": "<10ms", "label": "Latency Overhead" },
-          { "value": "20+", "label": "Microservices" },
-          { "value": "99.99%", "label": "Availability" }
-        ],
-        "improvements": [
-          "Processed 50,000+ requests per second",
-          "Reduced latency overhead to under 10ms",
-          "Implemented automatic service discovery",
-          "Achieved 99.99% gateway availability"
-        ]
-      },
-      "links": {
-        "github": "https://github.com/ducln-me/api-gateway",
-        "docs": "https://api-docs.example.com"
-      },
-      "date": "2022-10"
+      "date": "2025-08"
     }
   ]
 }
