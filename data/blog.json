@@ -1,6 +1,132 @@
 {
   "posts": [
     {
+      "id": "llm-structured-output-tool-calling",
+      "title": "LLM Structured Output: Just Tool Calling in Disguise",
+      "slug": "llm-structured-output-tool-calling",
+      "category": "research",
+      "categoryLabel": "Research",
+      "date": "2025-11-13",
+      "readTime": "7 min read",
+      "author": {
+        "name": "Duc Le",
+        "avatar": "data/images/image_avatar.jpg",
+        "title": "AI Engineer & Researcher"
+      },
+      "excerpt": "A deep dive into how structured output in modern LLMs is actually implemented through tool calling mechanisms, not as a separate capability. Understanding this reveals important insights about LLM architecture and constraints.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["LLM", "AI", "Structured Output", "Tool Calling", "JSON", "OpenAI", "Anthropic"],
+      "featured": true,
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "1. Introduction",
+          "content": "Many developers believe that LLMs have a special \"structured output\" mode that generates perfectly formatted JSON or XML. In reality, most modern LLM APIs implement structured output through their existing tool calling infrastructure—it's essentially a clever wrapper around function calling."
+        },
+        {
+          "id": "what-is-structured-output",
+          "title": "2. What is Structured Output?",
+          "content": "Structured output refers to the ability of an LLM to generate responses that conform to a specific schema or format, typically JSON. This is useful for:\n\n• Extracting structured data from unstructured text\n• Generating API-ready responses\n• Ensuring type safety in downstream applications\n• Building reliable AI pipelines\n\nExample:\n```json\n{\n  \"name\": \"John Doe\",\n  \"age\": 30,\n  \"email\": \"john@example.com\"\n}\n```"
+        },
+        {
+          "id": "tool-calling-mechanism",
+          "title": "3. The Tool Calling Mechanism",
+          "content": "Tool calling (also known as function calling) is a feature where LLMs can decide to invoke external functions with specific parameters. The process works like this:\n\n1. You provide the LLM with function definitions (schemas)\n2. The LLM analyzes the user's request\n3. If appropriate, it generates a function call with properly formatted arguments\n4. Your application executes the function and returns results\n5. The LLM incorporates the results into its response"
+        },
+        {
+          "id": "structured-output-implementation",
+          "title": "4. How Structured Output Uses Tool Calling",
+          "content": "When you request structured output, here's what actually happens behind the scenes:",
+          "nestedList": [
+            {
+              "text": "Schema Definition",
+              "children": [
+                "You provide a JSON schema defining your desired output structure",
+                "The API converts this schema into a \"virtual tool\" or function definition",
+                "This tool has a name like 'generate_structured_output' or similar"
+              ]
+            },
+            {
+              "text": "Forced Tool Call",
+              "children": [
+                "The API instructs the LLM to always call this virtual tool",
+                "The LLM treats your schema as function parameters",
+                "It generates the structured data as tool arguments"
+              ]
+            },
+            {
+              "text": "Response Formatting",
+              "children": [
+                "The API intercepts the tool call response",
+                "It extracts the structured arguments",
+                "Returns them directly to you as 'structured output'"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "evidence",
+          "title": "5. Evidence from API Providers",
+          "content": "Several pieces of evidence support this implementation approach:",
+          "table": {
+            "headers": ["Provider", "Evidence", "Details"],
+            "rows": [
+              ["OpenAI", "API Parameter Names", "The 'response_format' parameter and 'tools' parameter share similar schema definitions. Structured output uses 'json_schema' type which mirrors tool definitions."],
+              ["Anthropic Claude", "Tool Use Architecture", "Claude's structured output is explicitly implemented through their tool use system. You can see this in their API documentation."],
+              ["Constraint Behavior", "Error Patterns", "Structured output fails in the same ways as tool calling: schema violations, missing required fields, type mismatches."],
+              ["Token Limits", "Shared Constraints", "Both structured output and tool calling share the same token limitations for schemas and responses."]
+            ]
+          }
+        },
+        {
+          "id": "why-this-matters",
+          "title": "6. Why This Implementation Matters",
+          "content": "Understanding that structured output is tool calling has practical implications:",
+          "nestedList": [
+            {
+              "text": "Performance Characteristics",
+              "children": [
+                "Structured output has the same latency as tool calling",
+                "Token usage follows tool calling patterns",
+                "Complexity limits are inherited from tool definitions"
+              ]
+            },
+            {
+              "text": "Reliability Considerations",
+              "children": [
+                "Schema validation happens at the tool level",
+                "Complex nested structures may fail like complex tool schemas",
+                "Retry logic should mirror tool calling strategies"
+              ]
+            },
+            {
+              "text": "Feature Limitations",
+              "children": [
+                "Can't use structured output AND custom tools simultaneously in some APIs",
+                "Schema complexity is bounded by tool definition limits",
+                "Some models support tools but not 'structured output' (they're the same!)"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "code-example",
+          "title": "7. Practical Example",
+          "content": "Here's how you might implement structured output manually using tool calling:\n\n```python\n# Instead of using 'structured output' API\ntools = [\n    {\n        \"type\": \"function\",\n        \"function\": {\n            \"name\": \"extract_user_info\",\n            \"description\": \"Extract user information\",\n            \"parameters\": {\n                \"type\": \"object\",\n                \"properties\": {\n                    \"name\": {\"type\": \"string\"},\n                    \"age\": {\"type\": \"integer\"},\n                    \"email\": {\"type\": \"string\"}\n                },\n                \"required\": [\"name\", \"age\", \"email\"]\n            }\n        }\n    }\n]\n\nresponse = client.chat.completions.create(\n    model=\"gpt-4\",\n    messages=[{\"role\": \"user\", \"content\": \"John is 30 and his email is john@example.com\"}],\n    tools=tools,\n    tool_choice={\"type\": \"function\", \"function\": {\"name\": \"extract_user_info\"}}\n)\n\n# Extract the structured data from tool call\nstructured_data = response.choices[0].message.tool_calls[0].function.arguments\n```\n\nThis is essentially what the structured output API does internally!"
+        },
+        {
+          "id": "best-practices",
+          "title": "8. Best Practices",
+          "content": "Keep schemas simple and flat when possible\n\nTest with tool calling first to understand failure modes\n\nImplement the same error handling as you would for tools\n\nConsider token costs—complex schemas increase prompt tokens\n\nUse validation libraries to verify output even with structured mode\n\nBe aware that not all models support the same schema complexity"
+        },
+        {
+          "id": "conclusion",
+          "title": "9. Conclusion",
+          "content": "Structured output in LLMs isn't a magical new capability—it's a well-designed abstraction over tool calling. By understanding this implementation detail, you can:\n\n• Better debug issues with structured output\n• Optimize your schemas for better performance\n• Make informed decisions about when to use structured output vs. manual parsing\n• Understand the limitations and constraints you'll face\n\nThe next time an API provider announces 'improved structured output,' check if they're really just improving their tool calling infrastructure. Chances are, they are!"
+        }
+      ]
+    },
+    {
       "id": "api-request-data-transmission",
       "title": "API Request Data Transmission Guide",
       "slug": "api-request-data-transmission",
