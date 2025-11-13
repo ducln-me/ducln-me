@@ -1,6 +1,119 @@
 {
   "posts": [
     {
+      "id": "mcp-streaming-limitation",
+      "title": "MCP Tool Calling: Why Streaming Isn't Supported",
+      "slug": "mcp-streaming-limitation",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2025-11-13",
+      "readTime": "8 min read",
+      "author": {
+        "name": "Duc Le",
+        "avatar": "data/images/image_avatar.jpg",
+        "title": "AI Engineer & Researcher"
+      },
+      "excerpt": "Exploring the architectural constraints that prevent Model Context Protocol (MCP) tools from supporting streaming responses, and how this impacts real-time AI applications like chatbots and form assistants.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["MCP", "Streaming", "Tool Calling", "LLM", "AI Agent", "Real-time"],
+      "featured": true,
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "1. Introduction",
+          "content": "When building AI agents with Model Context Protocol (MCP), one limitation quickly becomes apparent: MCP tools cannot stream their responses. This constraint affects real-time user experience in applications like chatbots and form assistants. Understanding why this limitation exists helps developers design better architectures and set appropriate expectations."
+        },
+        {
+          "id": "what-is-mcp",
+          "title": "2. What is Model Context Protocol (MCP)?",
+          "content": "Model Context Protocol is a standardized way for LLMs to interact with external tools and data sources. It provides:\n\n• **Tool Discovery**: LLMs can discover available tools and their capabilities\n• **Structured Calling**: Tools are invoked with well-defined schemas\n• **Context Integration**: Tool results are seamlessly integrated into LLM context\n• **Extensibility**: Easy to add new tools without modifying core logic\n\nMCP is used in applications like:\n- AI agents that need to access databases\n- Form assistants that populate fields automatically\n- Chatbots with external knowledge bases\n- Code assistants with file system access"
+        },
+        {
+          "id": "streaming-in-llms",
+          "title": "3. Streaming in LLM Applications",
+          "content": "Streaming allows LLMs to send responses token-by-token as they're generated, rather than waiting for the complete response. This provides:\n\n**Benefits:**\n• Perceived faster response time\n• Better user experience with real-time feedback\n• Lower time-to-first-token (TTFT)\n• Progressive disclosure of information\n\n**Common Implementation:**\n```python\nstream = client.chat.completions.create(\n    model=\"gpt-4\",\n    messages=[{\"role\": \"user\", \"content\": \"Tell me a story\"}],\n    stream=True\n)\n\nfor chunk in stream:\n    if chunk.choices[0].delta.content:\n        print(chunk.choices[0].delta.content, end=\"\")\n```\n\nThis works great for pure text generation, but breaks when tools are involved."
+        },
+        {
+          "id": "why-no-streaming",
+          "title": "4. Why MCP Tools Don't Support Streaming",
+          "content": "The fundamental incompatibility stems from how tool calling works:",
+          "nestedList": [
+            {
+              "text": "Tool Call Must Be Complete",
+              "children": [
+                "The LLM must generate the entire tool name and all parameters before the tool can execute",
+                "You can't call a function with partial arguments",
+                "Example: `get_weather(city=\"San\")` is invalid until it becomes `get_weather(city=\"San Francisco\")`"
+              ]
+            },
+            {
+              "text": "Sequential Dependency",
+              "children": [
+                "Tool result must be received before LLM can continue generating",
+                "Cannot stream text that depends on unknown tool results",
+                "The LLM needs the tool output to contextualize its next response"
+              ]
+            },
+            {
+              "text": "Schema Validation",
+              "children": [
+                "Tool parameters must validate against the schema",
+                "Partial JSON is not valid JSON",
+                "Cannot validate `{\"city\": \"San` mid-stream"
+              ]
+            },
+            {
+              "text": "Protocol Design",
+              "children": [
+                "MCP uses request-response pattern, not streaming protocol",
+                "Tool servers expect complete requests",
+                "No mechanism for partial tool invocations"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "impact-on-ai-agents",
+          "title": "5. Impact on AI Agent Applications",
+          "content": "This limitation significantly affects user experience in real-time applications:\n\n**Scenario: AI Form Assistant**\n\nConsider an AI agent that fills form fields using MCP tools:\n\n```python\ntools = [\n    {\n        \"name\": \"fill_form_field\",\n        \"description\": \"Fill a form field with extracted data\",\n        \"parameters\": {\n            \"field_name\": {\"type\": \"string\"},\n            \"value\": {\"type\": \"string\"}\n        }\n    }\n]\n```\n\n**Without Streaming:**\n1. User submits query\n2. LLM processes (user sees loading spinner)\n3. LLM decides to call tool\n4. Tool executes\n5. LLM generates final response\n6. User sees complete result (3-5 seconds later)\n\n**With Streaming (Not Possible with Tools):**\n1. User submits query\n2. LLM streams: \"I'll help you fill...\"\n3. Interrupt for tool call\n4. Resume streaming: \"...the form with your information\"\n\nThe interruption breaks the streaming flow, so providers disable streaming entirely when tools are used."
+        },
+        {
+          "id": "evidence-from-providers",
+          "title": "6. Evidence from LLM Providers",
+          "content": "All major LLM providers have this limitation:",
+          "table": {
+            "headers": ["Provider", "Streaming with Tools", "Documentation"],
+            "rows": [
+              ["OpenAI", "Not Supported", "\"When using tools, streaming is not available. The response will be returned once the tool call is complete.\""],
+              ["Anthropic Claude", "Partial Support", "Claude can stream text before/after tool calls, but not during tool execution. Tool use events are sent as complete blocks."],
+              ["Google Gemini", "Not Supported", "Function calling requires waiting for complete response before tools execute."],
+              ["Azure OpenAI", "Not Supported", "Same limitation as OpenAI - tools disable streaming."]
+            ]
+          }
+        },
+        {
+          "id": "workarounds",
+          "title": "7. Workarounds and Best Practices",
+          "content": "While you can't stream during tool calls, you can improve UX:\n\n**1. Hybrid Approach - Stream When Possible**\n\n```python\n# Stream initial response\nresponse = await client.chat(\n    messages=messages,\n    stream=True\n)\n\n# If tool call needed, switch to non-streaming\nif requires_tool_call(response):\n    final_response = await client.chat(\n        messages=messages,\n        tools=tools,\n        stream=False  # Can't stream with tools\n    )\n```\n\n**2. Optimistic UI Updates**\n\nUpdate UI immediately while waiting for tool execution:\n\n```javascript\n// Show optimistic update\nshowLoadingIndicator(\"Filling email field...\");\n\n// Call MCP tool (non-streaming)\nconst result = await callMCPTool(\"fill_form_field\", {\n  field_name: \"email\",\n  value: extractedEmail\n});\n\n// Update with actual result\nupdateFormField(\"email\", result.value);\n```\n\n**3. Progress Indicators**\n\nShow detailed progress for multi-step tool operations:\n\n```\n✓ Extracting user information...\n✓ Validating email format...\n⏳ Filling form fields...\n⏳ Verifying data...\n```\n\n**4. Parallel Tool Calls**\n\nSome providers support parallel tool execution:\n\n```python\n# Request multiple tools at once\ntools_to_call = [\n    {\"name\": \"fill_email\", \"args\": {...}},\n    {\"name\": \"fill_name\", \"args\": {...}},\n    {\"name\": \"fill_phone\", \"args\": {...}}\n]\n\n# Execute in parallel (provider-dependent)\nresults = await execute_tools_parallel(tools_to_call)\n```\n\n**5. Client-Side Streaming Simulation**\n\nSimulate streaming for non-tool responses:\n\n```javascript\nfunction simulateStreaming(text, onChunk) {\n  let index = 0;\n  const interval = setInterval(() => {\n    if (index < text.length) {\n      onChunk(text[index]);\n      index++;\n    } else {\n      clearInterval(interval);\n    }\n  }, 20); // 20ms per character\n}\n```"
+        },
+        {
+          "id": "real-world-example",
+          "title": "8. Real-World Example: AI Form Assistant",
+          "content": "In my AI Agent Form Assistant project, I encountered this limitation when implementing real-time form filling:\n\n**Problem:**\nUsers expected instant feedback as the AI populated form fields, but MCP tool calls required waiting for complete responses.\n\n**Solution Architecture:**\n\n```python\n# Step 1: Stream initial acknowledgment (no tools)\nresponse = await llm.chat(\n    messages=[{\"role\": \"user\", \"content\": user_input}],\n    stream=True\n)\n\nfor chunk in response:\n    yield chunk  # \"I'll help fill your form...\"\n\n# Step 2: Extract data with tool (non-streaming)\ndata = await llm.chat(\n    messages=messages,\n    tools=mcp_tools,\n    stream=False  # Must disable for tools\n)\n\n# Step 3: Fill fields with optimistic UI\nfor field in data.tool_calls:\n    update_ui_optimistically(field.name, field.value)\n    actual_result = await mcp_tool.execute(field)\n    confirm_ui_update(field.name, actual_result)\n\n# Step 4: Stream confirmation (no tools)\nfinal_response = await llm.chat(\n    messages=updated_messages,\n    stream=True\n)\n\nfor chunk in final_response:\n    yield chunk  # \"Form filled successfully!\"\n```\n\n**Key Takeaways:**\n• Split the interaction into streaming and non-streaming phases\n• Use streaming for conversational parts\n• Accept non-streaming for tool execution\n• Provide visual feedback during tool calls\n• Stream confirmation after tools complete"
+        },
+        {
+          "id": "future-possibilities",
+          "title": "9. Future Possibilities",
+          "content": "**Potential Solutions (Not Yet Available):**\n\n**1. Streaming Tool Parameters**\n\nSome research suggests streaming tool parameters incrementally:\n\n```python\n# Hypothetical future API\nfor chunk in stream:\n    if chunk.tool_call_delta:\n        # Receive partial tool parameters\n        partial_params = chunk.tool_call_delta.parameters\n        update_ui_with_partial_data(partial_params)\n```\n\n**2. Tool Execution Streaming**\n\nTools themselves could stream results:\n\n```python\nfor result_chunk in mcp_tool.execute_streaming(params):\n    yield result_chunk  # Stream tool execution progress\n```\n\n**3. Speculative Tool Calling**\n\nLLM predicts likely tool calls and executes speculatively:\n\n```python\n# LLM streams text while speculatively calling tools\n# If prediction wrong, discard tool results\n# If correct, use cached results immediately\n```\n\n**Current Status:**\nNone of these are available in production. MCP and major LLM providers have not announced plans to support streaming with tools."
+        },
+        {
+          "id": "conclusion",
+          "title": "10. Conclusion",
+          "content": "MCP tool calling's inability to support streaming is a fundamental architectural limitation, not a temporary bug or oversight. It stems from:\n\n• Tool calls requiring complete parameters before execution\n• Sequential dependency between tool results and LLM generation\n• Schema validation requirements for structured data\n• Request-response protocol design in MCP\n\n**Best Practices:**\n\n• Accept that tools = no streaming\n• Use hybrid approach: stream when possible, don't stream for tools\n• Provide excellent non-streaming UX with progress indicators\n• Implement optimistic UI updates\n• Be transparent with users about processing time\n\n**Looking Forward:**\n\nWhile streaming with tools would improve UX, the architectural challenges are significant. For now, focus on making non-streaming experiences as smooth as possible through clever UI design and clear communication.\n\nIn my AI Agent Form Assistant project, embracing this constraint led to a cleaner architecture with clear phases: conversation (streaming) → tool execution (non-streaming) → confirmation (streaming). Sometimes, constraints breed better design."
+        }
+      ]
+    },
+    {
       "id": "n8n-clickup-integration",
       "title": "n8n ClickUp Integration: Access Tokens & Webhook Management",
       "slug": "n8n-clickup-integration",

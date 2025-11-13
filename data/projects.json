@@ -40,6 +40,11 @@
       },
       "challenges": [
         {
+          "problem": "MCP tools not supporting streaming responses in real-time form filling",
+          "solution": "Implemented hybrid architecture with streaming for conversation and non-streaming for tool execution with optimistic UI updates",
+          "blogLink": "blog-detail.html?post=mcp-streaming-limitation"
+        },
+        {
           "problem": "SSE connection timeouts during long-running LLM inference",
           "solution": "Implemented adaptive timeout settings and connection retry logic with exponential backoff",
           "blogLink": "blog-detail.html?post=sse-read-timeout-error"
