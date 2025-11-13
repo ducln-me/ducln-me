@@ -2135,6 +2135,34 @@ a {
     color: var(--text-color);
 }
 
+/* Code blocks */
+.content-section pre {
+    margin: 1.5rem 0;
+    border-radius: 8px;
+    overflow-x: auto;
+    background-color: #2d2d2d !important;
+    border: 1px solid var(--border-color);
+}
+
+.content-section pre code {
+    display: block;
+    padding: 1.5rem;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ccc;
+    background: transparent;
+}
+
+.content-section code:not(pre code) {
+    background-color: var(--bg-secondary);
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
+    font-size: 0.9em;
+    color: var(--primary-color);
+}
+
 .content-section ul.feature-list {
     list-style: none;
     margin: 1rem 0;

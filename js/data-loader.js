@@ -535,7 +535,25 @@ const Templates = {
                 sectionHTML += `<h2>${section.title}</h2>`;
 
                 if (section.content) {
-                    sectionHTML += `<p>${section.content.replace(/\n/g, '</p><p>')}</p>`;
+                    // Parse code blocks (```language ... ```)
+                    let contentHTML = section.content;
+
+                    // Replace code blocks with proper HTML
+                    contentHTML = contentHTML.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, language, code) => {
+                        const lang = language || 'plaintext';
+                        const escapedCode = code
+                            .replace(/&/g, '&amp;')
+                            .replace(/</g, '&lt;')
+                            .replace(/>/g, '&gt;')
+                            .replace(/"/g, '&quot;')
+                            .replace(/'/g, '&#039;');
+                        return `<pre><code class="language-${lang}">${escapedCode}</code></pre>`;
+                    });
+
+                    // Replace newlines with paragraph breaks (but not inside pre tags)
+                    contentHTML = contentHTML.replace(/\n/g, '</p><p>');
+
+                    sectionHTML += `<p>${contentHTML}</p>`;
                 }
 
                 // Render table
@@ -663,6 +681,11 @@ const Templates = {
             tocContainer.innerHTML = post.sections.map(section => `
                 <li><a href="#${section.id}">${section.title}</a></li>
             `).join('');
+        }
+
+        // Trigger Prism.js syntax highlighting
+        if (typeof Prism !== 'undefined') {
+            Prism.highlightAll();
         }
     }
 };
