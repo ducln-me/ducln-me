@@ -1135,6 +1135,17 @@ a {
 .project-section {
     margin-bottom: 3rem;
     scroll-margin-top: calc(var(--navbar-height) + 2rem);
+    padding: 2.5rem;
+    background-color: var(--bg-secondary);
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color);
+    transition: var(--transition);
+    box-shadow: 0 2px 8px var(--shadow);
+}
+
+.project-section:hover {
+    box-shadow: 0 5px 20px var(--shadow);
+    transform: translateX(5px);
 }
 
 .project-separator {
