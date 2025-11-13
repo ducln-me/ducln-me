@@ -1353,8 +1353,15 @@ a {
 
 .stats-row {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
+}
+
+.stats-row:first-child {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.stats-row:last-child {
+    grid-template-columns: repeat(4, 1fr);
 }
 
 .stat-card {
