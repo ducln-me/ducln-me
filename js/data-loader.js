@@ -564,10 +564,10 @@ const Templates = {
                 sectionHTML += `<h2>${section.title}</h2>`;
 
                 if (section.content) {
-                    // Parse code blocks (```language ... ```)
+                    // Parse markdown to HTML
                     let contentHTML = section.content;
 
-                    // Replace code blocks with proper HTML
+                    // Replace code blocks with proper HTML (must be done first)
                     contentHTML = contentHTML.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, language, code) => {
                         const lang = language || 'plaintext';
                         const escapedCode = code
@@ -578,6 +578,17 @@ const Templates = {
                             .replace(/'/g, '&#039;');
                         return `<pre><code class="language-${lang}">${escapedCode}</code></pre>`;
                     });
+
+                    // Replace inline code (backticks)
+                    contentHTML = contentHTML.replace(/`([^`]+)`/g, '<code>$1</code>');
+
+                    // Replace bold text (**text** or __text__)
+                    contentHTML = contentHTML.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+                    contentHTML = contentHTML.replace(/__(.+?)__/g, '<strong>$1</strong>');
+
+                    // Replace italic text (*text* or _text_)
+                    contentHTML = contentHTML.replace(/\*(.+?)\*/g, '<em>$1</em>');
+                    contentHTML = contentHTML.replace(/_(.+?)_/g, '<em>$1</em>');
 
                     // Replace newlines with paragraph breaks (but not inside pre tags)
                     contentHTML = contentHTML.replace(/\n/g, '</p><p>');
