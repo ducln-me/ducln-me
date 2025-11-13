@@ -190,7 +190,7 @@ const Templates = {
 
     // Render projects (Projects page)
     renderProjects(projects) {
-        const container = document.querySelector('#projects-container');
+        const container = document.querySelector('.projects-container');
         const sidebar = document.querySelector('#projectsList');
 
         if (!projects || !projects.projects) return;

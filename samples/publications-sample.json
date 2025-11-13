@@ -1,0 +1,121 @@
+{
+  "publications": [
+    {
+      "id": "pub1",
+      "title": "Efficient Deep Learning Models for Natural Language Understanding",
+      "authors": ["Duc Le", "Jane Smith", "John Doe"],
+      "venue": "Conference on Neural Information Processing Systems (NeurIPS)",
+      "year": "2023",
+      "type": "Conference",
+      "topic": "ml",
+      "abstract": "We propose a novel architecture for natural language understanding that achieves state-of-the-art performance while reducing computational requirements by 40%. Our approach combines attention mechanisms with efficient sparse transformers.",
+      "keywords": ["NLP", "Deep Learning", "Transformers", "Efficiency"],
+      "citation": "Nguyen, D.L., Smith, J., & Doe, J. (2023). Efficient Deep Learning Models for Natural Language Understanding. In NeurIPS 2023.",
+      "links": {
+        "paper": "https://arxiv.org/example/2023-nlp",
+        "code": "https://github.com/ducln-me/efficient-nlp",
+        "slides": "https://slides.example.com/neurips2023",
+        "video": "https://youtube.com/example"
+      },
+      "awards": ["Best Paper Award"],
+      "citations": 45
+    },
+    {
+      "id": "pub2",
+      "title": "Scalable Microservices Architecture: Patterns and Best Practices",
+      "authors": ["Duc Le", "Alice Johnson"],
+      "venue": "IEEE International Conference on Software Engineering (ICSE)",
+      "year": "2023",
+      "type": "Conference",
+      "topic": "systems",
+      "abstract": "This paper presents a comprehensive study of microservices architecture patterns, analyzing their trade-offs in real-world production environments. We introduce novel monitoring and debugging techniques for distributed systems.",
+      "keywords": ["Microservices", "Distributed Systems", "Software Architecture", "DevOps"],
+      "citation": "Nguyen, D.L., & Johnson, A. (2023). Scalable Microservices Architecture: Patterns and Best Practices. In ICSE 2023.",
+      "links": {
+        "paper": "https://ieeexplore.ieee.org/example",
+        "code": "https://github.com/ducln-me/microservices-patterns",
+        "slides": "https://slides.example.com/icse2023"
+      },
+      "citations": 32
+    },
+    {
+      "id": "pub3",
+      "title": "Transfer Learning for Low-Resource Languages in Machine Translation",
+      "authors": ["Duc Le", "Maria Garcia", "Chen Wei"],
+      "venue": "Association for Computational Linguistics (ACL)",
+      "year": "2022",
+      "type": "Conference",
+      "topic": "nlp",
+      "abstract": "We investigate transfer learning techniques for improving machine translation quality in low-resource language pairs. Our method leverages multilingual pre-training and achieves significant improvements over baseline models.",
+      "keywords": ["Machine Translation", "Transfer Learning", "Low-Resource Languages", "NLP"],
+      "citation": "Nguyen, D.L., Garcia, M., & Wei, C. (2022). Transfer Learning for Low-Resource Languages in Machine Translation. In ACL 2022.",
+      "links": {
+        "paper": "https://aclanthology.org/example",
+        "code": "https://github.com/ducln-me/low-resource-mt",
+        "slides": "https://slides.example.com/acl2022",
+        "dataset": "https://data.example.com/lowres-mt"
+      },
+      "citations": 67
+    },
+    {
+      "id": "pub4",
+      "title": "Real-time Stream Processing with Apache Kafka and Flink",
+      "authors": ["Duc Le", "Robert Brown"],
+      "venue": "Journal of Big Data",
+      "year": "2022",
+      "type": "Journal",
+      "topic": "systems",
+      "abstract": "This paper explores design patterns and performance optimizations for real-time stream processing systems using Apache Kafka and Flink. We present case studies from production deployments handling billions of events daily.",
+      "keywords": ["Stream Processing", "Apache Kafka", "Apache Flink", "Big Data"],
+      "citation": "Nguyen, D.L., & Brown, R. (2022). Real-time Stream Processing with Apache Kafka and Flink. Journal of Big Data, 9(1), 1-24.",
+      "links": {
+        "paper": "https://journalofbigdata.springeropen.com/example",
+        "code": "https://github.com/ducln-me/kafka-flink-patterns"
+      },
+      "citations": 28
+    },
+    {
+      "id": "pub5",
+      "title": "Attention Mechanisms in Computer Vision: A Comprehensive Survey",
+      "authors": ["Duc Le", "Sarah Lee", "Michael Zhang"],
+      "venue": "IEEE Transactions on Pattern Analysis and Machine Intelligence (TPAMI)",
+      "year": "2022",
+      "type": "Journal",
+      "topic": "ml",
+      "abstract": "We provide a comprehensive survey of attention mechanisms in computer vision, categorizing different approaches and analyzing their effectiveness across various tasks. The paper includes performance benchmarks and implementation guidelines.",
+      "keywords": ["Computer Vision", "Attention Mechanisms", "Deep Learning", "Survey"],
+      "citation": "Nguyen, D.L., Lee, S., & Zhang, M. (2022). Attention Mechanisms in Computer Vision: A Comprehensive Survey. IEEE TPAMI, 44(10), 6789-6812.",
+      "links": {
+        "paper": "https://ieeexplore.ieee.org/example-tpami",
+        "code": "https://github.com/ducln-me/vision-attention-survey"
+      },
+      "citations": 156
+    },
+    {
+      "id": "pub6",
+      "title": "Federated Learning for Privacy-Preserving Healthcare Applications",
+      "authors": ["Duc Le", "Emily Davis", "James Wilson"],
+      "venue": "International Conference on Medical Image Computing (MICCAI)",
+      "year": "2021",
+      "type": "Conference",
+      "topic": "ml",
+      "abstract": "We propose a federated learning framework for healthcare applications that preserves patient privacy while enabling collaborative model training across institutions. Our approach demonstrates strong performance on medical imaging tasks.",
+      "keywords": ["Federated Learning", "Healthcare", "Privacy", "Medical Imaging"],
+      "citation": "Nguyen, D.L., Davis, E., & Wilson, J. (2021). Federated Learning for Privacy-Preserving Healthcare Applications. In MICCAI 2021.",
+      "links": {
+        "paper": "https://link.springer.com/example",
+        "code": "https://github.com/ducln-me/federated-healthcare",
+        "slides": "https://slides.example.com/miccai2021"
+      },
+      "awards": ["Honorable Mention"],
+      "citations": 89
+    }
+  ],
+  "stats": {
+    "totalPublications": 6,
+    "totalCitations": 417,
+    "hIndex": 5,
+    "conferencePublications": 4,
+    "journalPublications": 2
+  }
+}

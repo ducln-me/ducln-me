@@ -8,6 +8,7 @@
 :root {
     /* Colors */
     --primary-color: #25579D;
+    --primary-color-rgb: 37, 87, 157;
     --primary-dark: #1a3d6e;
     --primary-light: #A5D8F1;
     --secondary-color: #64748b;
@@ -1503,10 +1504,14 @@ a {
     background-color: var(--bg-color);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 2px 8px var(--shadow);
+    box-shadow: 0 2px 12px var(--shadow);
     transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 1;
     transform: translateY(0);
+    border: 1px solid var(--border-color);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-article-card.hidden {
@@ -1565,6 +1570,9 @@ a {
 
 .blog-article-content {
     padding: 2rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-article-meta {
@@ -1614,13 +1622,25 @@ a {
     font-size: 1.5rem;
     color: var(--text-color);
     margin-bottom: 1rem;
-    line-height: 1.3;
+    line-height: 1.4;
+    font-weight: 600;
+}
+
+.blog-article-content h2 a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.blog-article-content h2 a:hover {
+    color: var(--primary-color);
 }
 
 .blog-article-excerpt {
     color: var(--text-secondary);
     line-height: 1.8;
     margin-bottom: 1.5rem;
+    flex: 1;
 }
 
 .blog-article-tags {
@@ -1631,12 +1651,13 @@ a {
 }
 
 .article-tag {
-    padding: 0.25rem 0.6rem;
+    padding: 0.4rem 0.8rem;
     background-color: var(--bg-accent);
     color: var(--primary-color);
-    border-radius: 4px;
-    font-size: 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
     font-weight: 500;
+    border: 1px solid rgba(var(--primary-color-rgb), 0.2);
 }
 
 .blog-article-footer {
