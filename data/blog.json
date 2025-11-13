@@ -1,6 +1,122 @@
 {
   "posts": [
     {
+      "id": "n8n-clickup-integration",
+      "title": "n8n ClickUp Integration: Access Tokens & Webhook Management",
+      "slug": "n8n-clickup-integration",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2025-11-13",
+      "readTime": "10 min read",
+      "author": {
+        "name": "Duc Le",
+        "avatar": "data/images/image_avatar.jpg",
+        "title": "AI Engineer & Researcher"
+      },
+      "excerpt": "A comprehensive guide to integrating n8n with ClickUp, covering OAuth access token retrieval, webhook configuration, and solving the common webhook ID conflict error that occurs when multiple workflows share webhooks.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["n8n", "ClickUp", "Automation", "Webhooks", "OAuth", "API Integration"],
+      "featured": true,
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "1. Introduction",
+          "content": "n8n is a powerful workflow automation tool that can integrate with ClickUp to automate project management tasks. However, setting up the integration properly requires understanding OAuth authentication and webhook management. This guide covers two critical aspects: obtaining ClickUp access tokens and handling webhook ID conflicts."
+        },
+        {
+          "id": "getting-access-token",
+          "title": "2. Getting ClickUp Access Token",
+          "content": "ClickUp uses OAuth 2.0 for authentication. Here's the complete process to obtain an access token."
+        },
+        {
+          "id": "create-oauth-app",
+          "title": "2.1. Create OAuth App in ClickUp",
+          "content": "First, you need to create an OAuth application in ClickUp:\n\n1. Log in to ClickUp\n2. Go to Settings (bottom left corner)\n3. Navigate to **Apps** section\n4. Click **Create an App**\n5. Fill in the application details:\n   - App Name: Your app name (e.g., \"n8n Integration\")\n   - Redirect URL: Your n8n callback URL\n   - For self-hosted n8n: `https://your-n8n-domain.com/rest/oauth2-credential/callback`\n   - For n8n cloud: `https://app.n8n.cloud/rest/oauth2-credential/callback`\n\n6. Click **Create App**\n7. Save the **Client ID** and **Client Secret** - you'll need these!"
+        },
+        {
+          "id": "configure-n8n-credentials",
+          "title": "2.2. Configure n8n Credentials",
+          "content": "In n8n, set up ClickUp OAuth2 credentials:\n\n1. Go to **Credentials** in n8n\n2. Click **Add Credential**\n3. Search for **ClickUp OAuth2 API**\n4. Enter the credentials:\n   - Client ID: From ClickUp OAuth app\n   - Client Secret: From ClickUp OAuth app\n5. Click **Connect my account**\n6. You'll be redirected to ClickUp to authorize\n7. Select the workspace to grant access\n8. After authorization, you'll be redirected back to n8n\n\nThe access token is now stored securely in n8n!"
+        },
+        {
+          "id": "manual-token-retrieval",
+          "title": "2.3. Manual Access Token Retrieval (Alternative)",
+          "content": "If you need to get the access token manually (for API testing):\n\n```bash\n# Step 1: Get authorization code\n# Visit this URL in browser (replace CLIENT_ID and REDIRECT_URI):\nhttps://app.clickup.com/api?client_id=CLIENT_ID&redirect_uri=REDIRECT_URI\n\n# Step 2: After authorization, you'll be redirected with a code:\n# https://your-redirect-uri?code=AUTHORIZATION_CODE\n\n# Step 3: Exchange code for access token\ncurl -X POST https://api.clickup.com/api/v2/oauth/token \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"client_id\": \"YOUR_CLIENT_ID\",\n    \"client_secret\": \"YOUR_CLIENT_SECRET\",\n    \"code\": \"AUTHORIZATION_CODE\"\n  }'\n\n# Response:\n# {\n#   \"access_token\": \"YOUR_ACCESS_TOKEN\",\n#   \"token_type\": \"Bearer\"\n# }\n```"
+        },
+        {
+          "id": "webhook-id-problem",
+          "title": "3. The Webhook ID Conflict Problem",
+          "content": "One of the most common issues when using ClickUp webhooks in n8n is the webhook ID conflict error. This happens when you try to use the same webhook trigger in multiple workflows."
+        },
+        {
+          "id": "error-description",
+          "title": "3.1. Error Description",
+          "content": "When you duplicate a workflow or try to reuse webhook configurations, you'll encounter:\n\n```\nError: Webhook ID already exists\nClickUp API Error: This webhook endpoint is already registered\n```\n\nThis occurs because:\n- Each webhook in ClickUp must have a unique ID\n- n8n workflows that share webhook nodes may try to register the same webhook multiple times\n- ClickUp API rejects duplicate webhook registrations"
+        },
+        {
+          "id": "why-it-happens",
+          "title": "3.2. Why This Happens",
+          "content": "Understanding the root cause:",
+          "nestedList": [
+            {
+              "text": "Webhook Registration",
+              "children": [
+                "When you activate a workflow with ClickUp webhook, n8n registers the webhook with ClickUp API",
+                "ClickUp creates a webhook ID and associates it with your endpoint",
+                "This webhook ID is stored in n8n's workflow configuration"
+              ]
+            },
+            {
+              "text": "Workflow Duplication",
+              "children": [
+                "When you duplicate a workflow, the webhook node configuration (including webhook ID) is copied",
+                "Both workflows now have the same webhook ID",
+                "When activating the second workflow, n8n tries to register a webhook that already exists"
+              ]
+            },
+            {
+              "text": "ClickUp's Constraint",
+              "children": [
+                "ClickUp enforces uniqueness: one webhook endpoint per registration",
+                "You cannot have multiple workflows listening to the same webhook ID",
+                "Each workflow MUST have its own unique webhook"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "solution",
+          "title": "4. Solution: Unique Webhooks Per Workflow",
+          "content": "Here's the step-by-step solution to fix webhook ID conflicts:"
+        },
+        {
+          "id": "solution-steps",
+          "title": "4.1. Implementation Steps",
+          "content": "**Step 1: Deactivate All Affected Workflows**\n\nBefore making changes, deactivate all workflows that share the webhook:\n- This prevents registration conflicts\n- Allows ClickUp to clean up existing webhooks\n\n**Step 2: Delete and Recreate Webhook Nodes**\n\nFor each workflow after the first:\n1. Open the workflow in n8n\n2. Delete the ClickUp Webhook Trigger node\n3. Add a new ClickUp Webhook Trigger node\n4. Configure it with the same settings (events, filters, etc.)\n5. Important: Do NOT copy-paste webhook nodes between workflows!\n\n**Step 3: Configure Unique Webhook Settings**\n\nFor each new webhook node:\n- Select the same ClickUp workspace\n- Choose the events you want to listen to\n- Configure filters if needed\n- n8n will generate a new unique webhook ID automatically\n\n**Step 4: Activate Workflows One by One**\n\n1. Activate the first workflow\n2. Wait for successful webhook registration (check n8n logs)\n3. Activate the second workflow\n4. Repeat for remaining workflows\n\n**Step 5: Verify Webhook Registration**\n\nCheck in ClickUp:\n1. Go to Settings → Integrations → Webhooks\n2. You should see separate webhook entries for each workflow\n3. Each webhook has a unique ID and endpoint"
+        },
+        {
+          "id": "best-practices",
+          "title": "5. Best Practices",
+          "content": "**Webhook Management**\n\n• Never duplicate workflows with webhook triggers - create new ones from scratch\n• Use descriptive webhook names to identify which workflow they belong to\n• Document your webhook configurations\n• Regularly audit and clean up unused webhooks in ClickUp\n\n**Access Token Security**\n\n• Store tokens securely in n8n credentials, never hardcode\n• Use environment variables for sensitive data\n• Implement token refresh logic for long-running workflows\n• Rotate tokens periodically for security\n\n**Error Handling**\n\n• Implement retry logic with exponential backoff for API calls\n• Monitor webhook delivery failures\n• Set up alerting for workflow errors\n• Log all API interactions for debugging\n\n**Rate Limiting**\n\n• ClickUp API has rate limits (100 requests per minute per token)\n• Implement request queuing for high-volume workflows\n• Use batch operations when possible\n• Cache frequently accessed data"
+        },
+        {
+          "id": "troubleshooting",
+          "title": "6. Troubleshooting Common Issues",
+          "content": "**Issue: Webhook not receiving events**\n\nSolution:\n- Verify webhook is registered in ClickUp (Settings → Integrations)\n- Check webhook endpoint URL is accessible\n- Ensure workflow is activated in n8n\n- Test with ClickUp's webhook testing tool\n\n**Issue: Access token expired**\n\nSolution:\n- OAuth tokens can expire\n- Reconnect your ClickUp account in n8n credentials\n- Implement automatic token refresh if using manual tokens\n\n**Issue: API rate limit exceeded**\n\nSolution:\n- Reduce request frequency\n- Implement request queuing\n- Use webhooks instead of polling when possible\n- Consider using multiple OAuth apps for different workflows"
+        },
+        {
+          "id": "complete-example",
+          "title": "7. Complete Workflow Example",
+          "content": "Here's a complete example workflow that creates a task in ClickUp when a webhook is triggered:\n\n```json\n{\n  \"nodes\": [\n    {\n      \"name\": \"ClickUp Webhook\",\n      \"type\": \"n8n-nodes-base.clickUpTrigger\",\n      \"parameters\": {\n        \"events\": [\"taskCreated\", \"taskUpdated\"],\n        \"workspace\": \"123456\"\n      }\n    },\n    {\n      \"name\": \"Process Data\",\n      \"type\": \"n8n-nodes-base.function\",\n      \"parameters\": {\n        \"functionCode\": \"// Extract task data\\nconst task = items[0].json;\\nreturn [{ json: { taskName: task.name, status: task.status } }];\"\n      }\n    },\n    {\n      \"name\": \"Create ClickUp Task\",\n      \"type\": \"n8n-nodes-base.clickUp\",\n      \"parameters\": {\n        \"operation\": \"create\",\n        \"resource\": \"task\",\n        \"listId\": \"987654\",\n        \"name\": \"={{$json.taskName}}\"\n      }\n    }\n  ]\n}\n```"
+        },
+        {
+          "id": "conclusion",
+          "title": "8. Conclusion",
+          "content": "Integrating n8n with ClickUp requires careful attention to OAuth authentication and webhook management. Key takeaways:\n\n• Always create unique webhooks for each workflow - never duplicate webhook nodes\n• Properly configure OAuth 2.0 with correct redirect URLs\n• Implement robust error handling and retry logic\n• Monitor webhook registrations and clean up unused ones\n• Follow ClickUp API rate limits and best practices\n\nBy following this guide, you can build reliable ClickUp automation workflows in n8n without encountering webhook ID conflicts or authentication issues."
+        }
+      ]
+    },
+    {
       "id": "llm-structured-output-tool-calling",
       "title": "LLM Structured Output: Just Tool Calling in Disguise",
       "slug": "llm-structured-output-tool-calling",

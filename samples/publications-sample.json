@@ -18,7 +18,8 @@
         "video": "https://youtube.com/example"
       },
       "awards": ["Best Paper Award"],
-      "citations": 45
+      "citations": 45,
+      "presentationType": "oral"
     },
     {
       "id": "pub2",
@@ -36,7 +37,8 @@
         "code": "https://github.com/ducln-me/microservices-patterns",
         "slides": "https://slides.example.com/icse2023"
       },
-      "citations": 32
+      "citations": 32,
+      "presentationType": "spotlight"
     },
     {
       "id": "pub3",
@@ -55,7 +57,8 @@
         "slides": "https://slides.example.com/acl2022",
         "dataset": "https://data.example.com/lowres-mt"
       },
-      "citations": 67
+      "citations": 67,
+      "presentationType": "poster"
     },
     {
       "id": "pub4",
@@ -108,7 +111,8 @@
         "slides": "https://slides.example.com/miccai2021"
       },
       "awards": ["Honorable Mention"],
-      "citations": 89
+      "citations": 89,
+      "presentationType": "oral"
     }
   ],
   "stats": {
@@ -116,6 +120,10 @@
     "totalCitations": 417,
     "hIndex": 5,
     "conferencePublications": 4,
-    "journalPublications": 2
+    "journalPublications": 2,
+    "oralPresentations": 2,
+    "spotlightPapers": 1,
+    "posterPresentations": 1,
+    "bestPaperAwards": 1
   }
 }

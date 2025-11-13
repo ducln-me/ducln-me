@@ -5,6 +5,10 @@
     "totalCitations": 0,
     "hIndex": 0,
     "conferencePublications": 0,
-    "journalPublications": 0
+    "journalPublications": 0,
+    "oralPresentations": 0,
+    "spotlightPapers": 0,
+    "posterPresentations": 0,
+    "bestPaperAwards": 0
   }
 }

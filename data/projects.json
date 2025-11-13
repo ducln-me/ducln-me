@@ -60,6 +60,66 @@
         "demo": "https://ai-form-demo.example.com"
       },
       "date": "2025-08"
+    },
+    {
+      "id": "n8n-clickup-automation",
+      "title": "n8n ClickUp Workflow Automation",
+      "category": "Automation",
+      "image": "https://via.placeholder.com/800x400",
+      "shortDescription": "Automated workflow system using n8n to streamline ClickUp project management with webhook integrations and error handling.",
+      "fullDescription": "Built a comprehensive workflow automation system using n8n to automate ClickUp project management tasks. The system handles task creation, status updates, and team notifications through webhook integrations, with robust error handling for webhook ID conflicts and access token management.",
+      "technologies": ["n8n", "ClickUp API", "Webhooks", "JavaScript", "REST API", "OAuth"],
+      "features": [
+        "Automated task creation and assignment in ClickUp",
+        "Real-time status updates via webhooks",
+        "Team notification system for task changes",
+        "Automated deadline reminders and escalations",
+        "Custom field synchronization across tasks",
+        "Error handling for webhook ID conflicts",
+        "Secure access token management",
+        "Multi-workspace support"
+      ],
+      "techStack": {
+        "automation": "n8n, Workflow Automation",
+        "api": "ClickUp API v2, REST API",
+        "integration": "Webhooks, OAuth 2.0",
+        "infrastructure": "Docker, Self-hosted n8n"
+      },
+      "results": {
+        "metrics": [
+          { "value": "80%", "label": "Time Saved" },
+          { "value": "500+", "label": "Tasks Automated/Month" },
+          { "value": "99%", "label": "Webhook Reliability" },
+          { "value": "50+", "label": "Active Workflows" }
+        ],
+        "improvements": [
+          "Reduced manual task creation time by 80%",
+          "Automated 500+ repetitive tasks monthly",
+          "Improved team response time by 60%",
+          "Eliminated webhook configuration errors with proper ID management"
+        ]
+      },
+      "challenges": [
+        {
+          "problem": "Webhook ID conflicts when multiple workflows use the same webhook",
+          "solution": "Implemented unique webhook ID per workflow with validation and error handling",
+          "blogLink": "blog-detail.html?post=n8n-clickup-integration"
+        },
+        {
+          "problem": "ClickUp access token retrieval and management",
+          "solution": "Created step-by-step OAuth flow with secure token storage and refresh mechanism",
+          "blogLink": "blog-detail.html?post=n8n-clickup-integration"
+        },
+        {
+          "problem": "Handling API rate limits and webhook delivery failures",
+          "solution": "Implemented retry logic with exponential backoff and request queuing",
+          "blogLink": "blog-detail.html?post=n8n-clickup-integration"
+        }
+      ],
+      "links": {
+        "github": "https://github.com/ducln-me/n8n-clickup-automation"
+      },
+      "date": "2024-12"
     }
   ]
 }
