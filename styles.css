@@ -1345,10 +1345,16 @@ a {
 /* ===== PUBLICATIONS PAGE ===== */
 
 .publication-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.stats-row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 1.5rem;
-    margin-top: 2rem;
 }
 
 .stat-card {

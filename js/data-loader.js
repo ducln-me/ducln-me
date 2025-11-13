@@ -396,9 +396,7 @@ const Templates = {
         if (!statsContainer || !data) return;
 
         const stats = data.stats || {};
-        const totalPapers = stats.totalPublications || 0;
         const totalCitations = stats.totalCitations || 0;
-        const hIndex = stats.hIndex || 0;
         const conferencePublications = stats.conferencePublications || 0;
         const journalPublications = stats.journalPublications || 0;
         const oralPresentations = stats.oralPresentations || 0;
@@ -407,50 +405,44 @@ const Templates = {
         const bestPaperAwards = stats.bestPaperAwards || 0;
 
         statsContainer.innerHTML = `
-            <div class="stat-card">
-                <i class="fas fa-file-alt"></i>
-                <h3>${totalPapers}</h3>
-                <p>Total Publications</p>
+            <div class="stats-row">
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <h3>${conferencePublications}</h3>
+                    <p>Conference Papers</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-book"></i>
+                    <h3>${journalPublications}</h3>
+                    <p>Journal Papers</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-quote-right"></i>
+                    <h3>${totalCitations}</h3>
+                    <p>Citations</p>
+                </div>
             </div>
-            <div class="stat-card">
-                <i class="fas fa-quote-right"></i>
-                <h3>${totalCitations}</h3>
-                <p>Citations</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-chart-line"></i>
-                <h3>${hIndex}</h3>
-                <p>h-index</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-users"></i>
-                <h3>${conferencePublications}</h3>
-                <p>Conference Papers</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-book"></i>
-                <h3>${journalPublications}</h3>
-                <p>Journal Papers</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-microphone"></i>
-                <h3>${oralPresentations}</h3>
-                <p>Oral Presentations</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-star"></i>
-                <h3>${spotlightPapers}</h3>
-                <p>Spotlight Papers</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-image"></i>
-                <h3>${posterPresentations}</h3>
-                <p>Poster Presentations</p>
-            </div>
-            <div class="stat-card">
-                <i class="fas fa-award"></i>
-                <h3>${bestPaperAwards}</h3>
-                <p>Best Paper Awards</p>
+            <div class="stats-row">
+                <div class="stat-card">
+                    <i class="fas fa-microphone"></i>
+                    <h3>${oralPresentations}</h3>
+                    <p>Oral Presentations</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-star"></i>
+                    <h3>${spotlightPapers}</h3>
+                    <p>Spotlight Papers</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-image"></i>
+                    <h3>${posterPresentations}</h3>
+                    <p>Poster Presentations</p>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-award"></i>
+                    <h3>${bestPaperAwards}</h3>
+                    <p>Best Paper Awards</p>
+                </div>
             </div>
         `;
     },
