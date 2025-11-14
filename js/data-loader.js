@@ -604,7 +604,7 @@ const Templates = {
                     // Replace single newlines with <br> tags
                     contentHTML = contentHTML.replace(/\n/g, '<br>');
 
-                    // Restore code blocks
+                    // Restore code blocks BEFORE wrapping in <p> tags
                     codeBlocks.forEach((block, i) => {
                         contentHTML = contentHTML.replace(`___CODE_BLOCK_${i}___`, block);
                     });
@@ -614,7 +614,19 @@ const Templates = {
                         contentHTML = contentHTML.replace(`___INLINE_CODE_${i}___`, code);
                     });
 
-                    sectionHTML += `<p>${contentHTML}</p>`;
+                    // Wrap in paragraphs, but make sure code blocks are on their own lines
+                    // Split by code blocks and wrap text parts only
+                    const parts = contentHTML.split(/(<pre><code[\s\S]*?<\/code><\/pre>)/);
+                    contentHTML = parts.map(part => {
+                        if (part.startsWith('<pre><code')) {
+                            return part; // Don't wrap code blocks
+                        } else if (part.trim()) {
+                            return `<p>${part}</p>`; // Wrap text in paragraphs
+                        }
+                        return '';
+                    }).join('');
+
+                    sectionHTML += contentHTML;
                 }
 
                 // Render table
