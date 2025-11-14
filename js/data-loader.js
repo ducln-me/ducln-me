@@ -590,8 +590,11 @@ const Templates = {
                     contentHTML = contentHTML.replace(/\*(.+?)\*/g, '<em>$1</em>');
                     contentHTML = contentHTML.replace(/_(.+?)_/g, '<em>$1</em>');
 
-                    // Replace newlines with paragraph breaks (but not inside pre tags)
-                    contentHTML = contentHTML.replace(/\n/g, '</p><p>');
+                    // Replace double newlines with paragraph breaks
+                    contentHTML = contentHTML.replace(/\n\n/g, '</p><p>');
+
+                    // Replace single newlines with <br> tags
+                    contentHTML = contentHTML.replace(/\n/g, '<br>');
 
                     sectionHTML += `<p>${contentHTML}</p>`;
                 }
