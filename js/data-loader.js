@@ -567,7 +567,8 @@ const Templates = {
                     // Parse markdown to HTML
                     let contentHTML = section.content;
 
-                    // Replace code blocks with proper HTML (must be done first)
+                    // Store code blocks temporarily to protect them from further processing
+                    const codeBlocks = [];
                     contentHTML = contentHTML.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, language, code) => {
                         const lang = language || 'plaintext';
                         const escapedCode = code
@@ -576,11 +577,18 @@ const Templates = {
                             .replace(/>/g, '&gt;')
                             .replace(/"/g, '&quot;')
                             .replace(/'/g, '&#039;');
-                        return `<pre><code class="language-${lang}">${escapedCode}</code></pre>`;
+                        const placeholder = `___CODE_BLOCK_${codeBlocks.length}___`;
+                        codeBlocks.push(`<pre><code class="language-${lang}">${escapedCode}</code></pre>`);
+                        return placeholder;
                     });
 
-                    // Replace inline code (backticks)
-                    contentHTML = contentHTML.replace(/`([^`]+)`/g, '<code>$1</code>');
+                    // Replace inline code (backticks) - also protect these
+                    const inlineCodes = [];
+                    contentHTML = contentHTML.replace(/`([^`]+)`/g, (_match, code) => {
+                        const placeholder = `___INLINE_CODE_${inlineCodes.length}___`;
+                        inlineCodes.push(`<code>${code}</code>`);
+                        return placeholder;
+                    });
 
                     // Replace bold text (**text** or __text__)
                     contentHTML = contentHTML.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
@@ -595,6 +603,16 @@ const Templates = {
 
                     // Replace single newlines with <br> tags
                     contentHTML = contentHTML.replace(/\n/g, '<br>');
+
+                    // Restore code blocks
+                    codeBlocks.forEach((block, i) => {
+                        contentHTML = contentHTML.replace(`___CODE_BLOCK_${i}___`, block);
+                    });
+
+                    // Restore inline codes
+                    inlineCodes.forEach((code, i) => {
+                        contentHTML = contentHTML.replace(`___INLINE_CODE_${i}___`, code);
+                    });
 
                     sectionHTML += `<p>${contentHTML}</p>`;
                 }
