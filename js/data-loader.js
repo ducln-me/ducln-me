@@ -567,11 +567,19 @@ const Templates = {
                     // Parse markdown to HTML
                     let contentHTML = section.content;
 
+                    // First, convert escaped newlines (\n) to actual newlines if they exist in the JSON
+                    // This handles cases where JSON contains literal "\n" strings
+                    contentHTML = contentHTML.replace(/\\n/g, '\n');
+                    contentHTML = contentHTML.replace(/\\t/g, '\t');
+                    contentHTML = contentHTML.replace(/\\"/g, '"');
+
                     // Store code blocks temporarily to protect them from further processing
                     const codeBlocks = [];
                     contentHTML = contentHTML.replace(/```(\w+)?\s*([\s\S]*?)```/g, (_match, language, code) => {
                         const lang = language || 'plaintext';
-                        const escapedCode = code
+                        // Trim leading/trailing whitespace from code block
+                        const trimmedCode = code.trim();
+                        const escapedCode = trimmedCode
                             .replace(/&/g, '&amp;')
                             .replace(/</g, '&lt;')
                             .replace(/>/g, '&gt;')
