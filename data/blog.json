@@ -1,6 +1,147 @@
 {
   "posts": [
     {
+      "id": "self-host-llm-continue-ollama",
+      "title": "Self-Hosting Large Language Models with Continue.dev & Ollama",
+      "slug": "self-host-llm-continue-ollama",
+      "category": "tutorial",
+      "categoryLabel": "Tutorial",
+      "date": "2025-11-14",
+      "readTime": "12 min read",
+      "author": {
+        "name": "Duc Le",
+        "avatar": "data/images/image_avatar.jpg",
+        "title": "AI Engineer & Researcher"
+      },
+      "excerpt": "A comprehensive guide to self-hosting large language models (up to 32B parameters) using Continue.dev and Ollama on your local server. Learn how to configure network access, set up domain routing, and integrate with your IDE for a fully private AI coding assistant.",
+      "image": "https://via.placeholder.com/1200x600",
+      "tags": ["Continue.dev", "Ollama", "Self-Hosting", "LLM", "AI Assistant", "Privacy", "Local Development"],
+      "featured": true,
+      "sections": [
+        {
+          "id": "introduction",
+          "title": "1. Introduction",
+          "content": "In the era of AI-assisted development, privacy and control over your data are paramount. While cloud-based AI coding assistants like GitHub Copilot are convenient, they send your code to external servers. Self-hosting your own LLM gives you:\n\n• **Complete Privacy**: Your code never leaves your infrastructure\n• **Cost Control**: No per-user subscription fees\n• **Model Choice**: Run any model up to 32B parameters (or larger with enough resources)\n• **Network Flexibility**: Access from multiple machines via domain routing\n• **No Rate Limits**: Use as much as your hardware allows\n\nThis guide shows you how to combine **Continue.dev** (an open-source AI coding assistant) with **Ollama** (an easy LLM runtime) to create your own private coding assistant."
+        },
+        {
+          "id": "overview",
+          "title": "2. Architecture Overview",
+          "content": "The setup involves three main components:",
+          "nestedList": [
+            {
+              "text": "Ollama Server (Backend)",
+              "children": [
+                "Runs on your local server or powerful workstation",
+                "Hosts the LLM (e.g., Qwen 2.5 Coder 32B, DeepSeek Coder 33B)",
+                "Exposes API on port 11434",
+                "Configured to accept external connections (0.0.0.0)"
+              ]
+            },
+            {
+              "text": "Network Layer (Access)",
+              "children": [
+                "Systemd service configured to bind to 0.0.0.0",
+                "Firewall rules to allow port 11434",
+                "Optional: Domain name pointing to your server",
+                "Optional: HTTPS with reverse proxy (nginx/caddy)"
+              ]
+            },
+            {
+              "text": "Continue.dev (Client)",
+              "children": [
+                "VS Code extension installed on development machines",
+                "Configured to connect to Ollama server via domain or IP",
+                "Provides autocomplete, chat, and refactoring features",
+                "Works seamlessly with your local models"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "prerequisites",
+          "title": "3. Prerequisites",
+          "content": "**Server Requirements:**\n\n• Linux server (Ubuntu 22.04+ recommended)\n• GPU with at least 24GB VRAM (for 32B models)\n  - NVIDIA RTX 4090 (24GB)\n  - NVIDIA A100 (40GB/80GB)\n  - Or multiple GPUs\n• 32GB+ RAM\n• 100GB+ free disk space\n\n**Client Requirements:**\n\n• VS Code installed\n• Network access to your server\n• (Optional) Domain name for easier access\n\n**Software:**\n\n• Ollama (will be installed)\n• systemd (standard on most Linux distributions)\n• (Optional) nginx or Caddy for HTTPS"
+        },
+        {
+          "id": "install-ollama",
+          "title": "4. Installing Ollama on Your Server",
+          "content": "**Step 1: Install Ollama**\n\nSSH into your server and run:\n\n```bash\ncurl -fsSL https://ollama.com/install.sh | sh\n```\n\nThis installs Ollama and sets up the systemd service.\n\n**Step 2: Verify Installation**\n\n```bash\nollama --version\n# Expected output: ollama version 0.x.x\n```\n\n**Step 3: Pull a Model**\n\nFor coding, I recommend these models:\n\n```bash\n# 32B parameter model (requires 24GB+ VRAM)\nollama pull qwen2.5-coder:32b\n\n# Alternative: 14B model (requires 12GB+ VRAM)\nollama pull qwen2.5-coder:14b\n\n# Alternative: DeepSeek Coder 33B\nollama pull deepseek-coder:33b\n```\n\n**Step 4: Test Locally**\n\n```bash\nollama run qwen2.5-coder:32b\n# Try: \"Write a Python function to reverse a string\"\n```\n\nIf this works, Ollama is ready!"
+        },
+        {
+          "id": "configure-network",
+          "title": "5. Configuring Ollama for Network Access",
+          "content": "By default, Ollama only listens on `127.0.0.1` (localhost). To allow external access, we need to configure the systemd service.\n\n**Step 1: Create Systemd Override**\n\n```bash\nsudo systemctl edit ollama.service\n```\n\nThis opens an editor. Add:\n\n```ini\n[Service]\nEnvironment=\"OLLAMA_HOST=0.0.0.0:11434\"\n```\n\nSave and exit (Ctrl+X, then Y, then Enter in nano).\n\n**Step 2: Reload and Restart**\n\n```bash\nsudo systemctl daemon-reload\nsudo systemctl restart ollama.service\n```\n\n**Step 3: Verify Service Status**\n\n```bash\nsudo systemctl status ollama.service\n```\n\nYou should see:\n- **Active: active (running)**\n- Environment variable showing `OLLAMA_HOST=0.0.0.0:11434`\n\n**Step 4: Check Network Binding**\n\n```bash\nsudo netstat -tulnp | grep 11434\n# or\nsudo ss -tulnp | grep 11434\n```\n\nExpected output:\n```\ntcp   0   0   0.0.0.0:11434   0.0.0.0:*   LISTEN   12345/ollama\n```\n\nIf you see `127.0.0.1:11434`, the configuration didn't apply correctly."
+        },
+        {
+          "id": "firewall-setup",
+          "title": "6. Firewall Configuration",
+          "content": "**Option A: UFW (Ubuntu Firewall)**\n\n```bash\n# Allow from specific IP (recommended for security)\nsudo ufw allow from 192.168.1.0/24 to any port 11434\n\n# Or allow from anywhere (less secure)\nsudo ufw allow 11434/tcp\n\n# Verify\nsudo ufw status\n```\n\n**Option B: firewalld (RHEL/CentOS)**\n\n```bash\nsudo firewall-cmd --permanent --add-port=11434/tcp\nsudo firewall-cmd --reload\n```\n\n**Option C: iptables**\n\n```bash\nsudo iptables -A INPUT -p tcp --dport 11434 -j ACCEPT\nsudo iptables-save | sudo tee /etc/iptables/rules.v4\n```\n\n**Security Note:**\n\nFor production use, restrict access to trusted IPs only:\n\n```bash\nsudo ufw allow from YOUR_CLIENT_IP to any port 11434\n```"
+        },
+        {
+          "id": "domain-setup",
+          "title": "7. Setting Up Domain Access (Optional but Recommended)",
+          "content": "Instead of using IP addresses, set up a domain for easier access.\n\n**Step 1: Configure DNS**\n\nAdd an A record in your DNS provider:\n\n```\nType: A\nName: ollama (or ai, llm, etc.)\nValue: YOUR_SERVER_IP\nTTL: 300\n```\n\nResult: `ollama.yourdomain.com` → `YOUR_SERVER_IP`\n\n**Step 2: Test DNS Resolution**\n\n```bash\nnslookup ollama.yourdomain.com\n# Should return your server IP\n```\n\n**Step 3: Set Up HTTPS with Caddy (Recommended)**\n\nInstall Caddy:\n\n```bash\nsudo apt install -y debian-keyring debian-archive-keyring apt-transport-https\ncurl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/gpg.key' | sudo gpg --dearmor -o /usr/share/keyrings/caddy-stable-archive-keyring.gpg\ncurl -1sLf 'https://dl.cloudsmith.io/public/caddy/stable/debian.deb.txt' | sudo tee /etc/apt/sources.list.d/caddy-stable.list\nsudo apt update\nsudo apt install caddy\n```\n\nCreate Caddyfile:\n\n```bash\nsudo nano /etc/caddy/Caddyfile\n```\n\nAdd:\n\n```\nollama.yourdomain.com {\n    reverse_proxy localhost:11434\n}\n```\n\nReload Caddy:\n\n```bash\nsudo systemctl reload caddy\n```\n\nCaddy automatically obtains and renews SSL certificates from Let's Encrypt!\n\n**Step 4: Test HTTPS Access**\n\n```bash\ncurl https://ollama.yourdomain.com/api/tags\n```\n\nYou should see a JSON response with available models."
+        },
+        {
+          "id": "configure-continue",
+          "title": "8. Configuring Continue.dev",
+          "content": "**Step 1: Install Continue.dev Extension**\n\n1. Open VS Code\n2. Go to Extensions (Ctrl+Shift+X)\n3. Search for \"Continue\"\n4. Click Install\n\n**Step 2: Configure Ollama Connection**\n\n1. Click the Continue icon in the sidebar\n2. Click the gear icon (⚙️) to open config\n3. This opens `~/.continue/config.json`\n\n**Step 3: Edit Configuration**\n\nReplace the content with:\n\n```json\n{\n  \"models\": [\n    {\n      \"title\": \"Qwen 2.5 Coder 32B\",\n      \"provider\": \"ollama\",\n      \"model\": \"qwen2.5-coder:32b\",\n      \"apiBase\": \"https://ollama.yourdomain.com\"\n    }\n  ],\n  \"tabAutocompleteModel\": {\n    \"title\": \"Qwen 2.5 Coder 32B\",\n    \"provider\": \"ollama\",\n    \"model\": \"qwen2.5-coder:32b\",\n    \"apiBase\": \"https://ollama.yourdomain.com\"\n  },\n  \"allowAnonymousTelemetry\": false,\n  \"embeddingsProvider\": {\n    \"provider\": \"ollama\",\n    \"model\": \"nomic-embed-text\",\n    \"apiBase\": \"https://ollama.yourdomain.com\"\n  }\n}\n```\n\n**If not using HTTPS/domain, use IP directly:**\n\n```json\n\"apiBase\": \"http://YOUR_SERVER_IP:11434\"\n```\n\n**Step 4: Reload VS Code**\n\nPress `Ctrl+Shift+P` → \"Developer: Reload Window\"\n\n**Step 5: Test Connection**\n\n1. Click Continue sidebar icon\n2. Type a question: \"Explain what a REST API is\"\n3. You should get a response from your self-hosted model!"
+        },
+        {
+          "id": "usage-features",
+          "title": "9. Using Continue.dev Features",
+          "content": "**Chat Interface**\n\nClick the Continue icon → Chat tab\n- Ask coding questions\n- Get explanations of code\n- Debug issues\n\n**Autocomplete**\n\nAs you type code, Continue suggests completions:\n- Press `Tab` to accept\n- Press `Esc` to dismiss\n\n**Inline Editing**\n\n1. Select code\n2. Press `Ctrl+I` (or `Cmd+I` on Mac)\n3. Type instruction: \"Add error handling\"\n4. Continue modifies the code directly\n\n**Refactoring**\n\nRight-click code → Continue → Choose action:\n- \"Explain this code\"\n- \"Write unit tests\"\n- \"Optimize this code\"\n- \"Add comments\"\n\n**Codebase Context**\n\nContinue can reference your entire codebase:\n\n```\n@codebase How does authentication work in this project?\n```"
+        },
+        {
+          "id": "performance-optimization",
+          "title": "10. Performance Optimization",
+          "content": "**GPU Memory Management**\n\nIf running multiple models, configure Ollama to limit memory:\n\n```bash\nsudo systemctl edit ollama.service\n```\n\nAdd:\n\n```ini\n[Service]\nEnvironment=\"OLLAMA_MAX_LOADED_MODELS=2\"\nEnvironment=\"OLLAMA_NUM_PARALLEL=2\"\nEnvironment=\"OLLAMA_MAX_VRAM=20GB\"\n```\n\n**Model Quantization**\n\nUse quantized models for better performance:\n\n```bash\n# Q4 quantization (lower quality, faster)\nollama pull qwen2.5-coder:32b-q4\n\n# Q5 quantization (balanced)\nollama pull qwen2.5-coder:32b-q5\n\n# Q8 quantization (higher quality)\nollama pull qwen2.5-coder:32b-q8\n```\n\n**Context Window**\n\nAdjust context size in Continue config:\n\n```json\n{\n  \"models\": [{\n    \"contextLength\": 8192,\n    \"completionOptions\": {\n      \"temperature\": 0.2,\n      \"topP\": 0.9,\n      \"maxTokens\": 2048\n    }\n  }]\n}\n```"
+        },
+        {
+          "id": "troubleshooting",
+          "title": "11. Troubleshooting Common Issues",
+          "content": "**Issue: Connection Refused**\n\nCheck if Ollama is listening on 0.0.0.0:\n\n```bash\nsudo netstat -tulnp | grep 11434\n```\n\nIf showing 127.0.0.1, verify systemd override:\n\n```bash\nsudo systemctl cat ollama.service | grep OLLAMA_HOST\n```\n\n**Issue: Slow Responses**\n\n1. Check GPU utilization:\n\n```bash\nnvidia-smi\n```\n\n2. Use smaller/quantized model\n3. Reduce context length\n4. Increase `num_gpu` layers:\n\n```bash\nollama run qwen2.5-coder:32b --num-gpu 40\n```\n\n**Issue: Model Not Found**\n\nList available models:\n\n```bash\nollama list\n```\n\nPull if missing:\n\n```bash\nollama pull qwen2.5-coder:32b\n```\n\n**Issue: Certificate Errors (HTTPS)**\n\nIf using self-signed certificates, disable SSL verification:\n\n```json\n{\n  \"models\": [{\n    \"apiBase\": \"https://ollama.yourdomain.com\",\n    \"requestOptions\": {\n      \"verifySsl\": false\n    }\n  }]\n}\n```\n\n**Issue: High Memory Usage**\n\nLimit loaded models:\n\n```bash\nsudo systemctl edit ollama.service\n```\n\n```ini\n[Service]\nEnvironment=\"OLLAMA_MAX_LOADED_MODELS=1\"\n```"
+        },
+        {
+          "id": "security-best-practices",
+          "title": "12. Security Best Practices",
+          "content": "**Network Security**\n\n• Use HTTPS (Caddy/nginx with SSL)\n• Restrict firewall to trusted IPs only\n• Use VPN for remote access instead of exposing to internet\n• Implement API authentication (see Caddy basic auth)\n\n**Example: Caddy with Basic Auth**\n\n```\nollama.yourdomain.com {\n    reverse_proxy localhost:11434\n    basicauth {\n        user $2a$14$Zkx19XLiW6VYouLHR5NmfOFU0z2GTNmpkT/5qqR7hx7wHfajoKqO\n    }\n}\n```\n\nGenerate password hash:\n\n```bash\ncaddy hash-password\n```\n\n**Data Privacy**\n\n• Models run entirely on your infrastructure\n• No data sent to third parties\n• Logs stored locally (check `/var/log/ollama/`)\n• Consider encrypting model files at rest\n\n**Access Control**\n\n• Use SSH key authentication only\n• Disable password authentication\n• Keep Ollama and system updated\n• Monitor access logs regularly"
+        },
+        {
+          "id": "model-recommendations",
+          "title": "13. Recommended Models for Coding",
+          "content": "**For 24GB VRAM (RTX 4090, A5000):**\n\n```bash\n# Best overall coding model\nollama pull qwen2.5-coder:32b\n\n# Alternative: DeepSeek Coder\nollama pull deepseek-coder:33b\n\n# For faster inference\nollama pull qwen2.5-coder:32b-q4\n```\n\n**For 12-16GB VRAM (RTX 3090, RTX 4080):**\n\n```bash\nollama pull qwen2.5-coder:14b\nollama pull codellama:13b\nollama pull deepseek-coder:6.7b\n```\n\n**For 8GB VRAM (RTX 3070, RTX 4060 Ti):**\n\n```bash\nollama pull qwen2.5-coder:7b\nollama pull codellama:7b\nollama pull starcoder2:7b\n```\n\n**Embedding Models (for codebase search):**\n\n```bash\nollama pull nomic-embed-text\nollama pull mxbai-embed-large\n```"
+        },
+        {
+          "id": "comparison",
+          "title": "14. Comparison: Self-Hosted vs Cloud",
+          "content": "**Self-Hosted (Ollama + Continue.dev)**\n\n✅ **Pros:**\n• Complete privacy and data control\n• No subscription costs after hardware investment\n• Unlimited usage\n• Customizable models\n• Works offline\n• Lower latency (local network)\n\n❌ **Cons:**\n• High upfront hardware cost ($2000+ for GPU)\n• Maintenance required\n• Power consumption\n• Limited to your hardware capacity\n\n**Cloud-Based (GitHub Copilot, Cursor)**\n\n✅ **Pros:**\n• No hardware required\n• Always up-to-date models\n• No maintenance\n• Works from anywhere\n\n❌ **Cons:**\n• $10-20/month per user\n• Code sent to external servers\n• Rate limits\n• Requires internet\n• Privacy concerns for proprietary code",
+          "table": {
+            "headers": ["Feature", "Self-Hosted", "GitHub Copilot"],
+            "rows": [
+              ["Privacy", "100% private", "Code sent to GitHub"],
+              ["Cost (yearly)", "$500 (power)", "$120-240/user"],
+              ["Model Size", "Up to 70B+", "Unknown (proprietary)"],
+              ["Latency", "10-100ms (local)", "200-500ms"],
+              ["Offline Mode", "✅ Yes", "❌ No"],
+              ["Customization", "✅ Full control", "❌ Limited"],
+              ["Maintenance", "❌ Required", "✅ None"]
+            ]
+          }
+        },
+        {
+          "id": "real-world-usage",
+          "title": "15. Real-World Usage Example",
+          "content": "Here's how I use this setup in my daily workflow:\n\n**Morning: Code Review**\n\n1. Open PR in VS Code\n2. Select code → Continue → \"Review this for security issues\"\n3. Model suggests improvements without sending code externally\n\n**Afternoon: Feature Development**\n\n1. Type function signature\n2. Continue autocompletes implementation\n3. Press Tab to accept, modify as needed\n4. Ask in chat: \"Write unit tests for this function\"\n5. Continue generates test cases\n\n**Evening: Debugging**\n\n1. Encounter error in logs\n2. Copy stack trace to Continue chat\n3. Ask: \"@codebase Why is this error occurring?\"\n4. Model searches codebase and explains root cause\n\n**Hardware Setup:**\n\n• Server: Ubuntu 22.04 with NVIDIA RTX 4090 (24GB)\n• Model: Qwen 2.5 Coder 32B Q5 quantization\n• Network: Local domain via Caddy (ollama.homelab.local)\n• Access: 3 developer machines + 1 laptop\n\n**Performance:**\n\n• Autocomplete latency: ~50ms\n• Chat response: ~2 seconds for 200 tokens\n• Context window: 32K tokens\n• GPU utilization: 60-80% during inference"
+        },
+        {
+          "id": "conclusion",
+          "title": "16. Conclusion",
+          "content": "Self-hosting LLMs with Continue.dev and Ollama provides a powerful, private alternative to cloud-based coding assistants. While it requires initial investment in hardware, the benefits are substantial:\n\n**Key Takeaways:**\n\n• Configure Ollama systemd service to bind to 0.0.0.0 for network access\n• Use domain names and HTTPS for production setups\n• 24GB VRAM allows running 32B parameter models effectively\n• Continue.dev integrates seamlessly with self-hosted Ollama\n• Total privacy: your code never leaves your infrastructure\n\n**Next Steps:**\n\n1. Start with a smaller model to test your setup\n2. Monitor GPU usage and optimize quantization levels\n3. Experiment with different models for your use case\n4. Set up monitoring (Prometheus + Grafana) for production use\n5. Consider adding more GPUs for larger models or multiple users\n\n**Resources:**\n\n• [Ollama Documentation](https://ollama.com/docs)\n• [Continue.dev Documentation](https://continue.dev/docs)\n• [Model Leaderboard](https://ollama.com/library)\n\nWith this setup, you have complete control over your AI coding assistant while maintaining the convenience of modern AI-powered development tools. Whether you're working on proprietary code, in a regulated industry, or simply value privacy, self-hosting is a viable and powerful option."
+        }
+      ]
+    },
+    {
       "id": "mcp-streaming-limitation",
       "title": "MCP Tool Calling: Why Streaming Isn't Supported",
       "slug": "mcp-streaming-limitation",

@@ -569,7 +569,7 @@ const Templates = {
 
                     // Store code blocks temporarily to protect them from further processing
                     const codeBlocks = [];
-                    contentHTML = contentHTML.replace(/```(\w+)?\n([\s\S]*?)```/g, (_match, language, code) => {
+                    contentHTML = contentHTML.replace(/```(\w+)?\s*([\s\S]*?)```/g, (_match, language, code) => {
                         const lang = language || 'plaintext';
                         const escapedCode = code
                             .replace(/&/g, '&amp;')
