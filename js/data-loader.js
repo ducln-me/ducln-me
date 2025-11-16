@@ -585,7 +585,7 @@ const Templates = {
                             .replace(/>/g, '&gt;')
                             .replace(/"/g, '&quot;')
                             .replace(/'/g, '&#039;');
-                        const placeholder = `___CODE_BLOCK_${codeBlocks.length}___`;
+                        const placeholder = `\n\n___CODEBLOCK${codeBlocks.length}___\n\n`;
                         codeBlocks.push(`<pre><code class="language-${lang}">${escapedCode}</code></pre>`);
                         return placeholder;
                     });
@@ -593,7 +593,7 @@ const Templates = {
                     // Replace inline code (backticks) - also protect these
                     const inlineCodes = [];
                     contentHTML = contentHTML.replace(/`([^`]+)`/g, (_match, code) => {
-                        const placeholder = `___INLINE_CODE_${inlineCodes.length}___`;
+                        const placeholder = `___INLINECODE${inlineCodes.length}___`;
                         inlineCodes.push(`<code>${code}</code>`);
                         return placeholder;
                     });
@@ -606,33 +606,34 @@ const Templates = {
                     contentHTML = contentHTML.replace(/\*(.+?)\*/g, '<em>$1</em>');
                     contentHTML = contentHTML.replace(/_(.+?)_/g, '<em>$1</em>');
 
-                    // Replace double newlines with paragraph breaks
-                    contentHTML = contentHTML.replace(/\n\n/g, '</p><p>');
-
-                    // Replace single newlines with <br> tags
-                    contentHTML = contentHTML.replace(/\n/g, '<br>');
-
-                    // Restore code blocks BEFORE wrapping in <p> tags
-                    codeBlocks.forEach((block, i) => {
-                        contentHTML = contentHTML.replace(`___CODE_BLOCK_${i}___`, block);
-                    });
-
-                    // Restore inline codes
+                    // Restore inline codes BEFORE processing newlines
                     inlineCodes.forEach((code, i) => {
-                        contentHTML = contentHTML.replace(`___INLINE_CODE_${i}___`, code);
+                        contentHTML = contentHTML.replace(`___INLINECODE${i}___`, code);
                     });
 
-                    // Wrap in paragraphs, but make sure code blocks are on their own lines
-                    // Split by code blocks and wrap text parts only
-                    const parts = contentHTML.split(/(<pre><code[\s\S]*?<\/code><\/pre>)/);
-                    contentHTML = parts.map(part => {
-                        if (part.startsWith('<pre><code')) {
-                            return part; // Don't wrap code blocks
-                        } else if (part.trim()) {
-                            return `<p>${part}</p>`; // Wrap text in paragraphs
+                    // Split content by double newlines to create paragraphs
+                    const paragraphs = contentHTML.split(/\n\n+/);
+
+                    contentHTML = paragraphs.map(para => {
+                        para = para.trim();
+                        if (!para) return '';
+
+                        // Check if this is a code block placeholder
+                        if (para.match(/^___CODEBLOCK\d+___$/)) {
+                            return para; // Keep placeholder as is, don't wrap
                         }
-                        return '';
-                    }).join('');
+
+                        // Replace single newlines with <br> within paragraphs
+                        para = para.replace(/\n/g, '<br>');
+
+                        // Wrap in <p> tag
+                        return `<p>${para}</p>`;
+                    }).join('\n');
+
+                    // Restore code blocks at the end
+                    codeBlocks.forEach((block, i) => {
+                        contentHTML = contentHTML.replace(`___CODEBLOCK${i}___`, block);
+                    });
 
                     sectionHTML += contentHTML;
                 }
