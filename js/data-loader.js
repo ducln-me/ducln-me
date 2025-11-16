@@ -585,7 +585,8 @@ const Templates = {
                             .replace(/>/g, '&gt;')
                             .replace(/"/g, '&quot;')
                             .replace(/'/g, '&#039;');
-                        const placeholder = `\n\n___CODEBLOCK${codeBlocks.length}___\n\n`;
+                        // Use placeholder with special prefix that won't match markdown patterns
+                        const placeholder = `\n\nXXXCODEBLOCKXXX${codeBlocks.length}XXXENDXXX\n\n`;
                         codeBlocks.push(`<pre><code class="language-${lang}">${escapedCode}</code></pre>`);
                         return placeholder;
                     });
@@ -593,7 +594,8 @@ const Templates = {
                     // Replace inline code (backticks) - also protect these
                     const inlineCodes = [];
                     contentHTML = contentHTML.replace(/`([^`]+)`/g, (_match, code) => {
-                        const placeholder = `___INLINECODE${inlineCodes.length}___`;
+                        // Use placeholder that won't match markdown patterns
+                        const placeholder = `XXXINLINECODEXXX${inlineCodes.length}XXXENDXXX`;
                         inlineCodes.push(`<code>${code}</code>`);
                         return placeholder;
                     });
@@ -608,7 +610,7 @@ const Templates = {
 
                     // Restore inline codes BEFORE processing newlines
                     inlineCodes.forEach((code, i) => {
-                        contentHTML = contentHTML.replace(`___INLINECODE${i}___`, code);
+                        contentHTML = contentHTML.replace(`XXXINLINECODEXXX${i}XXXENDXXX`, code);
                     });
 
                     // Split content by double newlines to create paragraphs
@@ -619,7 +621,7 @@ const Templates = {
                         if (!para) return '';
 
                         // Check if this is a code block placeholder
-                        if (para.match(/^___CODEBLOCK\d+___$/)) {
+                        if (para.match(/^XXXCODEBLOCKXXX\d+XXXENDXXX$/)) {
                             return para; // Keep placeholder as is, don't wrap
                         }
 
@@ -632,7 +634,7 @@ const Templates = {
 
                     // Restore code blocks at the end
                     codeBlocks.forEach((block, i) => {
-                        contentHTML = contentHTML.replace(`___CODEBLOCK${i}___`, block);
+                        contentHTML = contentHTML.replace(`XXXCODEBLOCKXXX${i}XXXENDXXX`, block);
                     });
 
                     sectionHTML += contentHTML;
